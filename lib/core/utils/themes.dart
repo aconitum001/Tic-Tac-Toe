@@ -6,6 +6,7 @@ ThemeData darkTheme = ThemeData(
   colorScheme: ColorScheme.dark(
     surface: AppColors.primary1,
     primary: AppColors.secondary2,
+    onPrimary: AppColors.primary3,
     secondary: AppColors.secondary1[0],
     onSecondary: AppColors.secondary1[1],
     onSecondaryContainer: AppColors.grey3,

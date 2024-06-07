@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/features/splash/presentation/views/widgets/splash_view_body.dart';
 

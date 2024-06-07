@@ -9,8 +9,10 @@ class GetStartedView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(AppAssets.primaryDarkBackground))),
+        image: DecorationImage(
+          image: AssetImage(AppAssets.primaryDarkBackground),
+        ),
+      ),
       child: const Scaffold(
         body: GetStartedViewBody(),
       ),

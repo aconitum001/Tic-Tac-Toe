@@ -17,12 +17,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-      const Duration(seconds: 3),
-      () {
-        GoRouter.of(context).push(AppRouter.kGetStartedView);
-      },
-    );
+    navigateToNextPage();
   }
 
   @override
@@ -43,6 +38,15 @@ class _SplashViewBodyState extends State<SplashViewBody> {
           ),
         ],
       ),
+    );
+  }
+
+  void navigateToNextPage() {
+    Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        GoRouter.of(context).push(AppRouter.kGetStartedView);
+      },
     );
   }
 }
