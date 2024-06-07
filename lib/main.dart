@@ -17,7 +17,7 @@ class TicTacToe extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) => MaterialApp.router(
-        routerConfig: router,
+        routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
         theme: darkTheme,
       ),

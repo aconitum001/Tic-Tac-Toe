@@ -1,11 +1,11 @@
-abstract class Assets {
+abstract class AppAssets {
   static const String logo = 'assets/images/logo.svg';
 
   static const String primaryDarkBackground =
-      "assets/images/backgrounds/primary_dark_background.svg";
+      "assets/images/backgrounds/primary_dark_background.png";
 
   static const String gameDraw = "assets/images/game_draw.svg";
-  static const String gameWin = "assets/images/game_win.svg";
+  // static const String gameWin = "assets/images/game_win.svg";
 
   static const String rulesWin = "assets/images/rules_win.svg";
   static const String rulesLose = "assets/images/rules_lose.svg";

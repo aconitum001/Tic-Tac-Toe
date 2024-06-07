@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-abstract class Styles {
+abstract class AppStyles {
   static TextStyle style45 = TextStyle(
     fontSize: 45.sp,
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle style = TextStyle(
+  static TextStyle style20 = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeight.w700,
   );

@@ -16,12 +16,9 @@ abstract class AppColors {
   static const Color grey2 = Color(0xff1E1E1E);
   static const Color grey3 = Color(0xffFFFFFF);
 
-  LinearGradient linearColors(Color color1, Color color2) {
+  static LinearGradient linearColors(List<Color> colors) {
     return LinearGradient(
-      colors: [
-        color1,
-        color2,
-      ],
+      colors: colors,
       begin: Alignment.center,
       end: Alignment.centerLeft,
     );
