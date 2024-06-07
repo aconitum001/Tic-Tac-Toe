@@ -32,14 +32,9 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_screenutil: ^5.9.3
+  go_router: ^14.1.4
 
 dev_dependencies:
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
@@ -62,7 +57,6 @@ flutter:
     - assets/fonts/
     - assets/sound/
 
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
@@ -80,8 +74,6 @@ flutter:
         - asset: assets/fonts/static/Eczar-Medium.ttf
         - asset: assets/fonts/static/Eczar-Regular.ttf
         - asset: assets/fonts/static/Eczar-SemiBold.ttf
-        
-        
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
