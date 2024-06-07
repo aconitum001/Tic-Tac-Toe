@@ -23,8 +23,8 @@ class CustomCarouselSlider extends StatelessWidget {
             ),
             child: Image.asset(
               e,
-              width: 138,
-              height: 138,
+              width: 138.5.w,
+              height: 138.5.h,
             ),
           );
         },

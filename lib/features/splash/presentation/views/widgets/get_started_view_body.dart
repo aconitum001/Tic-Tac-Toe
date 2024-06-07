@@ -17,7 +17,7 @@ class GetStartedViewBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Spacer(
-            flex: 3,
+            flex: 4,
           ),
           SvgPicture.asset(AppAssets.logo),
           SizedBox(
@@ -30,7 +30,7 @@ class GetStartedViewBody extends StatelessWidget {
             ),
           ),
           const Spacer(
-            flex: 4,
+            flex: 5,
           ),
           CustomTextButton(
             onPressed: () {

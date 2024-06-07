@@ -22,7 +22,7 @@ class CreateUserViewBody extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            height: 40.h,
+            height: 50.h,
           ),
           const CustomCarouselSlider(),
           SizedBox(
@@ -36,7 +36,7 @@ class CreateUserViewBody extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            height: 90.h,
+            height: 82.h,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 36.w),
