@@ -13,4 +13,5 @@ ThemeData darkTheme = ThemeData(
     onPrimaryContainer: AppColors.grey2,
   ),
   scaffoldBackgroundColor: AppColors.primary1,
+  fontFamily: "Eczar",
 );
