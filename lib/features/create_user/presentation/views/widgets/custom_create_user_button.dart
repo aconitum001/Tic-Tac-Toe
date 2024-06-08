@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 
 class CustomCreatUserButton extends StatelessWidget {
-  const CustomCreatUserButton({super.key});
+  const CustomCreatUserButton({super.key, required this.onPressed});
+
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class CustomCreatUserButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.r),
         ),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Text(
         "Next",
         style: AppStyles.style20.copyWith(

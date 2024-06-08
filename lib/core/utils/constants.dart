@@ -10,3 +10,5 @@ const List<String> avatarsList = [
   AppAssets.avtar7,
   AppAssets.avtar8,
 ];
+
+const String kUserBox = "usersBox";

@@ -3,12 +3,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key});
+  const CustomTextField({super.key, required this.onSubmitted});
+
+  final Function(String?)? onSubmitted;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      onSaved: onSubmitted,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "This field is Required";
+        } else {
+          return null;
+        }
+      },
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.all(10),
         hintText: "FullName",
         hintStyle: AppStyles.style15.copyWith(
           fontWeight: FontWeight.normal,
