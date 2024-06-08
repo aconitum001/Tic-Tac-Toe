@@ -7,6 +7,7 @@ import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/functions/custom_shadow.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
+import 'package:tic_tac_toe/core/utils/prefrences_service.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/view_model/add_user_cubit/add_user_cubit.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_carousel_slider.dart';
@@ -119,6 +120,7 @@ class _CreateUserViewBodyState extends State<CreateUserViewBody> {
       formKey.currentState!.save();
       user.userName = userName;
       BlocProvider.of<AddUserCubit>(context).adduser(user: user);
+      PrefrencesService.setFirstLaunch(firstLaunch: false);
     } else {
       autovalidateMode = AutovalidateMode.always;
       setState(() {});

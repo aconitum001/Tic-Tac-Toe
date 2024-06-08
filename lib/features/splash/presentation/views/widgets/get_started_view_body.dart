@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:tic_tac_toe/core/utils/app_router.dart';
 import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/functions/custom_shadow.dart';
+import 'package:tic_tac_toe/core/utils/prefrences_service.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/core/widgets/custom_text_button.dart';
 
@@ -40,8 +41,8 @@ class GetStartedViewBody extends StatelessWidget {
               20.r,
             ),
             child: CustomTextButton(
-              onPressed: () {
-                GoRouter.of(context).push(AppRouter.kCreateUserView);
+              onPressed: () async {
+                await navigateToNextPage(context);
               },
               text: "Let's Play!",
               backgroundColor: [
@@ -60,5 +61,12 @@ class GetStartedViewBody extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> navigateToNextPage(BuildContext context) async {
+    bool isFirstLaunch = await PrefrencesService.isFirstLaunch();
+    String pageToNavigate =
+        isFirstLaunch ? AppRouter.kCreateUserView : AppRouter.kHomeView;
+    GoRouter.of(context).push(pageToNavigate);
   }
 }
