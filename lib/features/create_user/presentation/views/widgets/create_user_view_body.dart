@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:tic_tac_toe/core/utils/app_router.dart';
 import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/constants.dart';
+import 'package:tic_tac_toe/core/utils/functions/custom_shadow.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/view_model/add_user_cubit/add_user_cubit.dart';
@@ -86,13 +87,24 @@ class _CreateUserViewBodyState extends State<CreateUserViewBody> {
                 }
               },
               builder: (context, state) {
-                return CustomCreatUserButton(
-                  onPressed: () {
-                    addUserMethode(context);
-                  },
-                  child: state is AddUserLoading
-                      ? const CustomLoadingWidget()
-                      : const DefaultText(),
+                return Container(
+                  margin: EdgeInsets.symmetric(horizontal: 36.h),
+                  decoration: buildShadow(
+                    context,
+                    Theme.of(context)
+                        .colorScheme
+                        .primaryContainer
+                        .withOpacity(0.25),
+                    8.r,
+                  ),
+                  child: CustomCreatUserButton(
+                    onPressed: () {
+                      addUserMethode(context);
+                    },
+                    child: state is AddUserLoading
+                        ? const CustomLoadingWidget()
+                        : const DefaultText(),
+                  ),
                 );
               },
             )

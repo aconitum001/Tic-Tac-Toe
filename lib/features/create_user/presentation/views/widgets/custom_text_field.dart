@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tic_tac_toe/core/utils/functions/custom_shadow.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -11,27 +12,34 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 36.w),
-      child: TextFormField(
-        onSaved: onSubmitted,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return "This field is Required";
-          } else {
-            return null;
-          }
-        },
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.all(10),
-          hintText: "FullName",
-          hintStyle: AppStyles.style15.copyWith(
-            fontWeight: FontWeight.normal,
-            color: Theme.of(context).colorScheme.onPrimary,
+      child: Container(
+        decoration: buildShadow(
+          context,
+          Theme.of(context).colorScheme.onPrimaryContainer,
+          8.r,
+        ),
+        child: TextFormField(
+          onSaved: onSubmitted,
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "This field is Required";
+            } else {
+              return null;
+            }
+          },
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(10),
+            hintText: "FullName",
+            hintStyle: AppStyles.style15.copyWith(
+              fontWeight: FontWeight.normal,
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
+            border: buildBorder(context),
+            enabledBorder: buildBorder(context),
+            focusedBorder: buildBorder(context),
+            filled: true,
+            fillColor: Theme.of(context).colorScheme.surface,
           ),
-          border: buildBorder(context),
-          enabledBorder: buildBorder(context),
-          focusedBorder: buildBorder(context),
-          filled: true,
-          fillColor: Theme.of(context).colorScheme.surface,
         ),
       ),
     );

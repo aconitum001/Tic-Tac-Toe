@@ -13,19 +13,16 @@ class CustomCreatUserButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 36.w),
-      child: TextButton(
-        style: TextButton.styleFrom(
-          maximumSize: Size(double.infinity, 54.h),
-          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.r),
-          ),
+    return TextButton(
+      style: TextButton.styleFrom(
+        maximumSize: Size(double.infinity, 54.h),
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.r),
         ),
-        onPressed: onPressed,
-        child: child,
       ),
+      onPressed: onPressed,
+      child: child,
     );
   }
 }
