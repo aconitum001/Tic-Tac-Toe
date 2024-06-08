@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tic_tac_toe/core/utils/assets.dart';
+import 'package:tic_tac_toe/core/utils/functions/custom_shadow.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
+import 'package:tic_tac_toe/core/widgets/custom_text_button.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_loading_widget.dart';
 import 'package:tic_tac_toe/features/home/presentation/view_models/get_user_cubit/get_user_cubit.dart';
 import 'package:tic_tac_toe/features/home/presentation/views/widgets/custom_home_view_appbar.dart';
@@ -52,6 +54,31 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   height: 60.h,
                 ),
                 const HomeButtonsSection(),
+                SizedBox(
+                  height: 69.h,
+                ),
+                Container(
+                  decoration: buildShadow(
+                    context,
+                    Theme.of(context)
+                        .colorScheme
+                        .primaryContainer
+                        .withOpacity(0.25),
+                    20.r,
+                  ),
+                  child: CustomTextButton(
+                    text: "Settings",
+                    backgroundColor: [
+                      Theme.of(context).colorScheme.secondary,
+                      Theme.of(context).colorScheme.onSecondary,
+                    ],
+                    textColor: Theme.of(context).colorScheme.primaryContainer,
+                    style: AppStyles.style20.copyWith(
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                    ),
+                  ),
+                )
               ],
             ),
           );

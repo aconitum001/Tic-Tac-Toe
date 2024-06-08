@@ -25,7 +25,7 @@ class HomeButtonsSection extends StatelessWidget {
         ),
         CustomPrimaryTextButton(
           onPressed: () {},
-          icon: Icons.person,
+          icon: Icons.group,
           text: "Play With A Friend",
           width: 30.w,
           style: AppStyles.style20.copyWith(
@@ -38,7 +38,7 @@ class HomeButtonsSection extends StatelessWidget {
         ),
         CustomPrimaryTextButton(
           onPressed: () {},
-          icon: Icons.person,
+          icon: Icons.emoji_events,
           text: "Play in Challenge mode",
           width: 30.w,
           style: AppStyles.style20.copyWith(

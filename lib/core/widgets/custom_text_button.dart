@@ -22,7 +22,7 @@ class CustomTextButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: 340.w,
+        width: double.infinity,
         height: 70.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.r),

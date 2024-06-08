@@ -35,6 +35,7 @@ class GetStartedViewBody extends StatelessWidget {
             flex: 5,
           ),
           Container(
+            width: 340.w,
             decoration: buildShadow(
               context,
               Theme.of(context).colorScheme.primaryContainer.withOpacity(0.25),
