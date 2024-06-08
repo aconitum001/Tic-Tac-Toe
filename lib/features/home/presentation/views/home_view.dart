@@ -12,8 +12,10 @@ class HomeView extends StatelessWidget {
           image: DecorationImage(
         image: AssetImage(AppAssets.primaryDarkBackground),
       )),
-      child: const Scaffold(
-        body: HomeViewBody(),
+      child: const SafeArea(
+        child: Scaffold(
+          body: HomeViewBody(),
+        ),
       ),
     );
   }
