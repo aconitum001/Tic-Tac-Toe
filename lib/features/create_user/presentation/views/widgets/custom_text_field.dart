@@ -9,27 +9,30 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      onSaved: onSubmitted,
-      validator: (value) {
-        if (value!.isEmpty) {
-          return "This field is Required";
-        } else {
-          return null;
-        }
-      },
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(10),
-        hintText: "FullName",
-        hintStyle: AppStyles.style15.copyWith(
-          fontWeight: FontWeight.normal,
-          color: Theme.of(context).colorScheme.onPrimary,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 36.w),
+      child: TextFormField(
+        onSaved: onSubmitted,
+        validator: (value) {
+          if (value!.isEmpty) {
+            return "This field is Required";
+          } else {
+            return null;
+          }
+        },
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.all(10),
+          hintText: "FullName",
+          hintStyle: AppStyles.style15.copyWith(
+            fontWeight: FontWeight.normal,
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
+          border: buildBorder(context),
+          enabledBorder: buildBorder(context),
+          focusedBorder: buildBorder(context),
+          filled: true,
+          fillColor: Theme.of(context).colorScheme.surface,
         ),
-        border: buildBorder(context),
-        enabledBorder: buildBorder(context),
-        focusedBorder: buildBorder(context),
-        filled: true,
-        fillColor: Theme.of(context).colorScheme.surface,
       ),
     );
   }

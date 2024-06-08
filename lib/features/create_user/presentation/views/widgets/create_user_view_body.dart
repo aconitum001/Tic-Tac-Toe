@@ -62,34 +62,24 @@ class _CreateUserViewBodyState extends State<CreateUserViewBody> {
             SizedBox(
               height: 82.h,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 36.w),
-              child: SizedBox(
-                width: 359.w,
-                height: 54.h,
-                child: CustomTextField(
-                  onSubmitted: (value) {
-                    userName = value!;
-                  },
-                ),
-              ),
+            CustomTextField(
+              onSubmitted: (value) {
+                userName = value!;
+              },
             ),
             SizedBox(
               height: 29.h,
             ),
-            Padding(
-              padding: EdgeInsets.only(right: 36.w, left: 36.w),
-              child: CustomCreatUserButton(
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    user.userName = userName;
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
-                  }
-                },
-              ),
+            CustomCreatUserButton(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState!.save();
+                  user.userName = userName;
+                } else {
+                  autovalidateMode = AutovalidateMode.always;
+                  setState(() {});
+                }
+              },
             )
           ],
         ),
