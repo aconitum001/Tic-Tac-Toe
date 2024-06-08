@@ -14,6 +14,8 @@ class UserModel {
   List<int> skinsCollection;
   @HiveField(4)
   List<int> challengesFinished;
+  @HiveField(5)
+  List<String> selectedSkin;
 
   UserModel({
     required this.userName,
@@ -21,6 +23,7 @@ class UserModel {
     required this.points,
     required this.skinsCollection,
     required this.challengesFinished,
+    required this.selectedSkin,
   });
 
   @override

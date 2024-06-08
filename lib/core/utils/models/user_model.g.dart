@@ -22,13 +22,14 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       points: fields[2] as int,
       skinsCollection: (fields[3] as List).cast<int>(),
       challengesFinished: (fields[4] as List).cast<int>(),
+      selectedSkin: (fields[5] as List).cast<String>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.userName)
       ..writeByte(1)
@@ -38,7 +39,9 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..writeByte(3)
       ..write(obj.skinsCollection)
       ..writeByte(4)
-      ..write(obj.challengesFinished);
+      ..write(obj.challengesFinished)
+      ..writeByte(5)
+      ..write(obj.selectedSkin);
   }
 
   @override

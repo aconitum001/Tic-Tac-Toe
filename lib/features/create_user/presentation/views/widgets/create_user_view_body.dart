@@ -1,12 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tic_tac_toe/core/utils/app_router.dart';
+import 'package:tic_tac_toe/core/utils/assets.dart';
+import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
+import 'package:tic_tac_toe/features/create_user/presentation/view_model/add_user_cubit/add_user_cubit.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_carousel_slider.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_create_user_button.dart';
+import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_loading_widget.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_text_field.dart';
+import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/default_button_text.dart';
 
 class CreateUserViewBody extends StatefulWidget {
   const CreateUserViewBody({super.key});
@@ -21,10 +27,11 @@ class _CreateUserViewBodyState extends State<CreateUserViewBody> {
   late String userName;
   UserModel user = UserModel(
     userName: "",
-    avatar: "",
+    avatar: avatarsList[0],
     points: 0,
     skinsCollection: [],
     challengesFinished: [],
+    selectedSkin: [AppAssets.xStyle1, AppAssets.oStyle1],
   );
 
   @override
@@ -70,20 +77,39 @@ class _CreateUserViewBodyState extends State<CreateUserViewBody> {
             SizedBox(
               height: 29.h,
             ),
-            CustomCreatUserButton(
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  user.userName = userName;
-                } else {
-                  autovalidateMode = AutovalidateMode.always;
-                  setState(() {});
+            BlocConsumer<AddUserCubit, AddUserState>(
+              listener: (context, state) {
+                if (state is AddUserSuccess) {
+                  GoRouter.of(context).push(AppRouter.kHomeView);
+                } else if (state is AddUserFailure) {
+                  debugPrint(state.errMessage);
                 }
+              },
+              builder: (context, state) {
+                return CustomCreatUserButton(
+                  onPressed: () {
+                    addUserMethode(context);
+                  },
+                  child: state is AddUserLoading
+                      ? const CustomLoadingWidget()
+                      : const DefaultText(),
+                );
               },
             )
           ],
         ),
       ),
     );
+  }
+
+  void addUserMethode(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      user.userName = userName;
+      BlocProvider.of<AddUserCubit>(context).adduser(user: user);
+    } else {
+      autovalidateMode = AutovalidateMode.always;
+      setState(() {});
+    }
   }
 }

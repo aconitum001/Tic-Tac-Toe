@@ -6,7 +6,7 @@ import 'package:tic_tac_toe/features/create_user/data/create_user_repo/create_us
 class CreateUserImpl implements CreateUserRepo {
   @override
   Future<void> addUser({required UserModel user}) async {
-    var users = await Hive.openBox(kUserBox);
+    var users = await Hive.openBox<UserModel>(kUserBox);
     users.add(user);
   }
 }
