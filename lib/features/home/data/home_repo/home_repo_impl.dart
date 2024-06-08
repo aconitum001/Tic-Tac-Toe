@@ -6,7 +6,7 @@ import 'package:tic_tac_toe/features/home/data/home_repo/home_repo.dart';
 class HomeRepoImpl implements HomeRepo {
   @override
   Future<UserModel> getUser() async {
-    var usersBox = await Hive.openBox(kUserBox);
+    var usersBox = await Hive.openBox<UserModel>(kUserBox);
     var users = usersBox.values.toList();
     var user = users[0];
 
