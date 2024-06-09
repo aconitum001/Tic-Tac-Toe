@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tic_tac_toe/core/utils/app_router.dart';
 import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/functions/custom_shadow.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
@@ -31,7 +33,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
       builder: (context, state) {
         if (state is GetUserSuccess) {
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 5.h),
+            padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
             child: Column(
               children: [
                 CustomAppBar(
@@ -67,6 +69,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                     20.r,
                   ),
                   child: CustomTextButton(
+                    onPressed: () {
+                      GoRouter.of(context).push(AppRouter.kSettingsView);
+                    },
                     text: "Settings",
                     backgroundColor: [
                       Theme.of(context).colorScheme.secondary,

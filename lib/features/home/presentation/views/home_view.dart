@@ -15,6 +15,7 @@ class HomeView extends StatelessWidget {
       decoration: const BoxDecoration(
           image: DecorationImage(
         image: AssetImage(AppAssets.primaryDarkBackground),
+        fit: BoxFit.fill,
       )),
       child: BlocProvider(
         create: (context) => GetUserCubit(getIt.get<HomeRepoImpl>()),

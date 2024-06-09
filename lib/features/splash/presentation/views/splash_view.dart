@@ -11,6 +11,7 @@ class Splashview extends StatelessWidget {
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(AppAssets.primaryDarkBackground),
+          fit: BoxFit.fill,
         ),
       ),
       child: const Scaffold(
