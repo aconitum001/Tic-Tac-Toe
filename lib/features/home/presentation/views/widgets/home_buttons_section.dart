@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tic_tac_toe/core/utils/app_router.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/core/widgets/custom_primary_button.dart';
@@ -14,7 +16,9 @@ class HomeButtonsSection extends StatelessWidget {
     return Column(
       children: [
         CustomPrimaryTextButton(
-          onPressed: () {},
+          onPressed: () {
+            GoRouter.of(context).push(AppRouter.kGameView);
+          },
           icon: Icons.person,
           text: "Play Solo",
           width: 18.w,

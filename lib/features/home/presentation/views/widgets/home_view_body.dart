@@ -40,7 +40,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   user: state.user,
                 ),
                 SizedBox(
-                  height: 50.h,
+                  height: 40.h,
                 ),
                 SvgPicture.asset(AppAssets.logo),
                 SizedBox(

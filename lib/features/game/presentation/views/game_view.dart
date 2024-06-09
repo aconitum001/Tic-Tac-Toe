@@ -11,6 +11,7 @@ class GameView extends StatelessWidget {
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(AppAssets.secoundaryDarkBackground),
+          fit: BoxFit.fill,
         ),
       ),
       child: const SafeArea(
