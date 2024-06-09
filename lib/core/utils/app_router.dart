@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/create_user_view.dart';
 import 'package:tic_tac_toe/features/home/presentation/views/home_view.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/settings_view.dart';
@@ -76,7 +77,9 @@ abstract class AppRouter {
         path: kSettingsView,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: const Duration(milliseconds: 800),
-          child: const SettingsView(),
+          child: SettingsView(
+            user: state.extra as UserModel,
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(

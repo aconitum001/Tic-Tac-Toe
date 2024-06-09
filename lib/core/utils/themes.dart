@@ -14,7 +14,9 @@ ThemeData darkTheme = ThemeData(
     primaryContainer: AppColors.grey3,
     onPrimaryContainer: AppColors.grey2,
   ),
-  textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
+  textTheme: Typography.englishLike2018.apply(
+    fontSizeFactor: 1.sp,
+    fontFamily: "Eczar",
+  ),
   scaffoldBackgroundColor: Colors.transparent,
-  fontFamily: "Eczar",
 );

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tic_tac_toe/core/utils/assets.dart';
+import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/custom_edit_button.dart';
 
 class EditProfileSection extends StatelessWidget {
-  const EditProfileSection({super.key});
+  const EditProfileSection({super.key, required this.user});
+
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class EditProfileSection extends StatelessWidget {
               ),
             ),
             child: Image.asset(
-              AppAssets.avtar1,
+              user.avatar,
               width: 100.w,
               height: 100.h,
             ),
@@ -40,7 +42,7 @@ class EditProfileSection extends StatelessWidget {
         ),
         Center(
           child: Text(
-            "Skander",
+            user.userName,
             style: AppStyles.style15.copyWith(
               fontWeight: FontWeight.normal,
             ),

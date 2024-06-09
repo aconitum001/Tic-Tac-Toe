@@ -55,7 +55,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 SizedBox(
                   height: 60.h,
                 ),
-                const HomeButtonsSection(),
+                HomeButtonsSection(
+                  user: state.user,
+                ),
                 SizedBox(
                   height: 69.h,
                 ),
@@ -70,7 +72,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   ),
                   child: CustomTextButton(
                     onPressed: () {
-                      GoRouter.of(context).push(AppRouter.kSettingsView);
+                      GoRouter.of(context).push(
+                        AppRouter.kSettingsView,
+                        extra: state.user,
+                      );
                     },
                     text: "Settings",
                     backgroundColor: [

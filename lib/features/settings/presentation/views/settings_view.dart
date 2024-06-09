@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/core/utils/assets.dart';
+import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/settings_view_body.dart';
 
 class SettingsView extends StatelessWidget {
-  const SettingsView({super.key});
+  const SettingsView({super.key, required this.user});
+
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +17,11 @@ class SettingsView extends StatelessWidget {
           fit: BoxFit.fill,
         ),
       ),
-      child: const SafeArea(
+      child: SafeArea(
         child: Scaffold(
-          body: SettingsViewBody(),
+          body: SettingsViewBody(
+            user: user,
+          ),
         ),
       ),
     );
