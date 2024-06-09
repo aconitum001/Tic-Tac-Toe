@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tic_tac_toe/core/utils/colors.dart';
 
 ThemeData darkTheme = ThemeData(
@@ -13,6 +14,7 @@ ThemeData darkTheme = ThemeData(
     primaryContainer: AppColors.grey3,
     onPrimaryContainer: AppColors.grey2,
   ),
+  textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
   scaffoldBackgroundColor: Colors.transparent,
   fontFamily: "Eczar",
 );

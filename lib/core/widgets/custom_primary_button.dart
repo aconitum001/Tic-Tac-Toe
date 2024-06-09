@@ -31,7 +31,7 @@ class CustomPrimaryTextButton extends StatelessWidget {
             horizontal: 25.w,
           ),
           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-          minimumSize: Size(double.infinity, 70.h),
+          fixedSize: Size(double.infinity, 70.h),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.r),
           ),
