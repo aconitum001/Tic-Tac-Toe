@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tic_tac_toe/core/utils/app_router.dart';
+import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/core/widgets/custom_primary_button.dart';
+import 'package:tic_tac_toe/features/home/data/models/navigations_param_model.dart';
 
 class HomeButtonsSection extends StatelessWidget {
   const HomeButtonsSection({super.key, required this.user});
@@ -17,7 +19,18 @@ class HomeButtonsSection extends StatelessWidget {
       children: [
         CustomPrimaryTextButton(
           onPressed: () {
-            GoRouter.of(context).push(AppRouter.kGameView);
+            UserModel bot = UserModel(
+              userName: "Bot",
+              avatar: AppAssets.botAvatar1,
+              points: 0,
+              skinsCollection: [],
+              challengesFinished: [],
+              selectedSkin: user.selectedSkin,
+            );
+            GoRouter.of(context).push(
+              AppRouter.kGameView,
+              extra: NavigationParams(player1: user, player2: bot),
+            );
           },
           icon: Icons.person,
           text: "Play Solo",

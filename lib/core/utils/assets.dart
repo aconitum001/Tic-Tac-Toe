@@ -25,7 +25,7 @@ abstract class AppAssets {
   static const String avtar7 = "assets/images/avatars/avatar7.png";
   static const String avtar8 = "assets/images/avatars/avatar8.png";
 
-  static const String botAvatar1 = "assets/images/avatars/bot_avatar1.svg";
+  static const String botAvatar1 = "assets/images/avatars/robot_avatar.png";
 
   static const String soundOn = "assets/images/icons/icon soundboard.svg";
   static const String soundOff = "assets/images/icons/icon soundboard_off.svg";

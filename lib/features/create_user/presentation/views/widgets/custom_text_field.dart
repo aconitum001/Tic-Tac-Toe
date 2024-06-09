@@ -22,7 +22,9 @@ class CustomTextField extends StatelessWidget {
           onSaved: onSubmitted,
           validator: (value) {
             if (value!.isEmpty) {
-              return "This field is Required";
+              return "This field is Required.";
+            } else if (value.length >= 10) {
+              return "This username is too long.";
             } else {
               return null;
             }

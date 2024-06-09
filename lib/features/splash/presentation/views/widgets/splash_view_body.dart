@@ -28,11 +28,11 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         children: [
           SvgPicture.asset(AppAssets.logo),
           SizedBox(
-            height: 25.h,
+            height: 10.h,
           ),
           Text(
             "Tic-Tac-Toe",
-            style: AppStyles.style45.copyWith(
+            style: AppStyles.style40.copyWith(
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
