@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tic_tac_toe/core/utils/app_router.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/core/widgets/custom_primary_button.dart';
@@ -72,6 +74,9 @@ class GameButtonsSection extends StatelessWidget {
             height: 20.h,
           ),
           CustomTextButton(
+            onPressed: () {
+              GoRouter.of(context).push(AppRouter.kGameRulesView);
+            },
             text: "Game Rules",
             backgroundColor: [
               Theme.of(context).colorScheme.secondary,
