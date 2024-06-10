@@ -23,6 +23,7 @@ class GameBoardSection extends StatelessWidget {
           color: Theme.of(context).colorScheme.onPrimary,
         ),
         child: GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
             childAspectRatio: 93.48.w / 95.87.h,

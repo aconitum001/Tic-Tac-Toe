@@ -10,4 +10,6 @@ abstract class GameRepo {
   String checkWinner({
     required List<GameTileModel> board,
   });
+
+  List<GameTileModel> resetGame();
 }

@@ -41,4 +41,9 @@ class GameBoardCubit extends Cubit<GameBoardState> {
       emit(GameBoardFinished(winner: winner));
     }
   }
+
+  void resetGame() {
+    board = gameRepoImpl.resetGame();
+    emit(GameBoardReset());
+  }
 }

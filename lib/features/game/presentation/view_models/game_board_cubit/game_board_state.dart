@@ -12,3 +12,5 @@ final class GameBoardFinished extends GameBoardState {
 
   GameBoardFinished({required this.winner});
 }
+
+final class GameBoardReset extends GameBoardState {}

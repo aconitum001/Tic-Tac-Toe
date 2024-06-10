@@ -38,4 +38,19 @@ class GameRepoImpl implements GameRepo {
 
     return '';
   }
+
+  @override
+  List<GameTileModel> resetGame() {
+    return [
+      GameTileModel(userName: "", isChecked: false, image: ""),
+      GameTileModel(userName: "", isChecked: false, image: ""),
+      GameTileModel(userName: "", isChecked: false, image: ""),
+      GameTileModel(userName: "", isChecked: false, image: ""),
+      GameTileModel(userName: "", isChecked: false, image: ""),
+      GameTileModel(userName: "", isChecked: false, image: ""),
+      GameTileModel(userName: "", isChecked: false, image: ""),
+      GameTileModel(userName: "", isChecked: false, image: ""),
+      GameTileModel(userName: "", isChecked: false, image: ""),
+    ];
+  }
 }
