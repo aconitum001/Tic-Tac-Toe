@@ -6,3 +6,9 @@ sealed class GameBoardState {}
 final class GameBoardInitial extends GameBoardState {}
 
 final class GameBoardChanged extends GameBoardState {}
+
+final class GameBoardFinished extends GameBoardState {
+  final String winner;
+
+  GameBoardFinished({required this.winner});
+}

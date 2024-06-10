@@ -6,4 +6,8 @@ abstract class GameRepo {
     required int index,
     required GameTileModel tile,
   });
+
+  String checkWinner({
+    required List<GameTileModel> board,
+  });
 }
