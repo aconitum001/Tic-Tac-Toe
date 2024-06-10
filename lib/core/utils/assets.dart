@@ -9,9 +9,9 @@ abstract class AppAssets {
   static const String gameDraw = "assets/images/game_draw.svg";
   // static const String gameWin = "assets/images/game_win.svg";
 
-  static const String rulesWin = "assets/images/rules_win.svg";
-  static const String rulesLose = "assets/images/rules_lose.svg";
-  static const String rulesDraw = "assets/images/rules_draw.svg";
+  static const String rulesWin = "assets/images/trophy (2) 1.png";
+  static const String rulesLose = "assets/images/dislike 1.png";
+  static const String rulesDraw = "assets/images/draw 1.png";
 
   static const String xStyle1 = "assets/images/x_style1.svg";
   static const String oStyle1 = "assets/images/o_style1.svg";
