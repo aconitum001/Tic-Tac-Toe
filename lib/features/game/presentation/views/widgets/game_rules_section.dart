@@ -26,7 +26,7 @@ class GameRulesSection extends StatelessWidget {
             indent: 8.w,
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.10,
+            height: MediaQuery.of(context).size.height * 0.08,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w),

@@ -37,7 +37,7 @@ class GameBoardCubit extends Cubit<GameBoardState> {
 
   void checkWinner({required List<GameTileModel> board}) {
     String winner = gameRepoImpl.checkWinner(board: board);
-    if (winner.isNotEmpty) {
+    if (winner != "") {
       emit(GameBoardFinished(winner: winner));
     }
   }

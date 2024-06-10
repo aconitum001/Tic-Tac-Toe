@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
+
 import 'package:tic_tac_toe/features/game/data/models/game_tile_mode.dart';
 import 'package:tic_tac_toe/features/game/presentation/view_models/game_board_cubit/game_board_cubit.dart';
 
@@ -26,9 +27,6 @@ class GameBoardTile extends StatelessWidget {
       listener: (context, state) {
         if (state is GameBoardChanged) {
           changeCurrentPlayer(context);
-        }
-        if (state is GameBoardFinished) {
-          print(state.winner);
         }
       },
       builder: (context, state) {
