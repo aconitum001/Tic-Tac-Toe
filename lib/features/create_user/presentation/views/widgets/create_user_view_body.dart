@@ -115,12 +115,12 @@ class _CreateUserViewBodyState extends State<CreateUserViewBody> {
     );
   }
 
-  void addUserMethode(BuildContext context) {
+  void addUserMethode(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       user.userName = userName;
+      await PrefrencesService.setFirstLaunch(firstLaunch: false);
       BlocProvider.of<AddUserCubit>(context).adduser(user: user);
-      PrefrencesService.setFirstLaunch(firstLaunch: false);
     } else {
       autovalidateMode = AutovalidateMode.always;
       setState(() {});

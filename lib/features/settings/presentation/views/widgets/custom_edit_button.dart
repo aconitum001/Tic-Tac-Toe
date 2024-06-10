@@ -24,6 +24,9 @@ class CustomEditButton extends StatelessWidget {
           onPressed: () {},
           style: TextButton.styleFrom(
             backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(100.r),
+            ),
             fixedSize: Size(
               double.infinity,
               38.h,

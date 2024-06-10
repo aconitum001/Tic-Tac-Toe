@@ -47,8 +47,8 @@ abstract class AppStyles {
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle style40 = TextStyle(
-    fontSize: 40.sp,
+  static TextStyle style40 = const TextStyle(
+    fontSize: 40,
     fontWeight: FontWeight.w700,
   );
 

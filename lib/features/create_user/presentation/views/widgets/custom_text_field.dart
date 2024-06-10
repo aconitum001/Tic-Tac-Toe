@@ -19,6 +19,9 @@ class CustomTextField extends StatelessWidget {
           8.r,
         ),
         child: TextFormField(
+          style: AppStyles.style15.copyWith(
+            fontWeight: FontWeight.normal,
+          ),
           onSaved: onSubmitted,
           validator: (value) {
             if (value!.isEmpty) {
@@ -30,7 +33,6 @@ class CustomTextField extends StatelessWidget {
             }
           },
           decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(10),
             hintText: "FullName",
             hintStyle: AppStyles.style15.copyWith(
               fontWeight: FontWeight.normal,

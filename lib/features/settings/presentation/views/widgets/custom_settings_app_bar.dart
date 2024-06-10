@@ -17,6 +17,7 @@ class CustomSettingsAppBar extends StatelessWidget {
           child: Icon(
             Icons.arrow_back,
             color: Theme.of(context).colorScheme.primaryContainer,
+            size: 35.w,
           ),
         ),
         SizedBox(
