@@ -27,7 +27,7 @@ class GameButtonsSection extends StatelessWidget {
             onPressed: () {
               BlocProvider.of<GameBoardCubit>(context).resetGame();
             },
-            width: 75.w,
+            width: 70.w,
           ),
           SizedBox(
             height: 20.h,

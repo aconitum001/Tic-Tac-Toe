@@ -53,4 +53,21 @@ class GameRepoImpl implements GameRepo {
       GameTileModel(userName: "", isChecked: false, image: ""),
     ];
   }
+
+  @override
+  bool checkDraw({required List<GameTileModel> board}) {
+    int drawCount = 0;
+
+    for (var tile in board) {
+      if (tile.isChecked == true) {
+        drawCount++;
+      }
+    }
+
+    if (drawCount == 9) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

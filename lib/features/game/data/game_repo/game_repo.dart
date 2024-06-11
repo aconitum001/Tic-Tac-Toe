@@ -12,4 +12,8 @@ abstract class GameRepo {
   });
 
   List<GameTileModel> resetGame();
+
+  bool checkDraw({
+    required List<GameTileModel> board,
+  });
 }

@@ -14,3 +14,5 @@ final class GameBoardFinished extends GameBoardState {
 }
 
 final class GameBoardReset extends GameBoardState {}
+
+final class GameBoardDraw extends GameBoardState {}

@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   carousel_slider: ^4.2.1
+  confetti: ^0.7.0
   cupertino_icons: ^1.0.6
   device_preview: ^1.2.0
   flutter:
@@ -41,6 +42,7 @@ dependencies:
   go_router: ^14.1.4
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  lottie: ^3.1.2
   page_transition: ^2.1.0
   shared_preferences: ^2.2.3
 
@@ -68,6 +70,7 @@ flutter:
     - assets/images/icons/
     - assets/fonts/
     - assets/sound/
+    - assets/animations/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

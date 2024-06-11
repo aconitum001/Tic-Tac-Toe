@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,19 +25,29 @@ class GameBoardTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<GameBoardCubit, GameBoardState>(
-      listener: (context, state) {
-        if (state is GameBoardChanged) {
-          changeCurrentPlayer(context);
-        }
-      },
+    return BlocBuilder<GameBoardCubit, GameBoardState>(
       builder: (context, state) {
-        initCurrentPlayer(state, context);
         return GestureDetector(
-          onTap: () {
-            addPlayerMove(context);
-            checkWinner(context);
-          },
+          onTap: BlocProvider.of<GameBoardCubit>(context).canPlay
+              ? () async {
+                  if (BlocProvider.of<GameBoardCubit>(context)
+                          .board[index]
+                          .isChecked ==
+                      false) {
+                    addPlayerMove(context);
+                    checkWinner(context);
+                    BlocProvider.of<GameBoardCubit>(context).canPlay = false;
+
+                    if (BlocProvider.of<GameBoardCubit>(context).gameEnds ==
+                        false) {
+                      BlocProvider.of<GameBoardCubit>(context).checkDraw();
+                      addBotMove(context);
+                      checkWinner(context);
+                      BlocProvider.of<GameBoardCubit>(context).canPlay = true;
+                    }
+                  }
+                }
+              : null,
           child: Container(
             padding: EdgeInsets.all(15.w),
             decoration: BoxDecoration(
@@ -57,26 +69,6 @@ class GameBoardTile extends StatelessWidget {
 
   // methods
 
-  void initCurrentPlayer(GameBoardState state, BuildContext context) {
-    if (state is GameBoardInitial) {
-      BlocProvider.of<GameBoardCubit>(context).currentPlayer = player1;
-      BlocProvider.of<GameBoardCubit>(context).currentPlayerSkin =
-          player1SelectedSkin;
-    }
-  }
-
-  void changeCurrentPlayer(BuildContext context) {
-    if (BlocProvider.of<GameBoardCubit>(context).currentPlayer == player1) {
-      BlocProvider.of<GameBoardCubit>(context).currentPlayer = player2;
-      BlocProvider.of<GameBoardCubit>(context).currentPlayerSkin =
-          player2SelectedSkin;
-    } else {
-      BlocProvider.of<GameBoardCubit>(context).currentPlayer = player1;
-      BlocProvider.of<GameBoardCubit>(context).currentPlayerSkin =
-          player1SelectedSkin;
-    }
-  }
-
   void checkWinner(BuildContext context) {
     BlocProvider.of<GameBoardCubit>(context).checkWinner(
       board: BlocProvider.of<GameBoardCubit>(context).board,
@@ -85,12 +77,33 @@ class GameBoardTile extends StatelessWidget {
 
   void addPlayerMove(BuildContext context) {
     GameTileModel tile = GameTileModel(
-      userName:
-          BlocProvider.of<GameBoardCubit>(context).currentPlayer!.userName,
-      image: BlocProvider.of<GameBoardCubit>(context).currentPlayerSkin!,
+      userName: player1.userName,
+      image: player1SelectedSkin,
       isChecked: true,
     );
+
+    BlocProvider.of<GameBoardCubit>(context).chosenMoves.add(index);
     BlocProvider.of<GameBoardCubit>(context)
         .addPlayerMove(index: index, tile: tile);
+  }
+
+  void addBotMove(BuildContext context) {
+    GameTileModel tile = GameTileModel(
+      userName: player2.userName,
+      image: player2SelectedSkin,
+      isChecked: true,
+    );
+
+    Random random = Random();
+    int randomInt = random.nextInt(9);
+    while (BlocProvider.of<GameBoardCubit>(context)
+        .chosenMoves
+        .contains(randomInt)) {
+      randomInt = random.nextInt(9);
+    }
+    BlocProvider.of<GameBoardCubit>(context).chosenMoves.add(randomInt);
+    print(BlocProvider.of<GameBoardCubit>(context).chosenMoves);
+    BlocProvider.of<GameBoardCubit>(context)
+        .addPlayerMove(index: randomInt, tile: tile);
   }
 }
