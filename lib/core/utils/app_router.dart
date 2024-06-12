@@ -110,6 +110,7 @@ abstract class AppRouter {
             child: GameView(
               player1: params.player1,
               player2: params.player2,
+              dificulty: "easy",
             ),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {

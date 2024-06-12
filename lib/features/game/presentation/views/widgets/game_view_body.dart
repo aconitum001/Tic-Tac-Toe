@@ -12,8 +12,14 @@ import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_board_
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_buttons_section.dart';
 
 class GameViewBody extends StatefulWidget {
-  const GameViewBody({super.key, required this.player1, required this.player2});
+  const GameViewBody({
+    super.key,
+    required this.player1,
+    required this.player2,
+    required this.dificulty,
+  });
   final UserModel player1, player2;
+  final String dificulty;
 
   @override
   State<GameViewBody> createState() => _GameViewBodyState();
@@ -61,7 +67,7 @@ class _GameViewBodyState extends State<GameViewBody> {
               "You Lose!",
               const Color(0xffFF3F05),
               Colors.transparent,
-              "assets/animations/lost.json",
+              "assets/animations/angry_v2.json",
               false,
               false,
             );
@@ -103,6 +109,7 @@ class _GameViewBodyState extends State<GameViewBody> {
           GameBoardSection(
             player1: widget.player1,
             player2: widget.player2,
+            dificulty: widget.dificulty,
           ),
           SizedBox(
             height: 40.h,

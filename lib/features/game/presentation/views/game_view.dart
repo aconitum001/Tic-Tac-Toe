@@ -8,9 +8,15 @@ import 'package:tic_tac_toe/features/game/presentation/view_models/game_board_cu
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_view_body.dart';
 
 class GameView extends StatelessWidget {
-  const GameView({super.key, required this.player1, required this.player2});
+  const GameView({
+    super.key,
+    required this.player1,
+    required this.player2,
+    required this.dificulty,
+  });
 
   final UserModel player1, player2;
+  final String dificulty;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +34,7 @@ class GameView extends StatelessWidget {
             body: GameViewBody(
               player1: player1,
               player2: player2,
+              dificulty: dificulty,
             ),
           ),
         ),

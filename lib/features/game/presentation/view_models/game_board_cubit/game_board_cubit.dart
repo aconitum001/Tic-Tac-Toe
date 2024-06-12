@@ -22,8 +22,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
     GameTileModel(userName: "", isChecked: false, image: ""),
   ];
 
+  bool first = true;
   List<int> chosenMoves = [];
-
   bool canPlay = true;
   bool gameEnds = false;
 

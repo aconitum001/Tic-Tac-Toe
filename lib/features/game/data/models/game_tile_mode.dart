@@ -1,7 +1,7 @@
 class GameTileModel {
-  final String userName;
-  final bool isChecked;
-  final String image;
+  String userName;
+  bool isChecked;
+  String image;
 
   GameTileModel({
     required this.userName,

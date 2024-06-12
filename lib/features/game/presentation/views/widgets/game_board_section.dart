@@ -8,8 +8,10 @@ class GameBoardSection extends StatelessWidget {
     super.key,
     required this.player1,
     required this.player2,
+    required this.dificulty,
   });
   final UserModel player1, player2;
+  final String dificulty;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,7 @@ class GameBoardSection extends StatelessWidget {
               player2: player2,
               player1SelectedSkin: player1.selectedSkin[0],
               player2SelectedSkin: player2.selectedSkin[1],
+              dificulty: dificulty,
             );
           },
         ),
