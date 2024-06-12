@@ -49,9 +49,11 @@ class _GameViewBodyState extends State<GameViewBody> {
   }
 
   int player1Score = 0, player2Score = 0;
+  late String currentPlayerName;
 
   @override
   Widget build(BuildContext context) {
+    currentPlayerName = widget.player1.userName;
     return BlocConsumer<GameBoardCubit, GameBoardState>(
       listener: (context, state) {
         if (state is GameBoardFinished) {
@@ -100,6 +102,12 @@ class _GameViewBodyState extends State<GameViewBody> {
             true,
             false,
           );
+        } else if (state is GameBoardChanged) {
+          if (currentPlayerName == widget.player1.userName) {
+            currentPlayerName = widget.player2.userName;
+          } else {
+            currentPlayerName = widget.player1.userName;
+          }
         }
       },
       builder: (context, state) {
@@ -111,7 +119,7 @@ class _GameViewBodyState extends State<GameViewBody> {
             children: [
               const CustomGameViewAppBar(),
               Text(
-                "${widget.player1.userName}'s Turn",
+                "$currentPlayerName's Turn",
                 style: AppStyles.style25,
                 textAlign: TextAlign.center,
               ),
