@@ -11,7 +11,7 @@ import 'package:tic_tac_toe/core/utils/prefrences_service.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/view_model/add_user_cubit/add_user_cubit.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_carousel_slider.dart';
-import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_create_user_button.dart';
+import 'package:tic_tac_toe/core/widgets/custom_secondary_button.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_loading_widget.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_text_field.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/default_button_text.dart';
@@ -98,7 +98,9 @@ class _CreateUserViewBodyState extends State<CreateUserViewBody> {
                         .withOpacity(0.25),
                     8.r,
                   ),
-                  child: CustomCreatUserButton(
+                  child: CustomSecondaryButton(
+                    bgColor: Theme.of(context).colorScheme.primaryContainer,
+                    borderColor: Colors.transparent,
                     onPressed: () {
                       addUserMethode(context);
                     },

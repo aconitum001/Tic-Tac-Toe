@@ -29,7 +29,8 @@ class HomeButtonsSection extends StatelessWidget {
             );
             GoRouter.of(context).push(
               AppRouter.kGameDificultyView,
-              extra: NavigationParams(player1: user, player2: bot),
+              extra:
+                  NavigationParams(player1: user, player2: bot, difficulty: ""),
             );
           },
           icon: Icons.person,

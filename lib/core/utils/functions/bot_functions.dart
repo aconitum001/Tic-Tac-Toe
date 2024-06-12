@@ -16,8 +16,7 @@ void addBotMoveEasy(
   GameBoardCubit cubit = BlocProvider.of<GameBoardCubit>(context);
   Random random = Random();
 
-  double probabilityOfRandomMove =
-      0.7; // 70% of the time the bot makes a random move
+  double probabilityOfRandomMove = 0.6;
 
   int bestMove;
   if (random.nextDouble() < probabilityOfRandomMove) {
@@ -48,7 +47,7 @@ void addBotMoveMedium(
   Random random = Random();
 
   double probabilityOfRandomMove =
-      0.4; // 40% of the time the bot makes a random move
+      0.3; // 40% of the time the bot makes a random move
 
   int bestMove;
   if (random.nextDouble() < probabilityOfRandomMove) {
