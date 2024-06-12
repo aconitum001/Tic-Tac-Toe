@@ -9,7 +9,7 @@ import 'package:tic_tac_toe/core/utils/functions/custom_shadow.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/core/widgets/custom_text_button.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_loading_widget.dart';
-import 'package:tic_tac_toe/features/home/presentation/view_models/get_user_cubit/get_user_cubit.dart';
+import 'package:tic_tac_toe/features/home/presentation/view_model/get_user_cubit/get_user_cubit.dart';
 import 'package:tic_tac_toe/features/home/presentation/views/widgets/custom_home_view_appbar.dart';
 import 'package:tic_tac_toe/features/home/presentation/views/widgets/home_buttons_section.dart';
 
