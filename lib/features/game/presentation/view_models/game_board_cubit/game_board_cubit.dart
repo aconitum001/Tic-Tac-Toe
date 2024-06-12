@@ -36,10 +36,15 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   }
 
   void checkWinner({required List<GameTileModel> board}) {
-    String winner = gameRepoImpl.checkWinner(board: board);
-    if (winner != "") {
+    Map<String, dynamic> winnerInfo = gameRepoImpl.checkWinner(board: board);
+    if (winnerInfo.isNotEmpty) {
       gameEnds = true;
-      emit(GameBoardFinished(winner: winner));
+      emit(
+        GameBoardFinished(
+          winner: winnerInfo["winnerName"],
+          winningCombination: winnerInfo["winningCombination"],
+        ),
+      );
     }
   }
 

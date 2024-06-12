@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/functions/bot_functions.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/game/data/models/game_tile_mode.dart';
@@ -34,38 +36,12 @@ class GameBoardTile extends StatelessWidget {
                           .board[index]
                           .isChecked ==
                       false) {
-                    addPlayerMove(context);
-                    checkWinner(context);
-                    BlocProvider.of<GameBoardCubit>(context).canPlay = false;
+                    PlayerMove(context);
 
                     if (BlocProvider.of<GameBoardCubit>(context).gameEnds ==
                         false) {
                       BlocProvider.of<GameBoardCubit>(context).checkDraw();
-
-                      if (dificulty == "easy") {
-                        addBotMoveEasy(
-                          context,
-                          player1,
-                          player2,
-                          player2SelectedSkin,
-                        );
-                      } else if (dificulty == "medium") {
-                        addBotMoveMedium(
-                          context,
-                          player1,
-                          player2,
-                          player2SelectedSkin,
-                        );
-                      } else {
-                        addBotMoveHard(
-                          context,
-                          player1,
-                          player2,
-                          player2SelectedSkin,
-                        );
-                      }
-
-                      checkWinner(context);
+                      botMove(context);
                       BlocProvider.of<GameBoardCubit>(context).canPlay = true;
                     }
                   }
@@ -75,19 +51,71 @@ class GameBoardTile extends StatelessWidget {
             padding: EdgeInsets.all(15.w),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.r),
-              color: Theme.of(context).colorScheme.surface,
+              color: tileColor(state, context),
             ),
-            child: BlocProvider.of<GameBoardCubit>(context)
-                    .board[index]
-                    .isChecked
-                ? SvgPicture.asset(
-                    BlocProvider.of<GameBoardCubit>(context).board[index].image,
-                  )
-                : null,
+            child: tileWidget(context, state),
           ),
         );
       },
     );
+  }
+
+  Color tileColor(GameBoardState state, context) {
+    return state is GameBoardFinished
+        ? (state.winningCombination.contains(index)
+            ? (state.winner == "Bot"
+                ? const Color(0xffFF9C8E)
+                : const Color(0xff97CE62))
+            : Theme.of(context).colorScheme.surface)
+        : Theme.of(context).colorScheme.surface;
+  }
+
+  SvgPicture? tileWidget(BuildContext context, GameBoardState state) {
+    return BlocProvider.of<GameBoardCubit>(context).board[index].isChecked
+        ? (state is GameBoardFinished
+            ? (state.winningCombination.contains(index)
+                ? (state.winner == "Bot"
+                    ? SvgPicture.asset(AppAssets.oWin)
+                    : SvgPicture.asset(AppAssets.xWin))
+                : SvgPicture.asset(
+                    BlocProvider.of<GameBoardCubit>(context).board[index].image,
+                  ))
+            : SvgPicture.asset(
+                BlocProvider.of<GameBoardCubit>(context).board[index].image,
+              ))
+        : null;
+  }
+
+  void botMove(BuildContext context) {
+    if (dificulty == "easy") {
+      addBotMoveEasy(
+        context,
+        player1,
+        player2,
+        player2SelectedSkin,
+      );
+    } else if (dificulty == "medium") {
+      addBotMoveMedium(
+        context,
+        player1,
+        player2,
+        player2SelectedSkin,
+      );
+    } else {
+      addBotMoveHard(
+        context,
+        player1,
+        player2,
+        player2SelectedSkin,
+      );
+    }
+    checkWinner(context);
+  }
+
+  void PlayerMove(BuildContext context) {
+    addPlayerMove(context);
+    checkWinner(context);
+    BlocProvider.of<GameBoardCubit>(context).canPlay = false;
   }
 
   // methods

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/create_user_view.dart';
+import 'package:tic_tac_toe/features/game/presentation/game_dificulty_view.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/game_rules_view.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/game_view.dart';
 import 'package:tic_tac_toe/features/home/data/models/navigations_param_model.dart';
@@ -17,6 +18,7 @@ abstract class AppRouter {
   static const String kSettingsView = "/settingsView";
   static const String kGameView = "/gameView";
   static const String kGameRulesView = "/gameRulesView";
+  static const String kGameDificultyView = "/gameDificultyView";
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -148,7 +150,34 @@ abstract class AppRouter {
             },
           );
         },
-      )
+      ),
+      GoRoute(
+          path: kGameDificultyView,
+          pageBuilder: (context, state) {
+            NavigationParams params = state.extra as NavigationParams;
+            return CustomTransitionPage(
+              transitionDuration: const Duration(milliseconds: 800),
+              child: GameDificultyView(
+                player1: params.player1,
+                player2: params.player2,
+              ),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(1.0, 0.0),
+                    end: Offset.zero,
+                  ).animate(
+                    CurvedAnimation(
+                      parent: animation,
+                      curve: Curves.easeInOut,
+                    ),
+                  ),
+                  child: child,
+                );
+              },
+            );
+          }),
     ],
   );
 }

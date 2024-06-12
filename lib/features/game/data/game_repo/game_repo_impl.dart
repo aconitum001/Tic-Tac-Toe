@@ -12,7 +12,7 @@ class GameRepoImpl implements GameRepo {
   }
 
   @override
-  String checkWinner({required List<GameTileModel> board}) {
+  Map<String, dynamic> checkWinner({required List<GameTileModel> board}) {
     const List<List<int>> winningCombinations = [
       [0, 1, 2],
       [3, 4, 5],
@@ -32,11 +32,14 @@ class GameRepoImpl implements GameRepo {
       if (board[a].isChecked &&
           board[a].userName == board[b].userName &&
           board[a].userName == board[c].userName) {
-        return board[a].userName;
+        return {
+          "winnerName": board[a].userName,
+          "winningCombination": combination,
+        };
       }
     }
 
-    return '';
+    return {};
   }
 
   @override

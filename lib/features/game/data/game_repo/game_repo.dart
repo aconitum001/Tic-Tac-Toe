@@ -7,7 +7,7 @@ abstract class GameRepo {
     required GameTileModel tile,
   });
 
-  String checkWinner({
+  Map<String, dynamic> checkWinner({
     required List<GameTileModel> board,
   });
 

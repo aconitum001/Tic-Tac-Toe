@@ -9,8 +9,9 @@ final class GameBoardChanged extends GameBoardState {}
 
 final class GameBoardFinished extends GameBoardState {
   final String winner;
+  final List<int> winningCombination;
 
-  GameBoardFinished({required this.winner});
+  GameBoardFinished({required this.winner, required this.winningCombination});
 }
 
 final class GameBoardReset extends GameBoardState {}

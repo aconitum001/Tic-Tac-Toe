@@ -14,7 +14,9 @@ abstract class AppAssets {
   static const String rulesDraw = "assets/images/draw 1.png";
 
   static const String xStyle1 = "assets/images/x_style1.svg";
+  static const String xWin = "assets/images/x_win.svg";
   static const String oStyle1 = "assets/images/o_style1.svg";
+  static const String oWin = "assets/images/o_win.svg";
 
   static const String avtar1 = "assets/images/avatars/avatar1.png";
   static const String avtar2 = "assets/images/avatars/avatar2.png";

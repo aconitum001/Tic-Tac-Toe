@@ -28,7 +28,7 @@ class HomeButtonsSection extends StatelessWidget {
               selectedSkin: user.selectedSkin,
             );
             GoRouter.of(context).push(
-              AppRouter.kGameView,
+              AppRouter.kGameDificultyView,
               extra: NavigationParams(player1: user, player2: bot),
             );
           },

@@ -18,6 +18,7 @@ class GameViewBody extends StatefulWidget {
     required this.player2,
     required this.dificulty,
   });
+
   final UserModel player1, player2;
   final String dificulty;
 
@@ -27,53 +28,66 @@ class GameViewBody extends StatefulWidget {
 
 class _GameViewBodyState extends State<GameViewBody> {
   late ConfettiController controller;
+  bool isInteractionDisabled = false;
+  late ScrollController _scrollController;
 
   @override
   void initState() {
     super.initState();
     controller = ConfettiController(duration: const Duration(seconds: 2));
+    _scrollController = ScrollController();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollToBottom();
+    });
   }
 
   @override
   void dispose() {
     controller.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
   int player1Score = 0, player2Score = 0;
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<GameBoardCubit, GameBoardState>(
+    return BlocConsumer<GameBoardCubit, GameBoardState>(
       listener: (context, state) {
         if (state is GameBoardFinished) {
-          BlocProvider.of<GameBoardCubit>(context).resetGame();
-          if (state.winner == widget.player1.userName) {
-            showGameResults(
-              context,
-              controller,
-              "You Win!",
-              const Color(0xffFF9900),
-              const Color(0xff1A2B63),
-              "assets/animations/winner.json",
-              false,
-              true,
-            );
-            player1Score++;
-            setState(() {});
-          } else {
-            showGameResults(
-              context,
-              controller,
-              "You Lose!",
-              const Color(0xffFF3F05),
-              Colors.transparent,
-              "assets/animations/angry_v2.json",
-              false,
-              false,
-            );
-            player2Score++;
-            setState(() {});
-          }
+          Future.delayed(
+            const Duration(milliseconds: 800),
+            () {
+              BlocProvider.of<GameBoardCubit>(context).resetGame();
+              if (state.winner == widget.player1.userName) {
+                showGameResults(
+                  context,
+                  controller,
+                  "You Win!",
+                  const Color(0xffFF9900),
+                  const Color(0xff1A2B63),
+                  "assets/animations/winner.json",
+                  false,
+                  true,
+                );
+                player1Score++;
+                setState(() {});
+              } else {
+                showGameResults(
+                  context,
+                  controller,
+                  "You Lose!",
+                  const Color(0xffFF3F05),
+                  Colors.transparent,
+                  "assets/animations/angry_v2.json",
+                  false,
+                  false,
+                );
+                player2Score++;
+                setState(() {});
+              }
+            },
+          );
         } else if (state is GameBoardDraw) {
           BlocProvider.of<GameBoardCubit>(context).resetGame();
           showGameResults(
@@ -88,35 +102,49 @@ class _GameViewBodyState extends State<GameViewBody> {
           );
         }
       },
-      child: ListView(
-        physics: const BouncingScrollPhysics(),
-        children: [
-          const CustomGameViewAppBar(),
-          Text(
-            "${widget.player1.userName}'s Turn",
-            style: AppStyles.style25,
-            textAlign: TextAlign.center,
+      builder: (context, state) {
+        return AbsorbPointer(
+          absorbing: state is GameBoardFinished ? true : false,
+          child: ListView(
+            controller: _scrollController,
+            physics: const BouncingScrollPhysics(),
+            children: [
+              const CustomGameViewAppBar(),
+              Text(
+                "${widget.player1.userName}'s Turn",
+                style: AppStyles.style25,
+                textAlign: TextAlign.center,
+              ),
+              DisplayPlayersInfoSection(
+                player1: widget.player1,
+                player2: widget.player2,
+                player1Points: player1Score,
+                player2Points: player2Score,
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              GameBoardSection(
+                player1: widget.player1,
+                player2: widget.player2,
+                dificulty: widget.dificulty,
+              ),
+              SizedBox(
+                height: 40.h,
+              ),
+              const GameButtonsSection(),
+            ],
           ),
-          DisplayPlayersInfoSection(
-            player1: widget.player1,
-            player2: widget.player2,
-            player1Points: player1Score,
-            player2Points: player2Score,
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          GameBoardSection(
-            player1: widget.player1,
-            player2: widget.player2,
-            dificulty: widget.dificulty,
-          ),
-          SizedBox(
-            height: 40.h,
-          ),
-          const GameButtonsSection(),
-        ],
-      ),
+        );
+      },
+    );
+  }
+
+  void _scrollToBottom() {
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
     );
   }
 }
