@@ -34,6 +34,9 @@ class _CreateUserViewBodyState extends State<CreateUserViewBody> {
     skinsCollection: [],
     challengesFinished: [],
     selectedSkin: [AppAssets.xStyle1, AppAssets.oStyle1],
+    wins: 0,
+    loses: 0,
+    draws: 0,
   );
 
   @override

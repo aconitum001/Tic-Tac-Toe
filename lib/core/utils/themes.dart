@@ -20,3 +20,13 @@ ThemeData darkTheme = ThemeData(
   ),
   scaffoldBackgroundColor: Colors.transparent,
 );
+
+ThemeData lightTheme = ThemeData(
+  brightness: Brightness.light,
+  colorScheme: const ColorScheme.dark(
+    surface: Color(0xff889BCC),
+    primary: Color(0xff232C46),
+    primaryContainer: AppColors.grey3,
+    onPrimaryContainer: AppColors.grey2,
+  ),
+);

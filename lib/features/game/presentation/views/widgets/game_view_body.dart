@@ -2,6 +2,7 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/functions/show_win_dialog.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
@@ -10,6 +11,7 @@ import 'package:tic_tac_toe/features/game/presentation/views/widgets/custom_game
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/display_players_info_section.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_board_section.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_buttons_section.dart';
+import 'package:tic_tac_toe/features/home/presentation/view_model/user_cubit/user_cubit.dart';
 
 class GameViewBody extends StatefulWidget {
   const GameViewBody({
@@ -50,6 +52,7 @@ class _GameViewBodyState extends State<GameViewBody> {
 
   int player1Score = 0, player2Score = 0;
   late String currentPlayerName;
+  late int points;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +77,18 @@ class _GameViewBodyState extends State<GameViewBody> {
                 );
                 player1Score++;
                 setState(() {});
+                // update user
+                if (widget.dificulty == "easy") {
+                  points = winPointsEasy;
+                } else if (widget.dificulty == "medium") {
+                  points = winPointsMedium;
+                } else {
+                  points = winPointsHard;
+                }
+                BlocProvider.of<UserCubit>(context)
+                    .updateUserPoints(points: points, user: widget.player1);
+                BlocProvider.of<UserCubit>(context)
+                    .addUserWins(user: widget.player1);
               } else {
                 showGameResults(
                   context,
@@ -87,6 +102,17 @@ class _GameViewBodyState extends State<GameViewBody> {
                 );
                 player2Score++;
                 setState(() {});
+                if (widget.dificulty == "easy") {
+                  points = losePointsEasy;
+                } else if (widget.dificulty == "medium") {
+                  points = losePointsMedium;
+                } else {
+                  points = losePointsHard;
+                }
+                BlocProvider.of<UserCubit>(context)
+                    .updateUserPoints(points: points, user: widget.player1);
+                BlocProvider.of<UserCubit>(context)
+                    .addUserLoses(user: widget.player1);
               }
             },
           );
@@ -102,6 +128,8 @@ class _GameViewBodyState extends State<GameViewBody> {
             true,
             false,
           );
+          BlocProvider.of<UserCubit>(context)
+              .addUserDraws(user: widget.player1);
         } else if (state is GameBoardChanged) {
           if (currentPlayerName == widget.player1.userName) {
             currentPlayerName = widget.player2.userName;

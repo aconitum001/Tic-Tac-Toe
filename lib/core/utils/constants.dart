@@ -12,3 +12,10 @@ const List<String> avatarsList = [
 ];
 
 const String kUserBox = "usersBox";
+const int winPointsEasy = 3;
+const int winPointsMedium = 5;
+const int winPointsHard = 10;
+
+const int losePointsEasy = -1;
+const int losePointsMedium = -3;
+const int losePointsHard = -5;

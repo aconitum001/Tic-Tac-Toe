@@ -12,4 +12,31 @@ class HomeRepoImpl implements HomeRepo {
 
     return user;
   }
+
+  @override
+  void updateUserPoints({required UserModel user, required int points}) {
+    user.points += points;
+    if (user.points < 0) {
+      user.points = 0;
+    }
+    user.save();
+  }
+
+  @override
+  void addUserDraw({required UserModel user}) {
+    user.draws += 1;
+    user.save();
+  }
+
+  @override
+  void addUserLose({required UserModel user}) {
+    user.loses += 1;
+    user.save();
+  }
+
+  @override
+  void addUserWin({required UserModel user}) {
+    user.wins += 1;
+    user.save();
+  }
 }

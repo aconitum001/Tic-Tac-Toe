@@ -3,19 +3,33 @@ import 'package:hive_flutter/hive_flutter.dart';
 part 'user_model.g.dart';
 
 @HiveType(typeId: 1)
-class UserModel {
+class UserModel extends HiveObject {
   @HiveField(0)
   String userName;
+
   @HiveField(1)
   String avatar;
+
   @HiveField(2)
   int points;
+
   @HiveField(3)
   List<int> skinsCollection;
+
   @HiveField(4)
   List<int> challengesFinished;
+
   @HiveField(5)
   List<String> selectedSkin;
+
+  @HiveField(6)
+  int wins;
+
+  @HiveField(7)
+  int loses;
+
+  @HiveField(8)
+  int draws;
 
   UserModel({
     required this.userName,
@@ -24,6 +38,9 @@ class UserModel {
     required this.skinsCollection,
     required this.challengesFinished,
     required this.selectedSkin,
+    required this.draws,
+    required this.wins,
+    required this.loses,
   });
 
   @override

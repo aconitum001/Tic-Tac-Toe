@@ -26,6 +26,9 @@ class HomeButtonsSection extends StatelessWidget {
               skinsCollection: [],
               challengesFinished: [],
               selectedSkin: user.selectedSkin,
+              wins: 0,
+              loses: 0,
+              draws: 0,
             );
             GoRouter.of(context).push(
               AppRouter.kGameDificultyView,
