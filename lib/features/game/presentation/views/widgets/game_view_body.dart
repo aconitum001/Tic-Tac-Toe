@@ -13,8 +13,8 @@ import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_board_
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_buttons_section.dart';
 import 'package:tic_tac_toe/features/home/presentation/view_model/user_cubit/user_cubit.dart';
 
-class GameViewBody extends StatefulWidget {
-  const GameViewBody({
+class GameBotViewBody extends StatefulWidget {
+  const GameBotViewBody({
     super.key,
     required this.player1,
     required this.player2,
@@ -25,10 +25,10 @@ class GameViewBody extends StatefulWidget {
   final String dificulty;
 
   @override
-  State<GameViewBody> createState() => _GameViewBodyState();
+  State<GameBotViewBody> createState() => _GameBotViewBodyState();
 }
 
-class _GameViewBodyState extends State<GameViewBody> {
+class _GameBotViewBodyState extends State<GameBotViewBody> {
   late ConfettiController controller;
   bool isInteractionDisabled = false;
   late ScrollController _scrollController;

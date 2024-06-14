@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/create_user_view.dart';
+import 'package:tic_tac_toe/features/game/presentation/views/create_player_view.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/game_dificulty_view.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/game_duo_view.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/game_rules_view.dart';
-import 'package:tic_tac_toe/features/game/presentation/views/game_view.dart';
+import 'package:tic_tac_toe/features/game/presentation/views/game_bot_view.dart';
 import 'package:tic_tac_toe/features/home/data/models/navigations_param_model.dart';
 import 'package:tic_tac_toe/features/home/presentation/views/home_view.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/settings_view.dart';
@@ -21,6 +22,7 @@ abstract class AppRouter {
   static const String kGameRulesView = "/gameRulesView";
   static const String kGameDificultyView = "/gameDificultyView";
   static const String kGameDuoView = "/gameDuoView";
+  static const String kCreatePlayerView = "/createPlayerView";
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -111,7 +113,7 @@ abstract class AppRouter {
           NavigationParams params = state.extra as NavigationParams;
           return CustomTransitionPage(
             transitionDuration: const Duration(milliseconds: 800),
-            child: GameView(
+            child: GameBotView(
               player1: params.player1,
               player2: params.player2,
               dificulty: params.difficulty,
@@ -186,6 +188,27 @@ abstract class AppRouter {
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: const Duration(milliseconds: 800),
           child: const GameDuoView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).animate(
+                CurvedAnimation(
+                  parent: animation,
+                  curve: Curves.easeInOut,
+                ),
+              ),
+              child: child,
+            );
+          },
+        ),
+      ),
+      GoRoute(
+        path: kCreatePlayerView,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: const Duration(milliseconds: 800),
+          child: const CreatePlayerView(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(

@@ -7,8 +7,8 @@ import 'package:tic_tac_toe/features/game/data/game_repo/game_repo_impl.dart';
 import 'package:tic_tac_toe/features/game/presentation/view_models/game_board_cubit/game_board_cubit.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_view_body.dart';
 
-class GameView extends StatelessWidget {
-  const GameView({
+class GameBotView extends StatelessWidget {
+  const GameBotView({
     super.key,
     required this.player1,
     required this.player2,
@@ -31,7 +31,7 @@ class GameView extends StatelessWidget {
         create: (context) => GameBoardCubit(getIt.get<GameRepoImpl>()),
         child: SafeArea(
           child: Scaffold(
-            body: GameViewBody(
+            body: GameBotViewBody(
               player1: player1,
               player2: player2,
               dificulty: dificulty,
