@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -32,17 +31,15 @@ class GameBoardTile extends StatelessWidget {
         return GestureDetector(
           onTap: BlocProvider.of<GameBoardCubit>(context).canPlay
               ? () async {
-                  if (BlocProvider.of<GameBoardCubit>(context)
-                          .board[index]
-                          .isChecked ==
-                      false) {
-                    PlayerMove(context);
-
-                    if (BlocProvider.of<GameBoardCubit>(context).gameEnds ==
-                        false) {
-                      BlocProvider.of<GameBoardCubit>(context).checkDraw();
+                  GameBoardCubit boardCubit =
+                      BlocProvider.of<GameBoardCubit>(context);
+                  if (boardCubit.board[index].isChecked == false) {
+                    playerMove(context);
+                    boardCubit.canPlay = false;
+                    if (boardCubit.gameEnds == false) {
+                      boardCubit.checkDraw();
                       botMove(context);
-                      BlocProvider.of<GameBoardCubit>(context).canPlay = true;
+                      boardCubit.canPlay = true;
                     }
                   }
                 }
@@ -112,14 +109,12 @@ class GameBoardTile extends StatelessWidget {
     checkWinner(context);
   }
 
-  void PlayerMove(BuildContext context) {
+  void playerMove(BuildContext context) {
     addPlayerMove(context);
     checkWinner(context);
-    BlocProvider.of<GameBoardCubit>(context).canPlay = false;
   }
 
   // methods
-
   void checkWinner(BuildContext context) {
     BlocProvider.of<GameBoardCubit>(context).checkWinner(
       board: BlocProvider.of<GameBoardCubit>(context).board,

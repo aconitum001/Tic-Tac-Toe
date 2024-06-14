@@ -6,6 +6,7 @@ import 'package:tic_tac_toe/core/utils/app_router.dart';
 import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/service_locator.dart';
+import 'package:tic_tac_toe/core/utils/simple_bloc_observer.dart';
 import 'package:tic_tac_toe/core/utils/themes.dart';
 import 'package:tic_tac_toe/features/home/data/home_repo/home_repo_impl.dart';
 import 'package:tic_tac_toe/features/home/presentation/view_model/user_cubit/user_cubit.dart';
@@ -14,6 +15,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter((UserModelAdapter()));
   await Hive.openBox<UserModel>(kUserBox);
+  Bloc.observer = SimpleBlocObserver();
   setup();
   runApp(const TicTacToe());
 }

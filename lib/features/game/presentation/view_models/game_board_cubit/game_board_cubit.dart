@@ -26,6 +26,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
   List<int> chosenMoves = [];
   bool canPlay = true;
   bool gameEnds = false;
+  int player1Score = 0;
+  int player2Score = 0;
 
   void addPlayerMove({
     required int index,

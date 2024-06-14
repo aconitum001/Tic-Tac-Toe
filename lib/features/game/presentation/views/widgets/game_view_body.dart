@@ -77,7 +77,6 @@ class _GameViewBodyState extends State<GameViewBody> {
                 );
                 player1Score++;
                 setState(() {});
-                // update user
                 if (widget.dificulty == "easy") {
                   points = winPointsEasy;
                 } else if (widget.dificulty == "medium") {
