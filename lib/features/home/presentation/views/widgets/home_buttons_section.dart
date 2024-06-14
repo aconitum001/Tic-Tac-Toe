@@ -48,7 +48,9 @@ class HomeButtonsSection extends StatelessWidget {
           height: 15.h,
         ),
         CustomPrimaryTextButton(
-          onPressed: () {},
+          onPressed: () {
+            GoRouter.of(context).push(AppRouter.kCreatePlayerView, extra: user);
+          },
           icon: Icons.group,
           text: "Play With A Friend",
           width: 18.w,

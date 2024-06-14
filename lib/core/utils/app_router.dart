@@ -208,7 +208,9 @@ abstract class AppRouter {
         path: kCreatePlayerView,
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: const Duration(milliseconds: 800),
-          child: const CreatePlayerView(),
+          child: CreatePlayerView(
+            user: state.extra as UserModel,
+          ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(

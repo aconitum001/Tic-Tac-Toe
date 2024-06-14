@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/core/utils/assets.dart';
+import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/create_player_view_body.dart';
 
 class CreatePlayerView extends StatelessWidget {
-  const CreatePlayerView({super.key});
+  const CreatePlayerView({super.key, required this.user});
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +16,10 @@ class CreatePlayerView extends StatelessWidget {
           fit: BoxFit.fill,
         ),
       ),
-      child: const Scaffold(
-        body: CreatePlayerViewBody(),
+      child: Scaffold(
+        body: CreatePlayerViewBody(
+          user: user,
+        ),
       ),
     );
   }
