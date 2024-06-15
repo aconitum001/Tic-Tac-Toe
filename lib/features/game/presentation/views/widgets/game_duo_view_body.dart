@@ -137,6 +137,7 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
                 player1: widget.player1,
                 player2: widget.player2,
                 dificulty: "easy",
+                gameMode: "duo",
               ),
               SizedBox(
                 height: 40.h,

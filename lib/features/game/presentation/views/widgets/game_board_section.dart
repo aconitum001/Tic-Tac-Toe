@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_board_tile_duo.dart';
+import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_bord_tile.dart';
 
 class GameBoardSection extends StatelessWidget {
   const GameBoardSection({
@@ -9,9 +10,10 @@ class GameBoardSection extends StatelessWidget {
     required this.player1,
     required this.player2,
     required this.dificulty,
+    required this.gameMode,
   });
   final UserModel player1, player2;
-  final String dificulty;
+  final String dificulty, gameMode;
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +36,25 @@ class GameBoardSection extends StatelessWidget {
           ),
           itemCount: 9,
           itemBuilder: (context, index) {
-            return GameBoardTileDuo(
-              index: index,
-              player1: player1,
-              player2: player2,
-              player1SelectedSkin: player1.selectedSkin[0],
-              player2SelectedSkin: player2.selectedSkin[1],
-              dificulty: dificulty,
-            );
+            if (gameMode == "duo") {
+              return GameBoardTileDuo(
+                index: index,
+                player1: player1,
+                player2: player2,
+                player1SelectedSkin: player1.selectedSkin[0],
+                player2SelectedSkin: player2.selectedSkin[1],
+                dificulty: dificulty,
+              );
+            } else {
+              return GameBoardTile(
+                index: index,
+                player1: player1,
+                player2: player2,
+                player1SelectedSkin: player1.selectedSkin[0],
+                player2SelectedSkin: player2.selectedSkin[1],
+                dificulty: dificulty,
+              );
+            }
           },
         ),
       ),

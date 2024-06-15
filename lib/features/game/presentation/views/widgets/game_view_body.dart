@@ -163,6 +163,7 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
                 player1: widget.player1,
                 player2: widget.player2,
                 dificulty: widget.dificulty,
+                gameMode: "solo",
               ),
               SizedBox(
                 height: 40.h,

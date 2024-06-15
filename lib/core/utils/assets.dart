@@ -5,6 +5,12 @@ abstract class AppAssets {
       "assets/images/backgrounds/primary_dark_background.png";
   static const String secoundaryDarkBackground =
       "assets/images/backgrounds/secoundary_dark_background.png";
+  static const String oneStarDarkBackground =
+      "assets/images/backgrounds/Background_one_star_dark.png";
+  static const String twoStarDarkBackground =
+      "assets/images/backgrounds/background 3 dark.png";
+  static const String gameBakcgroundDark =
+      "assets/image/backgrounds/game_dark_background.png";
 
   static const String gameDraw = "assets/images/game_draw.svg";
   // static const String gameWin = "assets/images/game_win.svg";

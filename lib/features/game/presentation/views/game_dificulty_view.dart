@@ -17,7 +17,7 @@ class GameDificultyView extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(AppAssets.secoundaryDarkBackground),
+          image: AssetImage(AppAssets.oneStarDarkBackground),
           fit: BoxFit.fill,
         ),
       ),
