@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tic_tac_toe/core/utils/app_router.dart';
 import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/functions/custom_shadow.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
@@ -8,6 +10,7 @@ import 'package:tic_tac_toe/core/widgets/custom_secondary_button.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_carousel_slider.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_text_field.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/default_button_text.dart';
+import 'package:tic_tac_toe/features/home/data/models/navigations_param_model.dart';
 
 class CreatePlayerViewBody extends StatefulWidget {
   const CreatePlayerViewBody({super.key, required this.user});
@@ -20,22 +23,20 @@ class CreatePlayerViewBody extends StatefulWidget {
 class _CreatePlayerViewBodyState extends State<CreatePlayerViewBody> {
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  late String userName;
-  late UserModel friend;
+  UserModel friend = UserModel(
+    userName: "",
+    avatar: avatarsList[0],
+    points: 0,
+    skinsCollection: [],
+    challengesFinished: [],
+    selectedSkin: [],
+    wins: 0,
+    loses: 0,
+    draws: 0,
+  );
 
   @override
   Widget build(BuildContext context) {
-    UserModel(
-      userName: "",
-      avatar: avatarsList[0],
-      points: 0,
-      skinsCollection: [],
-      challengesFinished: [],
-      selectedSkin: widget.user.selectedSkin,
-      wins: 0,
-      loses: 0,
-      draws: 0,
-    );
     return Center(
       child: Form(
         key: formKey,
@@ -71,7 +72,7 @@ class _CreatePlayerViewBodyState extends State<CreatePlayerViewBody> {
             ),
             CustomTextField(
               onSubmitted: (value) {
-                userName = value!;
+                friend.userName = value!;
               },
             ),
             SizedBox(
@@ -90,7 +91,20 @@ class _CreatePlayerViewBodyState extends State<CreatePlayerViewBody> {
               child: CustomSecondaryButton(
                 bgColor: Theme.of(context).colorScheme.primaryContainer,
                 borderColor: Colors.transparent,
-                onPressed: () {},
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    friend.selectedSkin = widget.user.selectedSkin;
+                    GoRouter.of(context).push(
+                      AppRouter.kGameDuoView,
+                      extra: NavigationParams(
+                        player1: widget.user,
+                        player2: friend,
+                        difficulty: "",
+                      ),
+                    );
+                  }
+                },
                 child: const DefaultText(),
               ),
             ),

@@ -184,26 +184,32 @@ abstract class AppRouter {
         },
       ),
       GoRoute(
-        path: kGameDuoView,
-        pageBuilder: (context, state) => CustomTransitionPage(
-          transitionDuration: const Duration(milliseconds: 800),
-          child: const GameDuoView(),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(1.0, 0.0),
-                end: Offset.zero,
-              ).animate(
-                CurvedAnimation(
-                  parent: animation,
-                  curve: Curves.easeInOut,
-                ),
+          path: kGameDuoView,
+          pageBuilder: (context, state) {
+            NavigationParams params = state.extra as NavigationParams;
+            return CustomTransitionPage(
+              transitionDuration: const Duration(milliseconds: 800),
+              child: GameDuoView(
+                player1: params.player1,
+                player2: params.player2,
               ),
-              child: child,
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(1.0, 0.0),
+                    end: Offset.zero,
+                  ).animate(
+                    CurvedAnimation(
+                      parent: animation,
+                      curve: Curves.easeInOut,
+                    ),
+                  ),
+                  child: child,
+                );
+              },
             );
-          },
-        ),
-      ),
+          }),
       GoRoute(
         path: kCreatePlayerView,
         pageBuilder: (context, state) => CustomTransitionPage(

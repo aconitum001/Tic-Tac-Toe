@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
-import 'package:tic_tac_toe/core/utils/service_locator.dart';
-import 'package:tic_tac_toe/features/game/data/game_repo/game_repo_impl.dart';
-import 'package:tic_tac_toe/features/game/presentation/view_models/game_board_cubit/game_board_cubit.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_view_body.dart';
 
 class GameBotView extends StatelessWidget {
@@ -27,15 +23,12 @@ class GameBotView extends StatelessWidget {
           fit: BoxFit.fill,
         ),
       ),
-      child: BlocProvider(
-        create: (context) => GameBoardCubit(getIt.get<GameRepoImpl>()),
-        child: SafeArea(
-          child: Scaffold(
-            body: GameBotViewBody(
-              player1: player1,
-              player2: player2,
-              dificulty: dificulty,
-            ),
+      child: SafeArea(
+        child: Scaffold(
+          body: GameBotViewBody(
+            player1: player1,
+            player2: player2,
+            dificulty: dificulty,
           ),
         ),
       ),

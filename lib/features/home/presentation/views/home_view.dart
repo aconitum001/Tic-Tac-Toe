@@ -9,10 +9,11 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-          image: DecorationImage(
-        image: AssetImage(AppAssets.primaryDarkBackground),
-        fit: BoxFit.fill,
-      )),
+        image: DecorationImage(
+          image: AssetImage(AppAssets.primaryDarkBackground),
+          fit: BoxFit.fill,
+        ),
+      ),
       child: const SafeArea(
         child: Scaffold(
           body: HomeViewBody(),

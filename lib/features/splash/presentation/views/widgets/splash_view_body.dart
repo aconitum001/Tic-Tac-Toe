@@ -13,11 +13,24 @@ class SplashViewBody extends StatefulWidget {
   State<SplashViewBody> createState() => _SplashViewBodyState();
 }
 
-class _SplashViewBodyState extends State<SplashViewBody> {
+class _SplashViewBodyState extends State<SplashViewBody>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Offset> _slideAnimation;
+
   @override
   void initState() {
     super.initState();
     navigateToNextPage();
+    slidetransition();
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -30,10 +43,13 @@ class _SplashViewBodyState extends State<SplashViewBody> {
           SizedBox(
             height: 10.h,
           ),
-          Text(
-            "Tic-Tac-Toe",
-            style: AppStyles.style40.copyWith(
-              color: Theme.of(context).colorScheme.primary,
+          SlideTransition(
+            position: _slideAnimation,
+            child: Text(
+              "Tic-Tac-Toe",
+              style: AppStyles.style40.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+              ),
             ),
           ),
         ],
@@ -48,5 +64,20 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         GoRouter.of(context).push(AppRouter.kGetStartedView);
       },
     );
+  }
+
+  void slidetransition() {
+    _controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, 2), // Start from the bottom
+      end: Offset.zero, // End at the original position
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
   }
 }

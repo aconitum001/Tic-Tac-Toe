@@ -17,8 +17,3 @@ final class GameBoardFinished extends GameBoardState {
 final class GameBoardReset extends GameBoardState {}
 
 final class GameBoardDraw extends GameBoardState {}
-
-final class GameBoardBotFirst extends GameBoardState {
-  final bool first;
-  GameBoardBotFirst({required this.first});
-}

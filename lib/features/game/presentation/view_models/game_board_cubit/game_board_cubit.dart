@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/game/data/game_repo/game_repo_impl.dart';
 import 'package:tic_tac_toe/features/game/data/models/game_tile_mode.dart';
 
@@ -24,6 +25,8 @@ class GameBoardCubit extends Cubit<GameBoardState> {
 
   bool first = true;
   List<int> chosenMoves = [];
+  UserModel? currentPlayer;
+  String? currentPlayerSelectedSkin;
   bool canPlay = true;
   bool gameEnds = false;
   int player1Score = 0;
