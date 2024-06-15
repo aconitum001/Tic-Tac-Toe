@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/features/splash/presentation/views/widgets/player_info_widget.dart';
@@ -13,9 +12,11 @@ class DisplayPlayersInfoSection extends StatelessWidget {
     required this.player2,
     required this.player1Points,
     required this.player2Points,
+    required this.selectedSkins,
   });
   final UserModel player1, player2;
   final int player1Points, player2Points;
+  final List<String> selectedSkins;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class DisplayPlayersInfoSection extends StatelessWidget {
             points: player1Points,
           ),
           SvgPicture.asset(
-            AppAssets.xStyle1,
+            selectedSkins[0],
             width: 30.w,
             height: 30.h,
           ),
@@ -39,7 +40,7 @@ class DisplayPlayersInfoSection extends StatelessWidget {
             style: AppStyles.style30,
           ),
           SvgPicture.asset(
-            AppAssets.oStyle1,
+            selectedSkins[1],
             width: 30.w,
             height: 30.h,
           ),

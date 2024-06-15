@@ -18,8 +18,11 @@ class ChoseSideView extends StatelessWidget {
           fit: BoxFit.fill,
         ),
       ),
-      child: const Scaffold(
-        body: ChoseSideViewBody(),
+      child: Scaffold(
+        body: ChoseSideViewBody(
+          player1: player1,
+          player2: player2,
+        ),
       ),
     );
   }

@@ -194,6 +194,7 @@ abstract class AppRouter {
               child: GameDuoView(
                 player1: params.player1,
                 player2: params.player2,
+                selectedSkins: params.selectedSkins!,
               ),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {

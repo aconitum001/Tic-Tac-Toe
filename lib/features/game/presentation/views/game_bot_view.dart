@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
-import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_view_body.dart';
+import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_bot_view_body.dart';
 
 class GameBotView extends StatelessWidget {
   const GameBotView({

@@ -16,9 +16,11 @@ class GameDuoViewBody extends StatefulWidget {
     super.key,
     required this.player1,
     required this.player2,
+    required this.selectedSkins,
   });
 
   final UserModel player1, player2;
+  final List<String> selectedSkins;
 
   @override
   State<GameDuoViewBody> createState() => _GameDuoViewBodyState();
@@ -125,6 +127,7 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
                 textAlign: TextAlign.center,
               ),
               DisplayPlayersInfoSection(
+                selectedSkins: widget.selectedSkins,
                 player1: widget.player1,
                 player2: widget.player2,
                 player1Points: player1Score,
@@ -138,6 +141,7 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
                 player2: widget.player2,
                 dificulty: "easy",
                 gameMode: "duo",
+                selectedSkins: widget.selectedSkins,
               ),
               SizedBox(
                 height: 40.h,

@@ -104,14 +104,6 @@ class _CreatePlayerViewBodyState extends State<CreatePlayerViewBody> {
                           player2: friend,
                           difficulty: ""),
                     );
-                    // GoRouter.of(context).push(
-                    //   AppRouter.kGameDuoView,
-                    //   extra: NavigationParams(
-                    //     player1: widget.user,
-                    //     player2: friend,
-                    //     difficulty: "",
-                    //   ),
-                    // );
                   }
                 },
                 child: const DefaultText(),

@@ -151,6 +151,7 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
                 textAlign: TextAlign.center,
               ),
               DisplayPlayersInfoSection(
+                selectedSkins: widget.player1.selectedSkin,
                 player1: widget.player1,
                 player2: widget.player2,
                 player1Points: player1Score,
@@ -164,6 +165,7 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
                 player2: widget.player2,
                 dificulty: widget.dificulty,
                 gameMode: "solo",
+                selectedSkins: widget.player1.selectedSkin,
               ),
               SizedBox(
                 height: 40.h,

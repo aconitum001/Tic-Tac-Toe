@@ -11,9 +11,11 @@ class GameBoardSection extends StatelessWidget {
     required this.player2,
     required this.dificulty,
     required this.gameMode,
+    required this.selectedSkins,
   });
   final UserModel player1, player2;
   final String dificulty, gameMode;
+  final List<String> selectedSkins;
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +43,8 @@ class GameBoardSection extends StatelessWidget {
                 index: index,
                 player1: player1,
                 player2: player2,
-                player1SelectedSkin: player1.selectedSkin[0],
-                player2SelectedSkin: player2.selectedSkin[1],
+                player1SelectedSkin: selectedSkins[0],
+                player2SelectedSkin: selectedSkins[1],
                 dificulty: dificulty,
               );
             } else {
@@ -50,8 +52,8 @@ class GameBoardSection extends StatelessWidget {
                 index: index,
                 player1: player1,
                 player2: player2,
-                player1SelectedSkin: player1.selectedSkin[0],
-                player2SelectedSkin: player2.selectedSkin[1],
+                player1SelectedSkin: selectedSkins[0],
+                player2SelectedSkin: selectedSkins[1],
                 dificulty: dificulty,
               );
             }
