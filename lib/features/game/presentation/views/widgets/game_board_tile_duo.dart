@@ -36,7 +36,6 @@ class GameBoardTileDuo extends StatelessWidget {
               UserModel currentPlayer = boardCubit.currentPlayer ?? player1;
               String currentPlayerSlectedSkin =
                   boardCubit.currentPlayerSelectedSkin ?? player1SelectedSkin;
-              print(currentPlayerSlectedSkin);
               playerMove(
                 context,
                 currentPlayer,
@@ -44,8 +43,8 @@ class GameBoardTileDuo extends StatelessWidget {
               );
               if (boardCubit.gameEnds == false) {
                 boardCubit.checkDraw();
-                changePlayer(boardCubit);
               }
+              changePlayer(boardCubit);
             }
           },
           child: Container(

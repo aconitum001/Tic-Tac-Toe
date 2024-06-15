@@ -49,15 +49,15 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
   int player1Score = 0, player2Score = 0;
   late String currentPlayerName;
   late int points;
-  bool istouchdisabled = false;
 
   @override
   Widget build(BuildContext context) {
-    currentPlayerName = widget.player1.userName;
+    currentPlayerName =
+        BlocProvider.of<GameBoardCubit>(context).currentPlayer?.userName ??
+            widget.player1.userName;
     return BlocConsumer<GameBoardCubit, GameBoardState>(
       listener: (context, state) {
         if (state is GameBoardFinished) {
-          istouchdisabled = true;
           Future.delayed(
             const Duration(milliseconds: 800),
             () {
@@ -66,7 +66,7 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
                 showGameResults(
                   context,
                   controller,
-                  "You Win!",
+                  "${state.winner} Win!",
                   const Color(0xffFF9900),
                   const Color(0xff1A2B63),
                   "assets/animations/winner.json",
@@ -79,19 +79,18 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
                 showGameResults(
                   context,
                   controller,
-                  "You Lose!",
-                  const Color(0xffFF3F05),
-                  Colors.transparent,
-                  "assets/animations/angry_v2.json",
+                  "${state.winner} Win!",
+                  const Color(0xffFF9900),
+                  const Color(0xff1A2B63),
+                  "assets/animations/winner.json",
                   false,
-                  false,
+                  true,
                 );
                 player2Score++;
                 setState(() {});
               }
             },
           );
-          istouchdisabled = false;
         } else if (state is GameBoardDraw) {
           BlocProvider.of<GameBoardCubit>(context).resetGame();
           showGameResults(
