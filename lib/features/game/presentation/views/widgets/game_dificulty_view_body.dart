@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
-import 'package:tic_tac_toe/features/game/presentation/views/widgets/custom_difficulty_app_bar.dart';
+import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_difficulty_app_bar.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_difficulty_buttons_section.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/navigate_to_game_view_button.dart';
 
@@ -30,7 +30,7 @@ class _GameDificultyViewBodyState extends State<GameDificultyViewBody> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const CustomDificultyAppBar(),
+        const CustomGameAppBar(),
         SizedBox(
           height: 20.h,
         ),

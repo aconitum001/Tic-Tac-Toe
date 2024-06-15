@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/create_user_view.dart';
+import 'package:tic_tac_toe/features/game/presentation/views/chose_side_view.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/create_player_view.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/game_dificulty_view.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/game_duo_view.dart';
@@ -23,6 +24,7 @@ abstract class AppRouter {
   static const String kGameDificultyView = "/gameDificultyView";
   static const String kGameDuoView = "/gameDuoView";
   static const String kCreatePlayerView = "/createPlayerView";
+  static const String kChoseSideView = "/choseSideView";
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -233,6 +235,33 @@ abstract class AppRouter {
           },
         ),
       ),
+      GoRoute(
+          path: kChoseSideView,
+          pageBuilder: (context, state) {
+            NavigationParams params = state.extra as NavigationParams;
+            return CustomTransitionPage(
+              transitionDuration: const Duration(milliseconds: 800),
+              child: ChoseSideView(
+                player1: params.player1,
+                player2: params.player2,
+              ),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(1.0, 0.0),
+                    end: Offset.zero,
+                  ).animate(
+                    CurvedAnimation(
+                      parent: animation,
+                      curve: Curves.easeInOut,
+                    ),
+                  ),
+                  child: child,
+                );
+              },
+            );
+          }),
     ],
   );
 }

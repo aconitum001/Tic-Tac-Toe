@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomDificultyAppBar extends StatelessWidget {
-  const CustomDificultyAppBar({super.key});
+class CustomGameAppBar extends StatelessWidget {
+  const CustomGameAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {

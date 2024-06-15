@@ -8,6 +8,7 @@ import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/core/widgets/custom_secondary_button.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_carousel_slider.dart';
+import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_difficulty_app_bar.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_text_field.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/default_button_text.dart';
 import 'package:tic_tac_toe/features/home/data/models/navigations_param_model.dart';
@@ -43,8 +44,9 @@ class _CreatePlayerViewBodyState extends State<CreatePlayerViewBody> {
         autovalidateMode: autovalidateMode,
         child: ListView(
           children: [
+            const CustomGameAppBar(),
             SizedBox(
-              height: 129.h,
+              height: 50.h,
             ),
             Text(
               "Friend",
@@ -96,13 +98,20 @@ class _CreatePlayerViewBodyState extends State<CreatePlayerViewBody> {
                     formKey.currentState!.save();
                     friend.selectedSkin = widget.user.selectedSkin;
                     GoRouter.of(context).push(
-                      AppRouter.kGameDuoView,
+                      AppRouter.kChoseSideView,
                       extra: NavigationParams(
-                        player1: widget.user,
-                        player2: friend,
-                        difficulty: "",
-                      ),
+                          player1: widget.user,
+                          player2: friend,
+                          difficulty: ""),
                     );
+                    // GoRouter.of(context).push(
+                    //   AppRouter.kGameDuoView,
+                    //   extra: NavigationParams(
+                    //     player1: widget.user,
+                    //     player2: friend,
+                    //     difficulty: "",
+                    //   ),
+                    // );
                   }
                 },
                 child: const DefaultText(),
