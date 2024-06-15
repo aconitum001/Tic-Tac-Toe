@@ -11,6 +11,14 @@ const List<String> avatarsList = [
   AppAssets.avtar8,
 ];
 
+const xLists = [
+  AppAssets.xStyle1,
+];
+
+const oLists = [
+  AppAssets.oStyle1,
+];
+
 const String kUserBox = "usersBox";
 const int winPointsEasy = 3;
 const int winPointsMedium = 5;

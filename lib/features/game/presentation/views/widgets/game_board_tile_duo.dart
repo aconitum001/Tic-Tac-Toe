@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tic_tac_toe/core/utils/assets.dart';
+import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/game/data/models/game_tile_mode.dart';
 import 'package:tic_tac_toe/features/game/presentation/view_models/game_board_cubit/game_board_cubit.dart';
@@ -35,17 +36,15 @@ class GameBoardTileDuo extends StatelessWidget {
               UserModel currentPlayer = boardCubit.currentPlayer ?? player1;
               String currentPlayerSlectedSkin =
                   boardCubit.currentPlayerSelectedSkin ?? player1SelectedSkin;
+              print(currentPlayerSlectedSkin);
               playerMove(
                 context,
                 currentPlayer,
                 currentPlayerSlectedSkin,
               );
-              if (boardCubit.currentPlayer == player1) {
-                boardCubit.currentPlayer = player2;
-                boardCubit.currentPlayerSelectedSkin = player2SelectedSkin;
-              } else {
-                boardCubit.currentPlayer = player1;
-                boardCubit.currentPlayerSelectedSkin = player2SelectedSkin;
+              if (boardCubit.gameEnds == false) {
+                boardCubit.checkDraw();
+                changePlayer(boardCubit);
               }
             }
           },
@@ -53,45 +52,64 @@ class GameBoardTileDuo extends StatelessWidget {
             padding: EdgeInsets.all(15.w),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.r),
-              color: Theme.of(context).colorScheme.surface,
+              color: tileColor(state, context),
             ),
-            child: BlocProvider.of<GameBoardCubit>(context)
-                    .board[index]
-                    .isChecked
-                ? SvgPicture.asset(
-                    BlocProvider.of<GameBoardCubit>(context).board[index].image,
-                  )
-                : null,
+            child: tileWidget(context, state),
           ),
         );
       },
     );
   }
 
+  void changePlayer(GameBoardCubit boardCubit) {
+    if (boardCubit.currentPlayer == player1) {
+      boardCubit.currentPlayer = player2;
+      boardCubit.currentPlayerSelectedSkin = player2SelectedSkin;
+    } else if (boardCubit.currentPlayer == player2) {
+      boardCubit.currentPlayer = player1;
+      boardCubit.currentPlayerSelectedSkin = player1SelectedSkin;
+    } else {
+      boardCubit.currentPlayer = player2;
+      boardCubit.currentPlayerSelectedSkin = player2SelectedSkin;
+    }
+  }
+
   Color tileColor(GameBoardState state, context) {
-    return state is GameBoardFinished
-        ? (state.winningCombination.contains(index)
-            ? (state.winner == "Bot"
-                ? const Color(0xffFF9C8E)
-                : const Color(0xff97CE62))
-            : Theme.of(context).colorScheme.surface)
-        : Theme.of(context).colorScheme.surface;
+    if (state is GameBoardFinished) {
+      return (state.winningCombination.contains(index)
+          ? (state.winner == player1.userName
+              ? (oLists.contains(player1SelectedSkin)
+                  ? const Color(0xffFF9C8E)
+                  : const Color(0xff97CE62))
+              : (oLists.contains(player2SelectedSkin)
+                  ? const Color(0xffFF9C8E)
+                  : const Color(0xff97CE62)))
+          : Theme.of(context).colorScheme.surface);
+    } else {
+      return Theme.of(context).colorScheme.surface;
+    }
   }
 
   SvgPicture? tileWidget(BuildContext context, GameBoardState state) {
-    return BlocProvider.of<GameBoardCubit>(context).board[index].isChecked
-        ? (state is GameBoardFinished
-            ? (state.winningCombination.contains(index)
-                ? (state.winner == "Bot"
-                    ? SvgPicture.asset(AppAssets.oWin)
-                    : SvgPicture.asset(AppAssets.xWin))
-                : SvgPicture.asset(
-                    BlocProvider.of<GameBoardCubit>(context).board[index].image,
-                  ))
-            : SvgPicture.asset(
-                BlocProvider.of<GameBoardCubit>(context).board[index].image,
-              ))
-        : null;
+    if (BlocProvider.of<GameBoardCubit>(context).board[index].isChecked) {
+      return (state is GameBoardFinished
+          ? (state.winningCombination.contains(index)
+              ? (state.winner == player1.userName
+                  ? (oLists.contains(player1SelectedSkin)
+                      ? SvgPicture.asset(AppAssets.oWin)
+                      : SvgPicture.asset(AppAssets.xWin))
+                  : (oLists.contains(player2SelectedSkin)
+                      ? SvgPicture.asset(AppAssets.oWin)
+                      : SvgPicture.asset(AppAssets.xWin)))
+              : SvgPicture.asset(
+                  BlocProvider.of<GameBoardCubit>(context).board[index].image,
+                ))
+          : SvgPicture.asset(
+              BlocProvider.of<GameBoardCubit>(context).board[index].image,
+            ));
+    } else {
+      return null;
+    }
   }
 
   void playerMove(

@@ -54,7 +54,7 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
   @override
   Widget build(BuildContext context) {
     currentPlayerName = widget.player1.userName;
-    return BlocListener<GameBoardCubit, GameBoardState>(
+    return BlocConsumer<GameBoardCubit, GameBoardState>(
       listener: (context, state) {
         if (state is GameBoardFinished) {
           istouchdisabled = true;
@@ -112,39 +112,41 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
           }
         }
       },
-      child: AbsorbPointer(
-        absorbing: istouchdisabled,
-        child: ListView(
-          controller: _scrollController,
-          physics: const BouncingScrollPhysics(),
-          children: [
-            const CustomGameViewAppBar(),
-            Text(
-              "$currentPlayerName's Turn",
-              style: AppStyles.style25,
-              textAlign: TextAlign.center,
-            ),
-            DisplayPlayersInfoSection(
-              player1: widget.player1,
-              player2: widget.player2,
-              player1Points: player1Score,
-              player2Points: player2Score,
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            GameBoardSection(
-              player1: widget.player1,
-              player2: widget.player2,
-              dificulty: "easy",
-            ),
-            SizedBox(
-              height: 40.h,
-            ),
-            const GameButtonsSection(),
-          ],
-        ),
-      ),
+      builder: (context, state) {
+        return AbsorbPointer(
+          absorbing: state is GameBoardFinished ? true : false,
+          child: ListView(
+            controller: _scrollController,
+            physics: const BouncingScrollPhysics(),
+            children: [
+              const CustomGameViewAppBar(),
+              Text(
+                "$currentPlayerName's Turn",
+                style: AppStyles.style25,
+                textAlign: TextAlign.center,
+              ),
+              DisplayPlayersInfoSection(
+                player1: widget.player1,
+                player2: widget.player2,
+                player1Points: player1Score,
+                player2Points: player2Score,
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              GameBoardSection(
+                player1: widget.player1,
+                player2: widget.player2,
+                dificulty: "easy",
+              ),
+              SizedBox(
+                height: 40.h,
+              ),
+              const GameButtonsSection(),
+            ],
+          ),
+        );
+      },
     );
   }
 
