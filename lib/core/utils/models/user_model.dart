@@ -14,7 +14,7 @@ class UserModel extends HiveObject {
   int points;
 
   @HiveField(3)
-  List<int> skinsCollection;
+  List<String> skinsCollection;
 
   @HiveField(4)
   List<int> challengesFinished;

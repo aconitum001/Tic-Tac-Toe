@@ -31,7 +31,7 @@ class _CreateUserViewBodyState extends State<CreateUserViewBody> {
     userName: "",
     avatar: avatarsList[0],
     points: 0,
-    skinsCollection: [],
+    skinsCollection: [AppAssets.xStyle1, AppAssets.oStyle1],
     challengesFinished: [],
     selectedSkin: [AppAssets.xStyle1, AppAssets.oStyle1],
     wins: 0,

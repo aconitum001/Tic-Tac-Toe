@@ -8,50 +8,65 @@ class CustomSkinStoreGridItem extends StatelessWidget {
   const CustomSkinStoreGridItem({
     super.key,
     required this.skin,
+    required this.color,
+    this.onTap,
+    this.onButtonPressed,
+    required this.text,
   });
 
   final SkinModel skin;
+  final Color color;
+  final void Function()? onTap;
+  final void Function()? onButtonPressed;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 8.w,
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(21.42.r),
-        color: Theme.of(context).colorScheme.onPrimary,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          SizedBox(
-            height: 10.h,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: 8.w,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(21.42.r),
+          border: Border.all(
+            color: color,
+            width: 2,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                skin.xSkin,
-                width: 45.w,
-                height: 45.h,
-              ),
-              SizedBox(
-                width: 2.w,
-              ),
-              SvgPicture.asset(
-                skin.oSkin,
-                width: 45.w,
-                height: 45.h,
-              ),
-            ],
-          ),
-          CustomGridViewButton(
-            onPressed: () {},
-            text: skin.price == 0 ? "Free" : skin.price.toString(),
-          )
-        ],
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(
+              height: 10.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  skin.xSkin,
+                  width: 45.w,
+                  height: 45.h,
+                ),
+                SizedBox(
+                  width: 2.w,
+                ),
+                SvgPicture.asset(
+                  skin.oSkin,
+                  width: 45.w,
+                  height: 45.h,
+                ),
+              ],
+            ),
+            CustomGridViewButton(
+              onPressed: onButtonPressed,
+              text: skin.price == 0 ? "Free" : text,
+            )
+          ],
+        ),
       ),
     );
   }

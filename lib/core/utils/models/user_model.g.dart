@@ -20,7 +20,7 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       userName: fields[0] as String,
       avatar: fields[1] as String,
       points: fields[2] as int,
-      skinsCollection: (fields[3] as List).cast<int>(),
+      skinsCollection: (fields[3] as List).cast<String>(),
       challengesFinished: (fields[4] as List).cast<int>(),
       selectedSkin: (fields[5] as List).cast<String>(),
       draws: fields[8] as int,
