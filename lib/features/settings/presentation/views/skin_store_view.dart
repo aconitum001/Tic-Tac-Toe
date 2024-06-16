@@ -17,9 +17,11 @@ class SkinStoreView extends StatelessWidget {
           fit: BoxFit.fill,
         ),
       ),
-      child: Scaffold(
-        body: SkinStoreViewBody(
-          user: user,
+      child: SafeArea(
+        child: Scaffold(
+          body: SkinStoreViewBody(
+            user: user,
+          ),
         ),
       ),
     );
