@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/functions/bot_functions.dart';
+import 'package:tic_tac_toe/core/utils/functions/get_o_color.dart';
+import 'package:tic_tac_toe/core/utils/functions/get_x_color.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/game/data/models/game_tile_mode.dart';
 import 'package:tic_tac_toe/features/game/presentation/view_models/game_board_cubit/game_board_cubit.dart';
@@ -61,14 +63,10 @@ class GameBoardTile extends StatelessWidget {
     return state is GameBoardFinished
         ? (state.winningCombination.contains(index)
             ? (state.winner == "Bot"
-                ? const Color(0xffFF9C8E)
-                : const Color(0xff97CE62))
+                ? getOColor(oSkin: player2SelectedSkin)
+                : getXColor(xSkin: player1SelectedSkin))
             : Theme.of(context).colorScheme.surface)
         : Theme.of(context).colorScheme.surface;
-  }
-
-  Color getOColor({required String oSkin}) {
-    return Colors.transparent;
   }
 
   SvgPicture? tileWidget(BuildContext context, GameBoardState state) {

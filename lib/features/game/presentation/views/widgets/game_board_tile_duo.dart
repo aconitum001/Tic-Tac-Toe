@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/constants.dart';
+import 'package:tic_tac_toe/core/utils/functions/get_o_color.dart';
+import 'package:tic_tac_toe/core/utils/functions/get_x_color.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/game/data/models/game_tile_mode.dart';
 import 'package:tic_tac_toe/features/game/presentation/view_models/game_board_cubit/game_board_cubit.dart';
@@ -79,11 +81,11 @@ class GameBoardTileDuo extends StatelessWidget {
       return (state.winningCombination.contains(index)
           ? (state.winner == player1.userName
               ? (oLists.contains(player1SelectedSkin)
-                  ? const Color(0xffFF9C8E)
-                  : const Color(0xff97CE62))
+                  ? getOColor(oSkin: player1SelectedSkin)
+                  : getXColor(xSkin: player1SelectedSkin))
               : (oLists.contains(player2SelectedSkin)
-                  ? const Color(0xffFF9C8E)
-                  : const Color(0xff97CE62)))
+                  ? getOColor(oSkin: player2SelectedSkin)
+                  : getXColor(xSkin: player2SelectedSkin)))
           : Theme.of(context).colorScheme.surface);
     } else {
       return Theme.of(context).colorScheme.surface;
