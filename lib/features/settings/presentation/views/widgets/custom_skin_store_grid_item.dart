@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_grid_view_button.dart';
+import 'package:tic_tac_toe/features/settings/data/models/skin_model.dart';
 
 class CustomSkinStoreGridItem extends StatelessWidget {
   const CustomSkinStoreGridItem({
     super.key,
-    required this.xImage,
-    required this.oImage,
-    required this.text,
+    required this.skin,
   });
 
-  final String xImage, oImage, text;
+  final SkinModel skin;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class CustomSkinStoreGridItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset(
-                xImage,
+                skin.xSkin,
                 width: 45.w,
                 height: 45.h,
               ),
@@ -42,7 +41,7 @@ class CustomSkinStoreGridItem extends StatelessWidget {
                 width: 2.w,
               ),
               SvgPicture.asset(
-                oImage,
+                skin.oSkin,
                 width: 45.w,
                 height: 45.h,
               ),
@@ -50,7 +49,7 @@ class CustomSkinStoreGridItem extends StatelessWidget {
           ),
           CustomGridViewButton(
             onPressed: () {},
-            text: "Free",
+            text: skin.price == 0 ? "Free" : skin.price.toString(),
           )
         ],
       ),

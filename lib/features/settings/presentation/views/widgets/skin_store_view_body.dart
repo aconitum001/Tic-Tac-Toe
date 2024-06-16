@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tic_tac_toe/core/utils/assets.dart';
+import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/custom_skin_store_grid_item.dart';
@@ -35,6 +35,7 @@ class SkinStoreViewBody extends StatelessWidget {
         SliverPadding(
           padding: EdgeInsets.symmetric(horizontal: 70.w),
           sliver: SliverGrid.builder(
+            itemCount: skinsList.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: 54.w,
@@ -42,10 +43,8 @@ class SkinStoreViewBody extends StatelessWidget {
               childAspectRatio: 113.51.w / 119.94.h,
             ),
             itemBuilder: (context, index) {
-              return const CustomSkinStoreGridItem(
-                oImage: AppAssets.oStyle1,
-                xImage: AppAssets.xStyle1,
-                text: "Free",
+              return CustomSkinStoreGridItem(
+                skin: skinsList[index],
               );
             },
           ),
