@@ -19,10 +19,25 @@ abstract class AppAssets {
   static const String rulesLose = "assets/images/dislike 1.png";
   static const String rulesDraw = "assets/images/draw 1.png";
 
-  static const String xStyle1 = "assets/images/x_style1.svg";
   static const String xWin = "assets/images/x_win.svg";
-  static const String oStyle1 = "assets/images/o_style1.svg";
   static const String oWin = "assets/images/o_win.svg";
+
+  static const String xStyle1 = "assets/images/x_style1.svg";
+  static const String oStyle1 = "assets/images/o_style1.svg";
+  static const String xStyle2 = "assets/images/x_2.svg";
+  static const String oStyle2 = "assets/images/o_2.svg";
+  static const String xStyle3 = "assets/images/x_3.svg";
+  static const String oStyle3 = "assets/images/o_3.svg";
+  static const String xStyle4 = "assets/images/x_4.svg";
+  static const String oStyle4 = "assets/images/o_4.svg";
+  static const String xStyle5 = "assets/images/x_5.svg";
+  static const String oStyle5 = "assets/images/o_5.svg";
+  static const String xStyle6 = "assets/images/x_6.svg";
+  static const String oStyle6 = "assets/images/o_6.svg";
+  static const String xStyle7 = "assets/images/x_7.svg";
+  static const String oStyle7 = "assets/images/o_7.svg";
+  static const String xStyle8 = "assets/images/x_8.svg";
+  static const String oStyle8 = "assets/images/o_8.svg";
 
   static const String avtar1 = "assets/images/avatars/avatar1.png";
   static const String avtar2 = "assets/images/avatars/avatar2.png";
