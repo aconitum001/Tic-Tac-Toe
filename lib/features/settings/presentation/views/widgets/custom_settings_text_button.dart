@@ -7,14 +7,16 @@ class CustomSettingsTextButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.icon,
+    this.onTap,
   });
   final String text;
   final IconData icon;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: SizedBox(
         width: 125.w,
         child: Row(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tic_tac_toe/core/utils/app_router.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/custom_settings_app_bar.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/custom_settings_text_button.dart';
@@ -29,7 +31,10 @@ class SettingsViewBody extends StatelessWidget {
             height: 20.h,
           ),
           const ThemeSection(),
-          const CustomSettingsTextButton(
+          CustomSettingsTextButton(
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.kSkinStoreView, extra: user);
+            },
             text: "Skin Store",
             icon: Icons.arrow_forward_ios_rounded,
           ),

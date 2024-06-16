@@ -7,7 +7,6 @@ import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/core/widgets/custom_secondary_button.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_carousel_slider.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_text_field.dart';
-import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/default_button_text.dart';
 
 class EditProfileViewBody extends StatefulWidget {
   const EditProfileViewBody({super.key, required this.user});
@@ -79,9 +78,14 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                 bgColor: Theme.of(context).colorScheme.primaryContainer,
                 borderColor: Colors.transparent,
                 onPressed: () {
-                  addUserMethode(context);
+                  updateUserMethode(context);
                 },
-                child: const DefaultText(),
+                child: Text(
+                  "Edit",
+                  style: AppStyles.style20.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
+                ),
               ),
             ),
           ],
@@ -90,7 +94,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
     );
   }
 
-  void addUserMethode(BuildContext context) async {
+  void updateUserMethode(BuildContext context) async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       widget.user.save();
