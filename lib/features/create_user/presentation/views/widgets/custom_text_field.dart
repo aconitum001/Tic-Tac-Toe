@@ -4,9 +4,11 @@ import 'package:tic_tac_toe/core/utils/functions/custom_shadow.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.onSubmitted});
+  const CustomTextField(
+      {super.key, required this.onSubmitted, this.controller});
 
   final Function(String?)? onSubmitted;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class CustomTextField extends StatelessWidget {
           8.r,
         ),
         child: TextFormField(
+          controller: controller,
           style: AppStyles.style15.copyWith(
             fontWeight: FontWeight.normal,
           ),

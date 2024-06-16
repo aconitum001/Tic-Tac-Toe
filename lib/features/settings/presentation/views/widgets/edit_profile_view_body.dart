@@ -6,6 +6,7 @@ import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/core/widgets/custom_secondary_button.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_carousel_slider.dart';
+import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_difficulty_app_bar.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_text_field.dart';
 
 class EditProfileViewBody extends StatefulWidget {
@@ -20,17 +21,26 @@ class EditProfileViewBody extends StatefulWidget {
 class _EditProfileViewBodyState extends State<EditProfileViewBody> {
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  TextEditingController controller = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    controller.text = widget.user.userName;
     return Center(
       child: Form(
         key: formKey,
         autovalidateMode: autovalidateMode,
         child: ListView(
           children: [
+            const CustomGameAppBar(),
             SizedBox(
-              height: 129.h,
+              height: 50.h,
             ),
             Text(
               "You",
@@ -57,6 +67,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
               height: 82.h,
             ),
             CustomTextField(
+              controller: controller,
               onSubmitted: (value) {
                 widget.user.userName = value!;
               },

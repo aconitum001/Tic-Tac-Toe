@@ -42,7 +42,7 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
         onPageChanged: (index, reason) {
           widget.user.avatar = avatarsList[index];
         },
-        initialPage: 0,
+        initialPage: avatarsList.indexOf(widget.user.avatar),
         enlargeCenterPage: true,
         disableCenter: false,
         height: 138.h,
