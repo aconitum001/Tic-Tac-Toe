@@ -8,7 +8,10 @@ import 'package:tic_tac_toe/core/utils/styles.dart';
 class CustomEditButton extends StatelessWidget {
   const CustomEditButton({
     super.key,
+    this.onPressed,
   });
+
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class CustomEditButton extends StatelessWidget {
           100.r,
         ),
         child: TextButton(
-          onPressed: () {},
+          onPressed: onPressed,
           style: TextButton.styleFrom(
             backgroundColor: Theme.of(context).colorScheme.primaryContainer,
             shape: RoundedRectangleBorder(

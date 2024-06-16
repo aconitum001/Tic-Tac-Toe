@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tic_tac_toe/core/utils/app_router.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/custom_edit_button.dart';
@@ -51,7 +53,11 @@ class EditProfileSection extends StatelessWidget {
         SizedBox(
           height: 11.h,
         ),
-        const CustomEditButton()
+        CustomEditButton(
+          onPressed: () {
+            GoRouter.of(context).push(AppRouter.kEditProfileView, extra: user);
+          },
+        )
       ],
     );
   }
