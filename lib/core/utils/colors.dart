@@ -23,4 +23,22 @@ abstract class AppColors {
       end: Alignment.centerLeft,
     );
   }
+
+  static const Color oColor1 = Color(0xffFF9C8E);
+  static const Color oColor2 = Color(0xffFFEEA9);
+  static const Color oColor3 = Color(0xffD1D8C5);
+  static const Color oColor4 = Color(0xffAFD198);
+  static const Color oColor5 = Color(0xffE1AFD1);
+  static const Color oColor6 = Color(0xffFEEFAD);
+  static const Color oColor7 = Color(0xffFFFF80);
+  static const Color oColor8 = Color(0xff8ACDD7);
+
+  static const Color xColor1 = Color(0xff97CE62);
+  static const Color xColor2 = Color(0xffFFBF78);
+  static const Color xColor3 = Color(0xff7E8EF1);
+  static const Color xColor4 = Color(0xffECCA9C);
+  static const Color xColor5 = Color(0xffAD88C6);
+  static const Color xColor6 = Color(0xff68D2E8);
+  static const Color xColor7 = Color(0xffFF5580);
+  static const Color xColor8 = Color(0xffFFC0D9);
 }

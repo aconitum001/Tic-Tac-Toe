@@ -67,6 +67,10 @@ class GameBoardTile extends StatelessWidget {
         : Theme.of(context).colorScheme.surface;
   }
 
+  Color getOColor({required String oSkin}) {
+    return Colors.transparent;
+  }
+
   SvgPicture? tileWidget(BuildContext context, GameBoardState state) {
     return BlocProvider.of<GameBoardCubit>(context).board[index].isChecked
         ? (state is GameBoardFinished
