@@ -12,6 +12,7 @@ class CustomSkinStoreGridItem extends StatelessWidget {
     this.onTap,
     this.onButtonPressed,
     required this.text,
+    required this.isLocked,
   });
 
   final SkinModel skin;
@@ -19,54 +20,74 @@ class CustomSkinStoreGridItem extends StatelessWidget {
   final void Function()? onTap;
   final void Function()? onButtonPressed;
   final String text;
+  final bool isLocked;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: 8.w,
-        ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(21.42.r),
-          border: Border.all(
-            color: color,
-            width: 2,
-          ),
-          color: Theme.of(context).colorScheme.onPrimary,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(
-              height: 10.h,
+      onTap: isLocked ? null : onTap,
+      child: Stack(
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 8.w,
             ),
-            Row(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(21.42.r),
+              border: Border.all(
+                color: color,
+                width: 2,
+              ),
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SvgPicture.asset(
-                  skin.xSkin,
-                  width: 45.w,
-                  height: 45.h,
-                ),
                 SizedBox(
-                  width: 2.w,
+                  height: 10.h,
                 ),
-                SvgPicture.asset(
-                  skin.oSkin,
-                  width: 45.w,
-                  height: 45.h,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      skin.xSkin,
+                      width: 45.w,
+                      height: 45.h,
+                    ),
+                    SizedBox(
+                      width: 2.w,
+                    ),
+                    SvgPicture.asset(
+                      skin.oSkin,
+                      width: 45.w,
+                      height: 45.h,
+                    ),
+                  ],
                 ),
+                CustomGridViewButton(
+                  onPressed: isLocked ? null : onButtonPressed,
+                  text: skin.price == 0 ? "Free" : text,
+                )
               ],
             ),
-            CustomGridViewButton(
-              onPressed: onButtonPressed,
-              text: skin.price == 0 ? "Free" : text,
-            )
-          ],
-        ),
+          ),
+          if (isLocked)
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(21.42.r),
+                ),
+                child: Center(
+                    child: Image.asset(
+                  "assets/images/lock4.png",
+                  width: 60.w,
+                  height: 60.h,
+                )),
+              ),
+            ),
+        ],
       ),
     );
   }

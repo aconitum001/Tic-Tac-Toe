@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
+import 'package:tic_tac_toe/features/home/presentation/view_model/user_cubit/user_cubit.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/custom_skin_store_grid_item.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/skin_store_app_bar.dart';
 
@@ -51,12 +53,17 @@ class _SkinStoreViewBodyState extends State<SkinStoreViewBody> {
               bool containsBothSkins = widget.user.skinsCollection
                       .contains(skinsList[index].xSkin) &&
                   widget.user.skinsCollection.contains(skinsList[index].oSkin);
+              bool isLocked = false;
               return CustomSkinStoreGridItem(
                 onButtonPressed: () {
-                  buyNewSkinMethode(index, containsBothSkins);
+                  if (!isLocked) {
+                    buyNewSkinMethode(index, containsBothSkins);
+                  }
                 },
                 onTap: () {
-                  changeSkinMethode(containsBothSkins, index);
+                  if (!isLocked) {
+                    changeSkinMethode(containsBothSkins, index);
+                  }
                 },
                 skin: skinsList[index],
                 color: widget.user.selectedSkin[0] == skinsList[index].xSkin &&
@@ -64,6 +71,7 @@ class _SkinStoreViewBodyState extends State<SkinStoreViewBody> {
                     ? Colors.white
                     : Colors.transparent,
                 text: displayTextMethode(containsBothSkins, index),
+                isLocked: isLocked,
               );
             },
           ),
@@ -89,11 +97,10 @@ class _SkinStoreViewBodyState extends State<SkinStoreViewBody> {
 
   void buyNewSkinMethode(int index, bool containsBothSkins) {
     if (widget.user.points >= skinsList[index].price && !containsBothSkins) {
-      widget.user.points -= skinsList[index].price;
       widget.user.skinsCollection.add(skinsList[index].xSkin);
       widget.user.skinsCollection.add(skinsList[index].oSkin);
-      widget.user.save();
-
+      BlocProvider.of<UserCubit>(context)
+          .updateUserPoints(points: -skinsList[index].price, user: widget.user);
       setState(() {});
     }
   }

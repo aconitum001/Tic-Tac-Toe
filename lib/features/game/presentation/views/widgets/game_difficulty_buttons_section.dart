@@ -42,7 +42,7 @@ class _GameDifficultyButtonsSectionState
                 widget.onDifficultySelected(selectedDifficulty);
               });
             },
-            bgColor: Colors.red,
+            bgColor: const Color(0xffFFA7A7),
             borderColor:
                 selectedDifficulty == 0 ? Colors.white : Colors.transparent,
             child: Center(
