@@ -46,10 +46,10 @@ const List<SkinModel> skinsList = [
 ];
 
 const String kUserBox = "usersBox";
-const int winPointsEasy = 3;
-const int winPointsMedium = 5;
-const int winPointsHard = 10;
+const int winPointsEasy = 2;
+const int winPointsMedium = 4;
+const int winPointsHard = 6;
 
 const int losePointsEasy = -1;
-const int losePointsMedium = -3;
-const int losePointsHard = -5;
+const int losePointsMedium = -2;
+const int losePointsHard = -3;

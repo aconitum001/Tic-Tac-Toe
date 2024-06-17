@@ -11,6 +11,7 @@ import 'package:tic_tac_toe/features/game/presentation/views/game_bot_view.dart'
 import 'package:tic_tac_toe/features/home/data/models/navigations_param_model.dart';
 import 'package:tic_tac_toe/features/home/presentation/views/home_view.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/edit_profile_view.dart';
+import 'package:tic_tac_toe/features/settings/presentation/views/history_view.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/settings_view.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/skin_store_view.dart';
 import 'package:tic_tac_toe/features/splash/presentation/views/get_started_view.dart';
@@ -29,6 +30,7 @@ abstract class AppRouter {
   static const String kChoseSideView = "/choseSideView";
   static const String kEditProfileView = "/editProfileView";
   static const String kSkinStoreView = "/skinstoreview";
+  static const String kHistoryView = "/historyView";
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -288,6 +290,24 @@ abstract class AppRouter {
         pageBuilder: (context, state) => CustomTransitionPage(
           transitionDuration: const Duration(milliseconds: 800),
           child: SkinStoreView(
+            user: state.extra as UserModel,
+          ),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return ScaleTransition(
+              scale: CurvedAnimation(
+                parent: animation,
+                curve: Curves.easeInOut,
+              ),
+              child: child,
+            );
+          },
+        ),
+      ),
+      GoRoute(
+        path: kHistoryView,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: const Duration(milliseconds: 800),
+          child: HistoryView(
             user: state.extra as UserModel,
           ),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {

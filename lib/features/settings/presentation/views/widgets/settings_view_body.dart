@@ -41,7 +41,10 @@ class SettingsViewBody extends StatelessWidget {
           SizedBox(
             height: 25.h,
           ),
-          const CustomSettingsTextButton(
+          CustomSettingsTextButton(
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.kHistoryView, extra: user);
+            },
             text: "Game History",
             icon: Icons.arrow_forward_ios_rounded,
           )

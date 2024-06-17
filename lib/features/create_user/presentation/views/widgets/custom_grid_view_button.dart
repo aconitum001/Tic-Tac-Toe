@@ -11,6 +11,8 @@ class CustomGridViewButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
+      disabledColor:
+          Theme.of(context).colorScheme.primaryContainer.withOpacity(0.6),
       onPressed: onPressed,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(21.24.r),

@@ -76,7 +76,8 @@ class CustomSkinStoreGridItem extends StatelessWidget {
             Positioned.fill(
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.5),
+                  color:
+                      Theme.of(context).colorScheme.onPrimary.withOpacity(0.7),
                   borderRadius: BorderRadius.circular(21.42.r),
                 ),
                 child: Center(
