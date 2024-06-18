@@ -6,11 +6,11 @@ import 'package:tic_tac_toe/features/settings/presentation/views/widgets/game_hi
 
 class GameHistoryListViewItem extends StatefulWidget {
   const GameHistoryListViewItem({
-    super.key,
+    Key? key,
     required this.index,
     required this.startAnimation,
     required this.historyModel,
-  });
+  }) : super(key: key);
 
   final int index;
   final bool startAnimation;
@@ -49,7 +49,10 @@ class _GameHistoryListViewItemState extends State<GameHistoryListViewItem> {
         duration: const Duration(milliseconds: 800),
         curve: Curves.easeInOut,
         transform: Matrix4.translationValues(
-            shouldStartAnimation ? 0 : MediaQuery.of(context).size.width, 0, 0),
+          shouldStartAnimation ? 0 : MediaQuery.of(context).size.width,
+          0,
+          0,
+        ),
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(21.42.r),

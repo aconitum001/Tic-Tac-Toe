@@ -10,7 +10,7 @@ import 'package:tic_tac_toe/features/settings/presentation/views/widgets/game_hi
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/skin_store_app_bar.dart';
 
 class HistoryViewBody extends StatefulWidget {
-  const HistoryViewBody({super.key, required this.user});
+  const HistoryViewBody({Key? key, required this.user}) : super(key: key);
 
   final UserModel user;
 
@@ -19,21 +19,13 @@ class HistoryViewBody extends StatefulWidget {
 }
 
 class _HistoryViewBodyState extends State<HistoryViewBody> {
-  bool startAnimation = false;
-
   late List<GameHistoryModel> historyList;
+  bool startAnimation = true; // Set startAnimation to true initially
 
   @override
   void initState() {
     super.initState();
     BlocProvider.of<GameHistoryCubit>(context).getHistory();
-    // WidgetsBinding.instance.addPostFrameCallback(
-    //   (timeStamp) {
-    //     setState(() {
-    //       startAnimation = true;
-    //     });
-    //   },
-    // );
   }
 
   @override
@@ -42,7 +34,6 @@ class _HistoryViewBodyState extends State<HistoryViewBody> {
       builder: (context, state) {
         if (state is GameHistoryLoaded) {
           historyList = state.historyList;
-          startAnimation = true;
           return CustomScrollView(
             physics: const BouncingScrollPhysics(),
             slivers: [
@@ -50,17 +41,13 @@ class _HistoryViewBodyState extends State<HistoryViewBody> {
                 child: Column(
                   children: [
                     SkinStoreAppBar(user: widget.user),
-                    SizedBox(
-                      height: 10.h,
-                    ),
+                    SizedBox(height: 10.h),
                     Text(
                       "Game History",
                       style: AppStyles.style40,
                     ),
                     const DisplayUserStatsSection(),
-                    SizedBox(
-                      height: 20.h,
-                    ),
+                    SizedBox(height: 20.h),
                   ],
                 ),
               ),

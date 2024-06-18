@@ -32,6 +32,10 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
   bool isInteractionDisabled = false;
   late ScrollController _scrollController;
 
+  int player1Score = 0, player2Score = 0;
+  late String currentPlayerName;
+  bool hasSavedHistory = false;
+
   @override
   void initState() {
     super.initState();
@@ -40,6 +44,9 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _scrollToBottom();
     });
+    currentPlayerName =
+        BlocProvider.of<GameBoardCubit>(context).currentPlayer?.userName ??
+            widget.player1.userName;
   }
 
   @override
@@ -49,120 +56,135 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
     super.dispose();
   }
 
-  int player1Score = 0, player2Score = 0;
-  late String currentPlayerName;
-  late int points;
-
   @override
   Widget build(BuildContext context) {
-    currentPlayerName =
-        BlocProvider.of<GameBoardCubit>(context).currentPlayer?.userName ??
-            widget.player1.userName;
-    return BlocConsumer<GameBoardCubit, GameBoardState>(
-      listener: (context, state) {
-        if (state is GameBoardFinished) {
-          Future.delayed(
-            const Duration(milliseconds: 800),
-            () {
-              BlocProvider.of<GameBoardCubit>(context).resetGame();
-              BlocProvider.of<GameHistoryCubit>(context).addGameHistory(
-                player1UserName: widget.player1.userName,
-                player2UserName: widget.player2.userName,
-                player1Avatar: widget.player1.avatar,
-                player2Avatar: widget.player2.avatar,
-                player1Skin: widget.selectedSkins[0],
-                player2Skin: widget.selectedSkins[1],
-                player1Score: player1Score,
-                player2Score: player2Score,
-              );
-              if (state.winner == widget.player1.userName) {
-                showGameResults(
-                  context,
-                  controller,
-                  "${state.winner} Win!",
-                  const Color(0xffFF9900),
-                  const Color(0xff1A2B63),
-                  "assets/animations/winner.json",
-                  false,
-                  true,
-                );
-                player1Score++;
-                setState(() {});
-              } else {
-                showGameResults(
-                  context,
-                  controller,
-                  "${state.winner} Win!",
-                  const Color(0xffFF9900),
-                  const Color(0xff1A2B63),
-                  "assets/animations/winner.json",
-                  false,
-                  true,
-                );
-                player2Score++;
-                setState(() {});
-              }
-            },
+    return PopScope(
+      onPopInvoked: (didPop) {
+        _saveGameHistory();
+      },
+      child: BlocConsumer<GameBoardCubit, GameBoardState>(
+        listener: (context, state) {
+          if (state is GameBoardFinished) {
+            _handleGameFinished(state);
+          } else if (state is GameBoardDraw) {
+            _handleGameDraw();
+          } else if (state is GameBoardChanged) {
+            _handleGameChanged();
+          }
+        },
+        builder: (context, state) {
+          return AbsorbPointer(
+            absorbing: state is GameBoardFinished ? true : false,
+            child: ListView(
+              controller: _scrollController,
+              physics: const BouncingScrollPhysics(),
+              children: [
+                const CustomGameViewAppBar(),
+                Text(
+                  "$currentPlayerName's Turn",
+                  style: AppStyles.style25,
+                  textAlign: TextAlign.center,
+                ),
+                DisplayPlayersInfoSection(
+                  selectedSkins: widget.selectedSkins,
+                  player1: widget.player1,
+                  player2: widget.player2,
+                  player1Points: player1Score,
+                  player2Points: player2Score,
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                GameBoardSection(
+                  player1: widget.player1,
+                  player2: widget.player2,
+                  dificulty: "easy",
+                  gameMode: "duo",
+                  selectedSkins: widget.selectedSkins,
+                ),
+                SizedBox(
+                  height: 40.h,
+                ),
+                const GameButtonsSection(),
+              ],
+            ),
           );
-        } else if (state is GameBoardDraw) {
-          BlocProvider.of<GameBoardCubit>(context).resetGame();
+        },
+      ),
+    );
+  }
+
+  void _handleGameFinished(GameBoardFinished state) {
+    Future.delayed(
+      const Duration(milliseconds: 800),
+      () {
+        BlocProvider.of<GameBoardCubit>(context).resetGame();
+        if (state.winner == widget.player1.userName) {
           showGameResults(
             context,
             controller,
-            "Draw!",
-            Theme.of(context).colorScheme.onPrimary,
-            Colors.transparent,
-            "assets/animations/draww.json",
-            true,
+            "${state.winner} Win!",
+            const Color(0xffFF9900),
+            const Color(0xff1A2B63),
+            "assets/animations/winner.json",
             false,
+            true,
           );
-        } else if (state is GameBoardChanged) {
-          if (currentPlayerName == widget.player1.userName) {
-            currentPlayerName = widget.player2.userName;
-          } else {
-            currentPlayerName = widget.player1.userName;
-          }
+          player1Score++;
+        } else {
+          showGameResults(
+            context,
+            controller,
+            "${state.winner} Win!",
+            const Color(0xffFF9900),
+            const Color(0xff1A2B63),
+            "assets/animations/winner.json",
+            false,
+            true,
+          );
+          player2Score++;
         }
-      },
-      builder: (context, state) {
-        return AbsorbPointer(
-          absorbing: state is GameBoardFinished ? true : false,
-          child: ListView(
-            controller: _scrollController,
-            physics: const BouncingScrollPhysics(),
-            children: [
-              const CustomGameViewAppBar(),
-              Text(
-                "$currentPlayerName's Turn",
-                style: AppStyles.style25,
-                textAlign: TextAlign.center,
-              ),
-              DisplayPlayersInfoSection(
-                selectedSkins: widget.selectedSkins,
-                player1: widget.player1,
-                player2: widget.player2,
-                player1Points: player1Score,
-                player2Points: player2Score,
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              GameBoardSection(
-                player1: widget.player1,
-                player2: widget.player2,
-                dificulty: "easy",
-                gameMode: "duo",
-                selectedSkins: widget.selectedSkins,
-              ),
-              SizedBox(
-                height: 40.h,
-              ),
-              const GameButtonsSection(),
-            ],
-          ),
-        );
+        setState(() {});
       },
     );
+  }
+
+  void _handleGameDraw() {
+    BlocProvider.of<GameBoardCubit>(context).resetGame();
+    showGameResults(
+      context,
+      controller,
+      "Draw!",
+      Theme.of(context).colorScheme.onPrimary,
+      Colors.transparent,
+      "assets/animations/draww.json",
+      true,
+      false,
+    );
+  }
+
+  void _handleGameChanged() {
+    if (currentPlayerName == widget.player1.userName) {
+      currentPlayerName = widget.player2.userName;
+    } else {
+      currentPlayerName = widget.player1.userName;
+    }
+  }
+
+  void _saveGameHistory() {
+    if (!hasSavedHistory) {
+      BlocProvider.of<GameHistoryCubit>(context).addGameHistory(
+        player1UserName: widget.player1.userName,
+        player2UserName: widget.player2.userName,
+        player1Avatar: widget.player1.avatar,
+        player2Avatar: widget.player2.avatar,
+        player1Skin: widget.selectedSkins[0],
+        player2Skin: widget.selectedSkins[1],
+        player1Score: player1Score,
+        player2Score: player2Score,
+      );
+      hasSavedHistory = true;
+    }
   }
 
   void _scrollToBottom() {
