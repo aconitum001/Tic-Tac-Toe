@@ -39,6 +39,8 @@ class GameBoardTileDuo extends StatelessWidget {
               UserModel currentPlayer = boardCubit.currentPlayer ?? player1;
               String currentPlayerSlectedSkin =
                   boardCubit.currentPlayerSelectedSkin ?? player1SelectedSkin;
+              print(
+                  "current player: $currentPlayer + $currentPlayerSlectedSkin");
               playerMove(
                 context,
                 currentPlayer,

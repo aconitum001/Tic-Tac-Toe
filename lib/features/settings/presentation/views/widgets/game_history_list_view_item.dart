@@ -21,18 +21,44 @@ class GameHistoryListViewItem extends StatefulWidget {
       _GameHistoryListViewItemState();
 }
 
-class _GameHistoryListViewItemState extends State<GameHistoryListViewItem> {
-  bool shouldStartAnimation = false;
+class _GameHistoryListViewItemState extends State<GameHistoryListViewItem>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Offset> _animation;
 
   @override
   void initState() {
     super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 800),
+    );
+    _animation = Tween<Offset>(
+      begin: Offset(1.0, 0.0),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
     if (widget.startAnimation) {
       Future.delayed(Duration(milliseconds: widget.index * 250), () {
         if (mounted) {
-          setState(() {
-            shouldStartAnimation = true;
-          });
+          _controller.forward();
+        }
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(GameHistoryListViewItem oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.startAnimation && !oldWidget.startAnimation) {
+      Future.delayed(Duration(milliseconds: widget.index * 250), () {
+        if (mounted) {
+          _controller.forward();
         }
       });
     }
@@ -40,50 +66,46 @@ class _GameHistoryListViewItemState extends State<GameHistoryListViewItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 40.w,
-        vertical: 8.h,
-      ),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 800),
-        curve: Curves.easeInOut,
-        transform: Matrix4.translationValues(
-          shouldStartAnimation ? 0 : MediaQuery.of(context).size.width,
-          0,
-          0,
+    return SlideTransition(
+      position: _animation,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: 40.w,
+          vertical: 8.h,
         ),
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(21.42.r),
-          color: Theme.of(context).colorScheme.onPrimary,
-          border: Border.all(
-            color: Theme.of(context).colorScheme.primaryContainer,
-            width: 2,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(21.42.r),
+            color: Theme.of(context).colorScheme.onPrimary,
+            border: Border.all(
+              color: Theme.of(context).colorScheme.primaryContainer,
+              width: 2,
+            ),
           ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            GameHistoryUserInfoWidget(
-              avatar: widget.historyModel.player1Avatar,
-              score: widget.historyModel.player1Score,
-              playerName: widget.historyModel.player1UserName,
-            ),
-            GameHistoryStatsWidget(
-              index: widget.index + 1,
-              time: "9:30",
-              month: widget.historyModel.month,
-              day: widget.historyModel.day,
-              player1Skin: widget.historyModel.player1Skin,
-              player2Skin: widget.historyModel.player2Skin,
-            ),
-            GameHistoryUserInfoWidget(
-              avatar: widget.historyModel.player2Avatar,
-              score: widget.historyModel.player2Score,
-              playerName: widget.historyModel.player2UserName,
-            ),
-          ],
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              GameHistoryUserInfoWidget(
+                avatar: widget.historyModel.player1Avatar,
+                score: widget.historyModel.player1Score,
+                playerName: widget.historyModel.player1UserName,
+              ),
+              GameHistoryStatsWidget(
+                index: widget.index + 1,
+                time: "9:30",
+                month: widget.historyModel.month,
+                day: widget.historyModel.day,
+                player1Skin: widget.historyModel.player1Skin,
+                player2Skin: widget.historyModel.player2Skin,
+              ),
+              GameHistoryUserInfoWidget(
+                avatar: widget.historyModel.player2Avatar,
+                score: widget.historyModel.player2Score,
+                playerName: widget.historyModel.player2UserName,
+              ),
+            ],
+          ),
         ),
       ),
     );

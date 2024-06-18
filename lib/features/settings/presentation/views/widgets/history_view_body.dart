@@ -21,6 +21,7 @@ class HistoryViewBody extends StatefulWidget {
 class _HistoryViewBodyState extends State<HistoryViewBody> {
   late List<GameHistoryModel> historyList;
   bool startAnimation = true; // Set startAnimation to true initially
+  final Set<int> animatedItems = Set<int>(); // Track animated items
 
   @override
   void initState() {
@@ -55,6 +56,7 @@ class _HistoryViewBodyState extends State<HistoryViewBody> {
                 itemCount: historyList.length,
                 itemBuilder: (context, index) {
                   return GameHistoryListViewItem(
+                    key: ValueKey<int>(index),
                     index: index,
                     startAnimation: startAnimation,
                     historyModel: historyList[index],

@@ -61,6 +61,9 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
     return PopScope(
       onPopInvoked: (didPop) {
         _saveGameHistory();
+        BlocProvider.of<GameBoardCubit>(context).currentPlayer = null;
+        BlocProvider.of<GameBoardCubit>(context).currentPlayerSelectedSkin =
+            null;
       },
       child: BlocConsumer<GameBoardCubit, GameBoardState>(
         listener: (context, state) {

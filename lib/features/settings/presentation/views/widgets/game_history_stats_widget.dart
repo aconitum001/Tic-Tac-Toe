@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tic_tac_toe/core/utils/assets.dart';
 
 import '../../../../../core/utils/styles.dart';
 
@@ -32,7 +31,7 @@ class GameHistoryStatsWidget extends StatelessWidget {
         Row(
           children: [
             SvgPicture.asset(
-              AppAssets.oStyle1,
+              player1Skin,
               fit: BoxFit.scaleDown,
               width: 30.w,
               height: 30.h,
@@ -51,7 +50,7 @@ class GameHistoryStatsWidget extends StatelessWidget {
               width: 10.w,
             ),
             SvgPicture.asset(
-              AppAssets.xStyle1,
+              player2Skin,
               width: 30.w,
               height: 30.h,
               clipBehavior: Clip.none,
