@@ -95,7 +95,7 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
                   "You Lose!",
                   const Color(0xffFF3F05),
                   Colors.transparent,
-                  "assets/animations/angry_v2.json",
+                  "assets/animations/red_emoji.json",
                   false,
                   false,
                 );

@@ -35,35 +35,33 @@ class _HistoryViewBodyState extends State<HistoryViewBody> {
       builder: (context, state) {
         if (state is GameHistoryLoaded) {
           historyList = state.historyList;
-          return CustomScrollView(
+          return SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
-            slivers: [
-              SliverToBoxAdapter(
-                child: Column(
-                  children: [
-                    SkinStoreAppBar(user: widget.user),
-                    SizedBox(height: 10.h),
-                    Text(
-                      "Game History",
-                      style: AppStyles.style40,
-                    ),
-                    const DisplayUserStatsSection(),
-                    SizedBox(height: 20.h),
-                  ],
+            child: Column(
+              children: [
+                SkinStoreAppBar(user: widget.user),
+                SizedBox(height: 10.h),
+                Text(
+                  "Game History",
+                  style: AppStyles.style40,
                 ),
-              ),
-              SliverList.builder(
-                itemCount: historyList.length,
-                itemBuilder: (context, index) {
-                  return GameHistoryListViewItem(
-                    key: ValueKey<int>(index),
-                    index: index,
-                    startAnimation: startAnimation,
-                    historyModel: historyList[index],
-                  );
-                },
-              )
-            ],
+                const DisplayUserStatsSection(),
+                SizedBox(height: 20.h),
+                ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: historyList.length,
+                  itemBuilder: (context, index) {
+                    return GameHistoryListViewItem(
+                      key: ValueKey<int>(index),
+                      index: index,
+                      startAnimation: startAnimation,
+                      historyModel: historyList[index],
+                    );
+                  },
+                ),
+              ],
+            ),
           );
         } else {
           return const Center(
