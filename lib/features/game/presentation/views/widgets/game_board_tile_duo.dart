@@ -29,7 +29,7 @@ class GameBoardTileDuo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GameBoardCubit boardCubit = BlocProvider.of<GameBoardCubit>(context);
-    print(player1SelectedSkin);
+
     return BlocConsumer<GameBoardCubit, GameBoardState>(
       listener: (context, state) {},
       builder: (context, state) {

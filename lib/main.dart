@@ -12,11 +12,14 @@ import 'package:tic_tac_toe/features/game/data/game_repo/game_repo_impl.dart';
 import 'package:tic_tac_toe/features/game/presentation/view_models/game_board_cubit/game_board_cubit.dart';
 import 'package:tic_tac_toe/features/home/data/home_repo/home_repo_impl.dart';
 import 'package:tic_tac_toe/features/home/presentation/view_model/user_cubit/user_cubit.dart';
+import 'package:tic_tac_toe/features/settings/data/models/game_history_model.dart';
 
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter((UserModelAdapter()));
+  Hive.registerAdapter((GameHistoryModelAdapter()));
   await Hive.openBox<UserModel>(kUserBox);
+  await Hive.openBox<GameHistoryModel>(kHistoryBox);
   Bloc.observer = SimpleBlocObserver();
   setup();
   runApp(const TicTacToe());

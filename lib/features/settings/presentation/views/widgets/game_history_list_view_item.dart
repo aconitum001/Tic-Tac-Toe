@@ -35,23 +35,23 @@ class GameHistoryListViewItem extends StatelessWidget {
             width: 2,
           ),
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            GameHistoryUserInfoWidget(
+            const GameHistoryUserInfoWidget(
               avatar: AppAssets.avtar1,
               score: 1,
               playerName: "You",
             ),
             GameHistoryStatsWidget(
-              index: 1,
+              index: index + 1,
               time: "9:30",
               month: "5 juin",
               day: "Wed",
               player1Skin: AppAssets.oStyle1,
               player2Skin: AppAssets.xStyle1,
             ),
-            GameHistoryUserInfoWidget(
+            const GameHistoryUserInfoWidget(
               avatar: AppAssets.avtar2,
               score: 3,
               playerName: "Friend",
