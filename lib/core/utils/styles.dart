@@ -71,6 +71,10 @@ abstract class AppStyles {
     fontSize: 12.85.sp,
     fontWeight: FontWeight.w400,
   );
+  static TextStyle style11 = TextStyle(
+    fontSize: 11.sp,
+    fontWeight: FontWeight.w400,
+  );
 
   static TextStyle style14 = TextStyle(
     fontSize: 14.sp,
