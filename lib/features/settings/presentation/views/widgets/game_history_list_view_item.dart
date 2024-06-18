@@ -7,13 +7,25 @@ import 'package:tic_tac_toe/features/settings/presentation/views/widgets/game_hi
 class GameHistoryListViewItem extends StatelessWidget {
   const GameHistoryListViewItem({
     super.key,
+    required this.index,
+    required this.startAnimation,
   });
+
+  final int index;
+  final bool startAnimation;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 40.w),
-      child: Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: 40.w,
+        vertical: 8.h,
+      ),
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 800 + (index * 250)),
+        curve: Curves.easeInOut,
+        transform: Matrix4.translationValues(
+            startAnimation ? 0 : MediaQuery.of(context).size.width, 0, 0),
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(21.42.r),

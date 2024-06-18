@@ -6,27 +6,62 @@ import 'package:tic_tac_toe/features/settings/presentation/views/widgets/display
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/game_history_list_view_item.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/skin_store_app_bar.dart';
 
-class HistoryViewBody extends StatelessWidget {
+class HistoryViewBody extends StatefulWidget {
   const HistoryViewBody({super.key, required this.user});
 
   final UserModel user;
 
   @override
+  State<HistoryViewBody> createState() => _HistoryViewBodyState();
+}
+
+class _HistoryViewBodyState extends State<HistoryViewBody> {
+  bool startAnimation = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        setState(() {
+          startAnimation = true;
+        });
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SkinStoreAppBar(user: user),
-        SizedBox(
-          height: 10.h,
+    return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
+      slivers: [
+        SliverToBoxAdapter(
+          child: Column(
+            children: [
+              SkinStoreAppBar(user: widget.user),
+              SizedBox(
+                height: 10.h,
+              ),
+              Text(
+                "Game History",
+                style: AppStyles.style40,
+              ),
+              const DisplayUserStatsSection(),
+              SizedBox(
+                height: 20.h,
+              ),
+            ],
+          ),
         ),
-        Text(
-          "Game History",
-          style: AppStyles.style40,
-        ),
-        const DisplayUserStatsSection(),
-        SizedBox(
-          height: 20.h,
-        ),
+        SliverList.builder(
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return GameHistoryListViewItem(
+              index: index,
+              startAnimation: startAnimation,
+            );
+          },
+        )
       ],
     );
   }
