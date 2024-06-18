@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
+import 'package:tic_tac_toe/features/settings/data/models/game_history_model.dart';
+import 'package:tic_tac_toe/features/settings/presentation/view_model/game_history_cubit/game_history_cubit.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/display_user_stats.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/game_history_list_view_item.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/skin_store_app_bar.dart';
@@ -18,51 +21,69 @@ class HistoryViewBody extends StatefulWidget {
 class _HistoryViewBodyState extends State<HistoryViewBody> {
   bool startAnimation = false;
 
+  late List<GameHistoryModel> historyList;
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(
-      (timeStamp) {
-        setState(() {
-          startAnimation = true;
-        });
-      },
-    );
+    BlocProvider.of<GameHistoryCubit>(context).getHistory();
+    // WidgetsBinding.instance.addPostFrameCallback(
+    //   (timeStamp) {
+    //     setState(() {
+    //       startAnimation = true;
+    //     });
+    //   },
+    // );
   }
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(),
-      slivers: [
-        SliverToBoxAdapter(
-          child: Column(
-            children: [
-              SkinStoreAppBar(user: widget.user),
-              SizedBox(
-                height: 10.h,
+    return BlocBuilder<GameHistoryCubit, GameHistoryState>(
+      builder: (context, state) {
+        if (state is GameHistoryLoaded) {
+          historyList = state.historyList;
+          startAnimation = true;
+          return CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    SkinStoreAppBar(user: widget.user),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    Text(
+                      "Game History",
+                      style: AppStyles.style40,
+                    ),
+                    const DisplayUserStatsSection(),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                  ],
+                ),
               ),
-              Text(
-                "Game History",
-                style: AppStyles.style40,
-              ),
-              const DisplayUserStatsSection(),
-              SizedBox(
-                height: 20.h,
-              ),
+              SliverList.builder(
+                itemCount: historyList.length,
+                itemBuilder: (context, index) {
+                  return GameHistoryListViewItem(
+                    index: index,
+                    startAnimation: startAnimation,
+                    historyModel: historyList[index],
+                  );
+                },
+              )
             ],
-          ),
-        ),
-        SliverList.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return GameHistoryListViewItem(
-              index: index,
-              startAnimation: startAnimation,
-            );
-          },
-        )
-      ],
+          );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          );
+        }
+      },
     );
   }
 }

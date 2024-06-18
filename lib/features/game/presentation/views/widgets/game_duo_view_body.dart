@@ -10,6 +10,7 @@ import 'package:tic_tac_toe/features/game/presentation/views/widgets/custom_game
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/display_players_info_section.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_board_section.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_buttons_section.dart';
+import 'package:tic_tac_toe/features/settings/presentation/view_model/game_history_cubit/game_history_cubit.dart';
 
 class GameDuoViewBody extends StatefulWidget {
   const GameDuoViewBody({
@@ -64,6 +65,16 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
             const Duration(milliseconds: 800),
             () {
               BlocProvider.of<GameBoardCubit>(context).resetGame();
+              BlocProvider.of<GameHistoryCubit>(context).addGameHistory(
+                player1UserName: widget.player1.userName,
+                player2UserName: widget.player2.userName,
+                player1Avatar: widget.player1.avatar,
+                player2Avatar: widget.player2.avatar,
+                player1Skin: widget.selectedSkins[0],
+                player2Skin: widget.selectedSkins[1],
+                player1Score: player1Score,
+                player2Score: player2Score,
+              );
               if (state.winner == widget.player1.userName) {
                 showGameResults(
                   context,

@@ -13,6 +13,7 @@ import 'package:tic_tac_toe/features/game/presentation/view_models/game_board_cu
 import 'package:tic_tac_toe/features/home/data/home_repo/home_repo_impl.dart';
 import 'package:tic_tac_toe/features/home/presentation/view_model/user_cubit/user_cubit.dart';
 import 'package:tic_tac_toe/features/settings/data/models/game_history_model.dart';
+import 'package:tic_tac_toe/features/settings/presentation/view_model/game_history_cubit/game_history_cubit.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -42,6 +43,9 @@ class TicTacToe extends StatelessWidget {
             create: (context) => GameBoardCubit(
               getIt.get<GameRepoImpl>(),
             ),
+          ),
+          BlocProvider(
+            create: (context) => GameHistoryCubit(),
           ),
         ],
         child: MaterialApp.router(

@@ -37,10 +37,10 @@ class GameHistoryCubit extends Cubit<GameHistoryState> {
     box.add(gameHistory);
   }
 
-  Future<List<GameHistoryModel>> getHistory() async {
+  Future<void> getHistory() async {
+    emit(GameHistoryLoading());
     var box = await Hive.openBox<GameHistoryModel>(kHistoryBox);
     List<GameHistoryModel> historyList = box.values.toList();
-
-    return historyList;
+    emit(GameHistoryLoaded(historyList: historyList));
   }
 }
