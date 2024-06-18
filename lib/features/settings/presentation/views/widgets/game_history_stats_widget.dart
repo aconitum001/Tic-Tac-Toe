@@ -10,14 +10,12 @@ class GameHistoryStatsWidget extends StatelessWidget {
     required this.index,
     required this.player1Skin,
     required this.player2Skin,
-    required this.day,
-    required this.month,
-    required this.time,
+    required this.date,
   });
 
   final int index;
   final String player1Skin, player2Skin;
-  final String day, month, time;
+  final String date;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +56,7 @@ class GameHistoryStatsWidget extends StatelessWidget {
           ],
         ),
         Text(
-          "$day, $month | $time",
+          date,
           style: AppStyles.style11,
         )
       ],

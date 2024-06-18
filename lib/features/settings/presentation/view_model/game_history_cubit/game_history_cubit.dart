@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:bloc/bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:meta/meta.dart';
@@ -21,6 +22,8 @@ class GameHistoryCubit extends Cubit<GameHistoryState> {
   }) async {
     var box = await Hive.openBox<GameHistoryModel>(kHistoryBox);
     DateTime now = DateTime.now();
+    DateFormat formatter = DateFormat('EEE, d MMMM | HH:mm');
+    String formatted = formatter.format(now);
     GameHistoryModel gameHistory = GameHistoryModel(
       player1Avatar: player1Avatar,
       player1UserName: player1UserName,
@@ -30,9 +33,7 @@ class GameHistoryCubit extends Cubit<GameHistoryState> {
       player2UserName: player2UserName,
       player2Skin: player2Skin,
       player2Score: player2Score,
-      day: now.day.toString(),
-      month: now.month.toString(),
-      year: now.year.toString(),
+      date: formatted,
     );
     box.add(gameHistory);
   }

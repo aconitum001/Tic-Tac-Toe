@@ -10,6 +10,7 @@ import 'package:tic_tac_toe/features/game/presentation/views/widgets/custom_game
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/display_players_info_section.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_board_section.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_buttons_section.dart';
+import 'package:tic_tac_toe/features/home/presentation/view_model/user_cubit/user_cubit.dart';
 import 'package:tic_tac_toe/features/settings/presentation/view_model/game_history_cubit/game_history_cubit.dart';
 
 class GameDuoViewBody extends StatefulWidget {
@@ -134,6 +135,7 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
             true,
           );
           player1Score++;
+          BlocProvider.of<UserCubit>(context).addUserWins(user: widget.player1);
         } else {
           showGameResults(
             context,
@@ -146,6 +148,8 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
             true,
           );
           player2Score++;
+          BlocProvider.of<UserCubit>(context)
+              .addUserLoses(user: widget.player1);
         }
         setState(() {});
       },
@@ -164,6 +168,7 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
       true,
       false,
     );
+    BlocProvider.of<UserCubit>(context).addUserDraws(user: widget.player1);
   }
 
   void _handleGameChanged() {

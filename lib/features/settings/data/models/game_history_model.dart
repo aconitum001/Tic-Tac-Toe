@@ -21,11 +21,7 @@ class GameHistoryModel {
   @HiveField(7)
   final int player2Score;
   @HiveField(8)
-  final String day;
-  @HiveField(9)
-  final String month;
-  @HiveField(10)
-  final String year;
+  final String date;
 
   GameHistoryModel({
     required this.player1Avatar,
@@ -36,8 +32,6 @@ class GameHistoryModel {
     required this.player2UserName,
     required this.player2Skin,
     required this.player2Score,
-    required this.day,
-    required this.month,
-    required this.year,
+    required this.date,
   });
 }

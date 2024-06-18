@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/stats_widget.dart';
 
 class DisplayUserStatsSection extends StatelessWidget {
-  const DisplayUserStatsSection({super.key});
+  const DisplayUserStatsSection({
+    super.key,
+    required this.user,
+  });
+
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const StatsWidget(
+        StatsWidget(
           text: "Wins",
-          number: 0,
+          number: user.wins,
         ),
         SizedBox(
           height: 24.h,
@@ -21,9 +27,9 @@ class DisplayUserStatsSection extends StatelessWidget {
             thickness: 1,
           ),
         ),
-        const StatsWidget(
+        StatsWidget(
           text: "Loses",
-          number: 0,
+          number: user.loses,
         ),
         SizedBox(
           height: 24.h,
@@ -32,9 +38,9 @@ class DisplayUserStatsSection extends StatelessWidget {
             thickness: 1,
           ),
         ),
-        const StatsWidget(
+        StatsWidget(
           text: "Draws",
-          number: 0,
+          number: user.draws,
         ),
       ],
     );

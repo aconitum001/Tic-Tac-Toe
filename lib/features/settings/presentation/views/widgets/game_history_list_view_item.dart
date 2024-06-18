@@ -6,14 +6,13 @@ import 'package:tic_tac_toe/features/settings/presentation/views/widgets/game_hi
 
 class GameHistoryListViewItem extends StatefulWidget {
   const GameHistoryListViewItem({
-    Key? key,
+    super.key,
     required this.index,
-    required this.startAnimation,
     required this.historyModel,
-  }) : super(key: key);
+    required this.length,
+  });
 
-  final int index;
-  final bool startAnimation;
+  final int index, length;
   final GameHistoryModel historyModel;
 
   @override
@@ -37,31 +36,17 @@ class _GameHistoryListViewItemState extends State<GameHistoryListViewItem>
       begin: Offset(1.0, 0.0),
       end: Offset.zero,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
-    if (widget.startAnimation) {
-      Future.delayed(Duration(milliseconds: widget.index * 250), () {
-        if (mounted) {
-          _controller.forward();
-        }
-      });
-    }
+    Future.delayed(Duration(milliseconds: widget.index * 250), () {
+      if (mounted) {
+        _controller.forward();
+      }
+    });
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(GameHistoryListViewItem oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.startAnimation && !oldWidget.startAnimation) {
-      Future.delayed(Duration(milliseconds: widget.index * 250), () {
-        if (mounted) {
-          _controller.forward();
-        }
-      });
-    }
   }
 
   @override
@@ -92,10 +77,8 @@ class _GameHistoryListViewItemState extends State<GameHistoryListViewItem>
                 playerName: widget.historyModel.player1UserName,
               ),
               GameHistoryStatsWidget(
-                index: widget.index + 1,
-                time: "9:30",
-                month: widget.historyModel.month,
-                day: widget.historyModel.day,
+                index: widget.length - widget.index,
+                date: widget.historyModel.date,
                 player1Skin: widget.historyModel.player1Skin,
                 player2Skin: widget.historyModel.player2Skin,
               ),

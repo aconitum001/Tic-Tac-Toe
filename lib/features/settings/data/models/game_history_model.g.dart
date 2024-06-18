@@ -25,16 +25,14 @@ class GameHistoryModelAdapter extends TypeAdapter<GameHistoryModel> {
       player2UserName: fields[5] as String,
       player2Skin: fields[6] as String,
       player2Score: fields[7] as int,
-      day: fields[8] as String,
-      month: fields[9] as String,
-      year: fields[10] as String,
+      date: fields[8] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, GameHistoryModel obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.player1Avatar)
       ..writeByte(1)
@@ -52,11 +50,7 @@ class GameHistoryModelAdapter extends TypeAdapter<GameHistoryModel> {
       ..writeByte(7)
       ..write(obj.player2Score)
       ..writeByte(8)
-      ..write(obj.day)
-      ..writeByte(9)
-      ..write(obj.month)
-      ..writeByte(10)
-      ..write(obj.year);
+      ..write(obj.date);
   }
 
   @override

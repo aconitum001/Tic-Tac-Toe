@@ -20,8 +20,6 @@ class HistoryViewBody extends StatefulWidget {
 
 class _HistoryViewBodyState extends State<HistoryViewBody> {
   late List<GameHistoryModel> historyList;
-  bool startAnimation = true; // Set startAnimation to true initially
-  final Set<int> animatedItems = Set<int>(); // Track animated items
 
   @override
   void initState() {
@@ -34,7 +32,8 @@ class _HistoryViewBodyState extends State<HistoryViewBody> {
     return BlocBuilder<GameHistoryCubit, GameHistoryState>(
       builder: (context, state) {
         if (state is GameHistoryLoaded) {
-          historyList = state.historyList;
+          historyList = state.historyList.reversed.toList();
+
           return SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(
@@ -45,7 +44,9 @@ class _HistoryViewBodyState extends State<HistoryViewBody> {
                   "Game History",
                   style: AppStyles.style40,
                 ),
-                const DisplayUserStatsSection(),
+                DisplayUserStatsSection(
+                  user: widget.user,
+                ),
                 SizedBox(height: 20.h),
                 ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
@@ -53,9 +54,9 @@ class _HistoryViewBodyState extends State<HistoryViewBody> {
                   itemCount: historyList.length,
                   itemBuilder: (context, index) {
                     return GameHistoryListViewItem(
+                      length: historyList.length,
                       key: ValueKey<int>(index),
                       index: index,
-                      startAnimation: startAnimation,
                       historyModel: historyList[index],
                     );
                   },
