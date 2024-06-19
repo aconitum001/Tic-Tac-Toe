@@ -13,7 +13,6 @@ abstract class AppAssets {
       "assets/image/backgrounds/game_dark_background.png";
 
   static const String gameDraw = "assets/images/game_draw.svg";
-  // static const String gameWin = "assets/images/game_win.svg";
 
   static const String rulesWin = "assets/images/trophy (2) 1.png";
   static const String rulesLose = "assets/images/dislike 1.png";
@@ -23,7 +22,7 @@ abstract class AppAssets {
   static const String oWin = "assets/images/o_win.svg";
 
   static const String xStyle1 = "assets/images/x_style1.svg";
-  static const String oStyle1 = "assets/images/0.svg";
+  static const String oStyle1 = "assets/images/o_style1.svg";
   static const String xStyle2 = "assets/images/x_2.svg";
   static const String oStyle2 = "assets/images/o_2.svg";
   static const String xStyle3 = "assets/images/x_3.svg";
