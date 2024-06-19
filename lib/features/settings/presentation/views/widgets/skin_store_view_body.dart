@@ -50,10 +50,13 @@ class _SkinStoreViewBodyState extends State<SkinStoreViewBody> {
               childAspectRatio: 113.51.w / 119.94.h,
             ),
             itemBuilder: (context, index) {
+              bool isLocked = true;
               bool containsBothSkins = widget.user.skinsCollection
                       .contains(skinsList[index].xSkin) &&
                   widget.user.skinsCollection.contains(skinsList[index].oSkin);
-              bool isLocked = false;
+              if (widget.user.unlockedSkins.contains(index)) {
+                isLocked = false;
+              }
               return CustomSkinStoreGridItem(
                 onButtonPressed: () {
                   if (!isLocked) {

@@ -24,6 +24,7 @@ class HomeButtonsSection extends StatelessWidget {
               avatar: AppAssets.botAvatar1,
               points: 0,
               skinsCollection: [],
+              unlockedSkins: [],
               challengesFinished: [],
               selectedSkin: user.selectedSkin,
               wins: 0,
