@@ -10,22 +10,25 @@ class CustomGridViewButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      disabledColor:
-          Theme.of(context).colorScheme.primaryContainer.withOpacity(0.6),
-      onPressed: onPressed,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(21.24.r),
-      ),
-      padding: EdgeInsets.symmetric(vertical: 5.h),
-      height: 30.h,
-      color: Theme.of(context).colorScheme.primaryContainer,
-      child: Text(
-        text,
-        style: AppStyles.style12.copyWith(
-          color: Theme.of(context).colorScheme.onPrimaryContainer,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 8.w),
+      child: MaterialButton(
+        disabledColor:
+            Theme.of(context).colorScheme.primaryContainer.withOpacity(0.6),
+        onPressed: onPressed,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(21.24.r),
         ),
-        overflow: TextOverflow.ellipsis,
+        padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 2.w),
+        height: 30.h,
+        color: Theme.of(context).colorScheme.primaryContainer,
+        child: Text(
+          text,
+          style: AppStyles.style12.copyWith(
+            color: Theme.of(context).colorScheme.onPrimaryContainer,
+          ),
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
     );
   }

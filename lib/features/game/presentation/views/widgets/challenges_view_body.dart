@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
+import 'package:tic_tac_toe/features/game/presentation/views/widgets/challenges_grid_view_item.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/skin_store_app_bar.dart';
 
 class ChallengesViewBody extends StatelessWidget {
@@ -14,15 +17,52 @@ class ChallengesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SkinStoreAppBar(
-          user: player1,
+    return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
+      slivers: [
+        SliverToBoxAdapter(
+          child: Column(
+            children: [
+              SkinStoreAppBar(
+                user: player1,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Text(
+                "Challenges",
+                style: AppStyles.style35,
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+            ],
+          ),
         ),
-        Text(
-          "Challenges",
-          style: AppStyles.style35,
-        ),
+        SliverPadding(
+          padding: EdgeInsets.only(right: 65.w, left: 65.w, bottom: 20.h),
+          sliver: AnimationLimiter(
+            child: SliverGrid.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 54.w,
+                mainAxisSpacing: 40.h,
+                childAspectRatio: 1 / 1.1,
+              ),
+              itemBuilder: (context, index) {
+                return AnimationConfiguration.staggeredGrid(
+                  position: index,
+                  columnCount: 2,
+                  duration: const Duration(seconds: 1),
+                  child: const ScaleAnimation(
+                    child: ChallengesGridViewItem(),
+                  ),
+                );
+              },
+              itemCount: 8,
+            ),
+          ),
+        )
       ],
     );
   }

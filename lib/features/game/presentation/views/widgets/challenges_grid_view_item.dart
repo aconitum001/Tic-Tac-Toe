@@ -12,7 +12,6 @@ class ChallengesGridViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 113.w,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.onPrimary,
         borderRadius: BorderRadius.circular(21.42.r),
@@ -40,7 +39,7 @@ class ChallengesGridViewItem extends StatelessWidget {
             color: AppColors.grey3,
           ),
           CustomGridViewButton(
-            text: "Win 5 Games",
+            text: "win 5 games",
             onPressed: () {},
           )
         ],
