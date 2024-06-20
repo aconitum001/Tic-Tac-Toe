@@ -64,7 +64,28 @@ class HomeButtonsSection extends StatelessWidget {
           height: 15.h,
         ),
         CustomPrimaryTextButton(
-          onPressed: () {},
+          onPressed: () {
+            UserModel bot = UserModel(
+              userName: "Bot",
+              avatar: AppAssets.botAvatar1,
+              points: 0,
+              skinsCollection: [],
+              unlockedSkins: [],
+              challengesFinished: [],
+              selectedSkin: user.selectedSkin,
+              wins: 0,
+              loses: 0,
+              draws: 0,
+            );
+            GoRouter.of(context).push(
+              AppRouter.kChallengesView,
+              extra: NavigationParams(
+                player1: user,
+                player2: bot,
+                difficulty: "",
+              ),
+            );
+          },
           icon: Icons.emoji_events,
           text: "Play in Challenge mode",
           width: 18.w,
