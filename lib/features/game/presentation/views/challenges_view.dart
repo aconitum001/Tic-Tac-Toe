@@ -20,10 +20,12 @@ class ChallengesView extends StatelessWidget {
           fit: BoxFit.fill,
         ),
       ),
-      child: Scaffold(
-        body: ChallengesViewBody(
-          player1: player1,
-          player2: player2,
+      child: SafeArea(
+        child: Scaffold(
+          body: ChallengesViewBody(
+            player1: player1,
+            player2: player2,
+          ),
         ),
       ),
     );
