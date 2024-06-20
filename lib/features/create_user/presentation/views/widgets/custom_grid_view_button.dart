@@ -25,6 +25,7 @@ class CustomGridViewButton extends StatelessWidget {
         style: AppStyles.style12.copyWith(
           color: Theme.of(context).colorScheme.onPrimaryContainer,
         ),
+        overflow: TextOverflow.ellipsis,
       ),
     );
   }
