@@ -29,7 +29,7 @@ class CustomSecondaryButton extends StatelessWidget {
           backgroundColor: bgColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.r),
-            side: BorderSide(color: borderColor, width: 2),
+            side: BorderSide(color: borderColor, width: 3),
           ),
         ),
         onPressed: onPressed,
