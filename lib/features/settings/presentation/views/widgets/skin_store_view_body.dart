@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
@@ -41,42 +42,54 @@ class _SkinStoreViewBodyState extends State<SkinStoreViewBody> {
         ),
         SliverPadding(
           padding: EdgeInsets.symmetric(horizontal: 70.w),
-          sliver: SliverGrid.builder(
-            itemCount: skinsList.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 54.w,
-              mainAxisSpacing: 40.h,
-              childAspectRatio: 113.51.w / 119.94.h,
+          sliver: AnimationLimiter(
+            child: SliverGrid.builder(
+              itemCount: skinsList.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 54.w,
+                mainAxisSpacing: 40.h,
+                childAspectRatio: 113.51.w / 119.94.h,
+              ),
+              itemBuilder: (context, index) {
+                bool isLocked = true;
+                bool containsBothSkins = widget.user.skinsCollection
+                        .contains(skinsList[index].xSkin) &&
+                    widget.user.skinsCollection
+                        .contains(skinsList[index].oSkin);
+                if (widget.user.unlockedSkins.contains(index)) {
+                  isLocked = false;
+                }
+                return AnimationConfiguration.staggeredGrid(
+                  position: index,
+                  columnCount: 2,
+                  duration: const Duration(seconds: 1),
+                  child: ScaleAnimation(
+                    child: CustomSkinStoreGridItem(
+                      onButtonPressed: () {
+                        if (!isLocked) {
+                          buyNewSkinMethode(index, containsBothSkins);
+                        }
+                      },
+                      onTap: () {
+                        if (!isLocked) {
+                          changeSkinMethode(containsBothSkins, index);
+                        }
+                      },
+                      skin: skinsList[index],
+                      color: widget.user.selectedSkin[0] ==
+                                  skinsList[index].xSkin &&
+                              widget.user.selectedSkin[1] ==
+                                  skinsList[index].oSkin
+                          ? Colors.white
+                          : Colors.transparent,
+                      text: displayTextMethode(containsBothSkins, index),
+                      isLocked: isLocked,
+                    ),
+                  ),
+                );
+              },
             ),
-            itemBuilder: (context, index) {
-              bool isLocked = true;
-              bool containsBothSkins = widget.user.skinsCollection
-                      .contains(skinsList[index].xSkin) &&
-                  widget.user.skinsCollection.contains(skinsList[index].oSkin);
-              if (widget.user.unlockedSkins.contains(index)) {
-                isLocked = false;
-              }
-              return CustomSkinStoreGridItem(
-                onButtonPressed: () {
-                  if (!isLocked) {
-                    buyNewSkinMethode(index, containsBothSkins);
-                  }
-                },
-                onTap: () {
-                  if (!isLocked) {
-                    changeSkinMethode(containsBothSkins, index);
-                  }
-                },
-                skin: skinsList[index],
-                color: widget.user.selectedSkin[0] == skinsList[index].xSkin &&
-                        widget.user.selectedSkin[1] == skinsList[index].oSkin
-                    ? Colors.white
-                    : Colors.transparent,
-                text: displayTextMethode(containsBothSkins, index),
-                isLocked: isLocked,
-              );
-            },
           ),
         ),
       ],
