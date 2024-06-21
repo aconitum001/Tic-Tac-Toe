@@ -5,6 +5,7 @@ import 'package:tic_tac_toe/features/create_user/presentation/views/create_user_
 import 'package:tic_tac_toe/features/game/presentation/views/challenges_view.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/chose_side_view.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/create_player_view.dart';
+import 'package:tic_tac_toe/features/game/presentation/views/game_challenge_view.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/game_dificulty_view.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/game_duo_view.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/game_rules_view.dart';
@@ -33,6 +34,8 @@ abstract class AppRouter {
   static const String kSkinStoreView = "/skinstoreview";
   static const String kHistoryView = "/historyView";
   static const String kChallengesView = "/challengesView";
+  static const String kGameChallengeView = "/gameChallengeView";
+
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -324,32 +327,62 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-          path: kChallengesView,
-          pageBuilder: (context, state) {
-            NavigationParams params = state.extra as NavigationParams;
-            return CustomTransitionPage(
-              transitionDuration: const Duration(milliseconds: 800),
-              child: ChallengesView(
-                player1: params.player1,
-                player2: params.player2,
-              ),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                return SlideTransition(
-                  position: Tween<Offset>(
-                    begin: const Offset(1.0, 0.0),
-                    end: Offset.zero,
-                  ).animate(
-                    CurvedAnimation(
-                      parent: animation,
-                      curve: Curves.easeInOut,
-                    ),
+        path: kChallengesView,
+        pageBuilder: (context, state) {
+          NavigationParams params = state.extra as NavigationParams;
+          return CustomTransitionPage(
+            transitionDuration: const Duration(milliseconds: 800),
+            child: ChallengesView(
+              player1: params.player1,
+              player2: params.player2,
+            ),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(1.0, 0.0),
+                  end: Offset.zero,
+                ).animate(
+                  CurvedAnimation(
+                    parent: animation,
+                    curve: Curves.easeInOut,
                   ),
-                  child: child,
-                );
-              },
-            );
-          }),
+                ),
+                child: child,
+              );
+            },
+          );
+        },
+      ),
+      GoRoute(
+        path: kGameChallengeView,
+        pageBuilder: (context, state) {
+          NavigationParams params = state.extra as NavigationParams;
+          return CustomTransitionPage(
+            transitionDuration: const Duration(milliseconds: 800),
+            child: GameChallengeView(
+              player1: params.player1,
+              player2: params.player2,
+              dificulty: params.difficulty,
+            ),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(1.0, 0.0),
+                  end: Offset.zero,
+                ).animate(
+                  CurvedAnimation(
+                    parent: animation,
+                    curve: Curves.easeInOut,
+                  ),
+                ),
+                child: child,
+              );
+            },
+          );
+        },
+      ),
     ],
   );
 }
