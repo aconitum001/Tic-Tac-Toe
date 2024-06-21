@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tic_tac_toe/core/utils/app_router.dart';
 import 'package:tic_tac_toe/core/utils/colors.dart';
+import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_grid_view_button.dart';
 import 'package:tic_tac_toe/features/game/data/models/challenge_model.dart';
+import 'package:tic_tac_toe/features/home/data/models/navigations_param_model.dart';
 
 class ChallengesGridViewItem extends StatelessWidget {
   const ChallengesGridViewItem({
@@ -13,12 +17,15 @@ class ChallengesGridViewItem extends StatelessWidget {
     required this.challenge,
     required this.isLocked,
     required this.isFinished,
+    required this.player1,
+    required this.player2,
   });
 
   final int index;
   final ChallengeModel challenge;
   final bool isLocked;
   final bool isFinished;
+  final UserModel player1, player2;
 
   @override
   Widget build(BuildContext context) {
@@ -59,11 +66,26 @@ class ChallengesGridViewItem extends StatelessWidget {
               ),
               SvgPicture.asset(
                 challenge.image,
+                // ignore: deprecated_member_use
                 color: AppColors.grey3,
               ),
               CustomGridViewButton(
                 text: !isFinished ? challenge.details : "Finished",
-                onPressed: isLocked ? null : (isFinished ? null : () {}),
+                onPressed: isLocked
+                    ? null
+                    : (isFinished
+                        ? null
+                        : () {
+                            GoRouter.of(context).push(
+                              AppRouter.kGameChallengeView,
+                              extra: NavigationParams(
+                                player1: player1,
+                                player2: player2,
+                                difficulty: "",
+                                challenge: challenge,
+                              ),
+                            );
+                          }),
               )
             ],
           ),

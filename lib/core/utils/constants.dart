@@ -47,14 +47,43 @@ const List<SkinModel> skinsList = [
 ];
 
 const List<ChallengeModel> challengesList = [
-  ChallengeModel(details: "win 5 games", image: AppAssets.round5),
-  ChallengeModel(details: "win 10 games", image: AppAssets.round10),
-  ChallengeModel(details: "win 15 games", image: AppAssets.round15),
-  ChallengeModel(details: "win 20 games", image: AppAssets.round15),
-  ChallengeModel(details: "win 25 games", image: AppAssets.round15),
-  ChallengeModel(details: "win 30 games", image: AppAssets.round15),
-  ChallengeModel(details: "win 35 games", image: AppAssets.round15),
-  ChallengeModel(details: "win 40 games", image: AppAssets.round15),
+  ChallengeModel(
+      details: "win 5 games", image: AppAssets.round5, difficulty: "0.5"),
+  ChallengeModel(
+    details: "win 10 games",
+    image: AppAssets.round10,
+    difficulty: "0.5",
+  ),
+  ChallengeModel(
+    details: "win 15 games",
+    image: AppAssets.round15,
+    difficulty: "0.3",
+  ),
+  ChallengeModel(
+    details: "win 20 games",
+    image: AppAssets.round15,
+    difficulty: "0.3",
+  ),
+  ChallengeModel(
+    details: "win 25 games",
+    image: AppAssets.round15,
+    difficulty: "0.2",
+  ),
+  ChallengeModel(
+    details: "win 30 games",
+    image: AppAssets.round15,
+    difficulty: "0.2",
+  ),
+  ChallengeModel(
+    details: "win 35 games",
+    image: AppAssets.round15,
+    difficulty: "0.1",
+  ),
+  ChallengeModel(
+    details: "win 40 games",
+    image: AppAssets.round15,
+    difficulty: "0.1",
+  ),
 ];
 
 const String kUserBox = "usersBox";

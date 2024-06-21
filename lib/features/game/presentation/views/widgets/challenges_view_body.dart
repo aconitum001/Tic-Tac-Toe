@@ -69,6 +69,8 @@ class ChallengesViewBody extends StatelessWidget {
                       index: index,
                       isLocked: isLocked,
                       isFinished: isFinished,
+                      player1: player1,
+                      player2: player2,
                     ),
                   ),
                 );

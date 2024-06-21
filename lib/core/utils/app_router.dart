@@ -363,7 +363,7 @@ abstract class AppRouter {
             child: GameChallengeView(
               player1: params.player1,
               player2: params.player2,
-              dificulty: params.difficulty,
+              challenge: params.challenge!,
             ),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
