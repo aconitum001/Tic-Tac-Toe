@@ -50,11 +50,11 @@ const List<ChallengeModel> challengesList = [
   ChallengeModel(details: "win 5 games", image: AppAssets.round5),
   ChallengeModel(details: "win 10 games", image: AppAssets.round10),
   ChallengeModel(details: "win 15 games", image: AppAssets.round15),
-  ChallengeModel(details: "win 15 games", image: AppAssets.round15),
   ChallengeModel(details: "win 20 games", image: AppAssets.round15),
   ChallengeModel(details: "win 25 games", image: AppAssets.round15),
   ChallengeModel(details: "win 30 games", image: AppAssets.round15),
   ChallengeModel(details: "win 35 games", image: AppAssets.round15),
+  ChallengeModel(details: "win 40 games", image: AppAssets.round15),
 ];
 
 const String kUserBox = "usersBox";

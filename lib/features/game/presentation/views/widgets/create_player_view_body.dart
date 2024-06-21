@@ -30,6 +30,7 @@ class _CreatePlayerViewBodyState extends State<CreatePlayerViewBody> {
     points: 0,
     skinsCollection: [],
     challengesFinished: [],
+    unlockedChallenges: [],
     selectedSkin: [],
     unlockedSkins: [],
     wins: 0,

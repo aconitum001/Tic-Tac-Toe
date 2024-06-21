@@ -27,13 +27,14 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       wins: fields[6] as int,
       loses: fields[7] as int,
       unlockedSkins: (fields[9] as List).cast<int>(),
+      unlockedChallenges: (fields[10] as List).cast<int>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.userName)
       ..writeByte(1)
@@ -53,7 +54,9 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..writeByte(8)
       ..write(obj.draws)
       ..writeByte(9)
-      ..write(obj.unlockedSkins);
+      ..write(obj.unlockedSkins)
+      ..writeByte(10)
+      ..write(obj.unlockedChallenges);
   }
 
   @override

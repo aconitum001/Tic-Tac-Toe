@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/challenges_grid_view_item.dart';
@@ -50,16 +51,29 @@ class ChallengesViewBody extends StatelessWidget {
                 childAspectRatio: 1 / 1.1,
               ),
               itemBuilder: (context, index) {
+                bool isLocked = true;
+                bool isFinished = false;
+                if (player1.unlockedChallenges.contains(index)) {
+                  isLocked = false;
+                }
+                if (player1.challengesFinished.contains(index)) {
+                  isFinished = true;
+                }
                 return AnimationConfiguration.staggeredGrid(
                   position: index,
                   columnCount: 2,
                   duration: const Duration(seconds: 1),
-                  child: const ScaleAnimation(
-                    child: ChallengesGridViewItem(),
+                  child: ScaleAnimation(
+                    child: ChallengesGridViewItem(
+                      challenge: challengesList[index],
+                      index: index,
+                      isLocked: isLocked,
+                      isFinished: isFinished,
+                    ),
                   ),
                 );
               },
-              itemCount: 8,
+              itemCount: challengesList.length,
             ),
           ),
         )

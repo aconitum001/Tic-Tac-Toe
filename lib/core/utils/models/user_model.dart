@@ -34,6 +34,9 @@ class UserModel extends HiveObject {
   @HiveField(9)
   List<int> unlockedSkins;
 
+  @HiveField(10)
+  List<int> unlockedChallenges;
+
   UserModel({
     required this.userName,
     required this.avatar,
@@ -45,6 +48,7 @@ class UserModel extends HiveObject {
     required this.wins,
     required this.loses,
     required this.unlockedSkins,
+    required this.unlockedChallenges,
   });
 
   @override

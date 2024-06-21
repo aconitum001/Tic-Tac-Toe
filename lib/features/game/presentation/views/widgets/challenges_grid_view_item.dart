@@ -1,49 +1,83 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/colors.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/features/create_user/presentation/views/widgets/custom_grid_view_button.dart';
+import 'package:tic_tac_toe/features/game/data/models/challenge_model.dart';
 
 class ChallengesGridViewItem extends StatelessWidget {
-  const ChallengesGridViewItem({super.key});
+  const ChallengesGridViewItem({
+    super.key,
+    required this.index,
+    required this.challenge,
+    required this.isLocked,
+    required this.isFinished,
+  });
+
+  final int index;
+  final ChallengeModel challenge;
+  final bool isLocked;
+  final bool isFinished;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onPrimary,
-        borderRadius: BorderRadius.circular(21.42.r),
-      ),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 10.h,
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.onPrimary,
+            borderRadius: BorderRadius.circular(21.42.r),
           ),
-          Text(
-            "Challenge 1",
-            style: AppStyles.style12,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Challenge ${index + 1} ",
+                    style: AppStyles.style12,
+                  ),
+                  if (isFinished)
+                    Icon(
+                      Icons.check_circle,
+                      size: 13.w,
+                    )
+                ],
+              ),
+              Divider(
+                endIndent: 18.45.w,
+                indent: 18.45.w,
+                height: 1,
+                thickness: 2,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              SvgPicture.asset(
+                challenge.image,
+                color: AppColors.grey3,
+              ),
+              CustomGridViewButton(
+                text: !isFinished ? challenge.details : "Finished",
+                onPressed: isLocked ? null : (isFinished ? null : () {}),
+              )
+            ],
           ),
-          Divider(
-            endIndent: 18.45.w,
-            indent: 18.45.w,
-            height: 1,
-            thickness: 2,
+        ),
+        if (isLocked)
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(21.42.r),
+              ),
+            ),
           ),
-          SizedBox(
-            height: 10.h,
-          ),
-          SvgPicture.asset(
-            AppAssets.round5,
-            color: AppColors.grey3,
-          ),
-          CustomGridViewButton(
-            text: "win 5 games",
-            onPressed: () {},
-          )
-        ],
-      ),
+      ],
     );
   }
 }

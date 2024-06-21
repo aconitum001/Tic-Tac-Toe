@@ -81,11 +81,12 @@ class CustomSkinStoreGridItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(21.42.r),
                 ),
                 child: Center(
-                    child: Image.asset(
-                  "assets/images/lock4.png",
-                  width: 60.w,
-                  height: 60.h,
-                )),
+                  child: Image.asset(
+                    "assets/images/lock4.png",
+                    width: 60.w,
+                    height: 60.h,
+                  ),
+                ),
               ),
             ),
         ],
