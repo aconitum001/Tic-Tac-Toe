@@ -1,4 +1,5 @@
 import 'package:tic_tac_toe/core/utils/assets.dart';
+import 'package:tic_tac_toe/features/game/data/models/challenge_model.dart';
 import 'package:tic_tac_toe/features/settings/data/models/skin_model.dart';
 
 const List<String> avatarsList = [
@@ -43,6 +44,17 @@ const List<SkinModel> skinsList = [
   SkinModel(xSkin: AppAssets.xStyle6, oSkin: AppAssets.oStyle6, price: 500),
   SkinModel(xSkin: AppAssets.xStyle7, oSkin: AppAssets.oStyle7, price: 600),
   SkinModel(xSkin: AppAssets.xStyle8, oSkin: AppAssets.oStyle8, price: 700),
+];
+
+const List<ChallengeModel> challengesList = [
+  ChallengeModel(details: "win 5 games", image: AppAssets.round5),
+  ChallengeModel(details: "win 10 games", image: AppAssets.round10),
+  ChallengeModel(details: "win 15 games", image: AppAssets.round15),
+  ChallengeModel(details: "win 15 games", image: AppAssets.round15),
+  ChallengeModel(details: "win 20 games", image: AppAssets.round15),
+  ChallengeModel(details: "win 25 games", image: AppAssets.round15),
+  ChallengeModel(details: "win 30 games", image: AppAssets.round15),
+  ChallengeModel(details: "win 35 games", image: AppAssets.round15),
 ];
 
 const String kUserBox = "usersBox";

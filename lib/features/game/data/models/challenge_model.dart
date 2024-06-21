@@ -2,7 +2,7 @@ class ChallengeModel {
   final String details;
   final String image;
 
-  ChallengeModel({
+  const ChallengeModel({
     required this.details,
     required this.image,
   });
