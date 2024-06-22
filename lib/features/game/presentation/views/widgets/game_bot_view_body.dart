@@ -83,7 +83,9 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
               controller: _scrollController,
               physics: const BouncingScrollPhysics(),
               children: [
-                const CustomGameViewAppBar(),
+                CustomGameViewAppBar(
+                  player: widget.player1,
+                ),
                 Text(
                   "$currentPlayerName's Turn",
                   style: AppStyles.style25,

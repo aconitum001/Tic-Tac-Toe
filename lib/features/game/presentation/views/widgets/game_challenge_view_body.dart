@@ -7,7 +7,7 @@ import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/features/game/data/models/challenge_model.dart';
 import 'package:tic_tac_toe/features/game/presentation/view_models/game_board_cubit/game_board_cubit.dart';
-import 'package:tic_tac_toe/features/game/presentation/views/widgets/custom_game_view_appbar.dart';
+import 'package:tic_tac_toe/features/game/presentation/views/widgets/custom_game_challenge_app_bar.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/display_players_info_section.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_board_section.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_buttons_section.dart';
@@ -34,6 +34,7 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
   bool isInteractionDisabled = false;
   late ScrollController _scrollController;
   bool hasSavedHistory = false;
+  int counter = 1;
 
   @override
   void initState() {
@@ -83,7 +84,10 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
               controller: _scrollController,
               physics: const BouncingScrollPhysics(),
               children: [
-                const CustomGameViewAppBar(),
+                CustomGameChallengeAppBar(
+                  challenge: widget.challenge,
+                  counter: counter,
+                ),
                 Text(
                   "$currentPlayerName's Turn",
                   style: AppStyles.style25,

@@ -83,7 +83,9 @@ class _GameDuoViewBodyState extends State<GameDuoViewBody> {
               controller: _scrollController,
               physics: const BouncingScrollPhysics(),
               children: [
-                const CustomGameViewAppBar(),
+                CustomGameViewAppBar(
+                  player: widget.player1,
+                ),
                 Text(
                   "$currentPlayerName's Turn",
                   style: AppStyles.style25,

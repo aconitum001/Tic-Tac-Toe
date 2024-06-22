@@ -48,41 +48,50 @@ const List<SkinModel> skinsList = [
 
 const List<ChallengeModel> challengesList = [
   ChallengeModel(
-      details: "win 5 games", image: AppAssets.round5, difficulty: "0.5"),
-  ChallengeModel(
-    details: "win 10 games",
-    image: AppAssets.round10,
+    details: "win 5 games",
+    image: AppAssets.round5,
     difficulty: "0.5",
+    rounds: 5,
   ),
   ChallengeModel(
-    details: "win 15 games",
-    image: AppAssets.round15,
-    difficulty: "0.3",
-  ),
+      details: "win 10 games",
+      image: AppAssets.round10,
+      difficulty: "0.5",
+      rounds: 10),
+  ChallengeModel(
+      details: "win 15 games",
+      image: AppAssets.round15,
+      difficulty: "0.3",
+      rounds: 15),
   ChallengeModel(
     details: "win 20 games",
     image: AppAssets.round15,
     difficulty: "0.3",
+    rounds: 20,
   ),
   ChallengeModel(
     details: "win 25 games",
     image: AppAssets.round15,
     difficulty: "0.2",
+    rounds: 25,
   ),
   ChallengeModel(
     details: "win 30 games",
     image: AppAssets.round15,
     difficulty: "0.2",
+    rounds: 30,
   ),
   ChallengeModel(
     details: "win 35 games",
     image: AppAssets.round15,
     difficulty: "0.1",
+    rounds: 35,
   ),
   ChallengeModel(
     details: "win 40 games",
     image: AppAssets.round15,
     difficulty: "0.1",
+    rounds: 40,
   ),
 ];
 
