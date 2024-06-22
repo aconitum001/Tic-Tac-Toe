@@ -25,7 +25,7 @@ class DisplayRoundsWidget extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          "$counter/$rounds",
+          counter <= rounds ? "$counter/$rounds" : "$rounds/$rounds",
           style: AppStyles.style19.copyWith(
             fontWeight: FontWeight.bold,
           ),
