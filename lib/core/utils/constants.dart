@@ -116,7 +116,7 @@ const List<ChallengeModel> challengesList = [
 const String kUserBox = "usersBox";
 const String kHistoryBox = "historyBox";
 
-const int winPointsEasy = 2;
+const int winPointsEasy = 30;
 const int winPointsMedium = 4;
 const int winPointsHard = 6;
 

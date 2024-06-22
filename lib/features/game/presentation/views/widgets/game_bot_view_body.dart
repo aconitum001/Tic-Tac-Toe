@@ -2,6 +2,11 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
+import 'package:tic_tac_toe/core/utils/app_router.dart';
+import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/functions/show_win_dialog.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
@@ -13,6 +18,7 @@ import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_board_
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_buttons_section.dart';
 import 'package:tic_tac_toe/features/home/presentation/view_model/user_cubit/user_cubit.dart';
 import 'package:tic_tac_toe/features/settings/presentation/view_model/game_history_cubit/game_history_cubit.dart';
+import 'package:tic_tac_toe/features/settings/presentation/views/skin_store_view.dart';
 
 class GameBotViewBody extends StatefulWidget {
   const GameBotViewBody({
@@ -149,18 +155,6 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
       () {
         BlocProvider.of<GameBoardCubit>(context).resetGame();
         if (state.winner == widget.player1.userName) {
-          showGameResults(
-            context,
-            controller,
-            "You Win!",
-            const Color(0xffFF9900),
-            const Color(0xff1A2B63),
-            "assets/animations/winner.json",
-            false,
-            true,
-          );
-          player1Score++;
-          setState(() {});
           if (widget.dificulty == "easy") {
             points = winPointsEasy;
           } else if (widget.dificulty == "medium") {
@@ -171,6 +165,52 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
           BlocProvider.of<UserCubit>(context)
               .updateUserPoints(points: points, user: widget.player1);
           BlocProvider.of<UserCubit>(context).addUserWins(user: widget.player1);
+          if (widget.player1.points >= 100 &&
+              !widget.player1.unlockedSkins.contains(1)) {
+            widget.player1.unlockedSkins.add(1);
+            giftMethode(context);
+          } else if (widget.player1.points >= 200 &&
+              !widget.player1.unlockedSkins.contains(2)) {
+            widget.player1.unlockedSkins.add(2);
+            giftMethode(context);
+          } else if (widget.player1.points >= 300 &&
+              !widget.player1.unlockedSkins.contains(3)) {
+            widget.player1.unlockedSkins.add(3);
+            giftMethode(context);
+          } else if (widget.player1.points >= 400 &&
+              !widget.player1.unlockedSkins.contains(4)) {
+            widget.player1.unlockedSkins.add(4);
+            giftMethode(context);
+          } else if (widget.player1.points >= 500 &&
+              !widget.player1.unlockedSkins.contains(5)) {
+            widget.player1.unlockedSkins.add(5);
+            giftMethode(context);
+          } else if (widget.player1.points >= 600 &&
+              !widget.player1.unlockedSkins.contains(6)) {
+            widget.player1.unlockedSkins.add(6);
+            giftMethode(context);
+          } else if (widget.player1.points >= 700 &&
+              !widget.player1.unlockedSkins.contains(7)) {
+            widget.player1.unlockedSkins.add(7);
+            giftMethode(context);
+          } else if (widget.player1.points >= 800 &&
+              !widget.player1.unlockedSkins.contains(8)) {
+            widget.player1.unlockedSkins.add(8);
+            giftMethode(context);
+          } else {
+            showGameResults(
+              context,
+              controller,
+              "You Win!",
+              const Color(0xffFF9900),
+              const Color(0xff1A2B63),
+              "assets/animations/winner.json",
+              false,
+              true,
+            );
+            player1Score++;
+            setState(() {});
+          }
         } else {
           showGameResults(
             context,
@@ -196,6 +236,59 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
           BlocProvider.of<UserCubit>(context)
               .addUserLoses(user: widget.player1);
         }
+      },
+    );
+  }
+
+  void giftMethode(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          title: Center(
+            child: Text(
+              "Your New skin!",
+              style: AppStyles.style25.copyWith(
+                color: const Color(0xffF9BC05),
+              ),
+            ),
+          ),
+          content: Container(
+            child: Lottie.asset(
+              "assets/animations/gift.json",
+              repeat: true,
+            ),
+          ),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                        20.r,
+                      ),
+                    ),
+                    backgroundColor: const Color(0xffFFBF00),
+                  ),
+                  onPressed: () {
+                    GoRouter.of(context).pop();
+                    GoRouter.of(context)
+                        .push(AppRouter.kSkinStoreView, extra: widget.player1);
+                  },
+                  child: Text(
+                    'Claim your skin',
+                    style: AppStyles.style14.copyWith(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
       },
     );
   }
