@@ -2,6 +2,7 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tic_tac_toe/core/utils/functions/show_win_dialog.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
@@ -70,7 +71,6 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
       child: BlocConsumer<GameBoardCubit, GameBoardState>(
         listener: (context, state) {
           if (state is GameBoardFinished) {
-            counter++;
             handleGameFinished(context, state);
           } else if (state is GameBoardDraw) {
             handleGameDraw(context);
@@ -152,20 +152,94 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
       () {
         BlocProvider.of<GameBoardCubit>(context).resetGame();
         if (state.winner == widget.player1.userName) {
-          showGameResults(
-            context,
-            controller,
-            "You Win!",
-            const Color(0xffFF9900),
-            const Color(0xff1A2B63),
-            "assets/animations/winner.json",
-            false,
-            true,
-          );
-          player1Score++;
-          setState(() {});
-          BlocProvider.of<UserCubit>(context).addUserWins(user: widget.player1);
+          counter++;
+          if (counter <= widget.challenge.rounds) {
+            showGameResults(
+              context,
+              controller,
+              "You Win!",
+              const Color(0xffFF9900),
+              const Color(0xff1A2B63),
+              "assets/animations/winner.json",
+              false,
+              true,
+            );
+            player1Score++;
+            setState(() {});
+            BlocProvider.of<UserCubit>(context)
+                .addUserWins(user: widget.player1);
+          } else {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  backgroundColor: Colors.white,
+                  title: Center(
+                    child: Text(
+                      "Congratulation!",
+                      style: AppStyles.style30.copyWith(
+                        color: const Color(0xffFC7E63),
+                      ),
+                    ),
+                  ),
+                  content: SizedBox(
+                    height: 80.h,
+                    child: Column(
+                      children: [
+                        Text(
+                          "50",
+                          style: AppStyles.style30.copyWith(
+                              color: const Color(0xffFC7E63), height: 0.8.h),
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Text(
+                          "Points",
+                          style: AppStyles.style30.copyWith(
+                              color: const Color(0xffFC7E63), height: 0.8.h),
+                        )
+                      ],
+                    ),
+                  ),
+                  actions: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            fixedSize: Size(120.w, 29.h),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                20.r,
+                              ),
+                            ),
+                            backgroundColor: const Color(0xffFC7E63),
+                          ),
+                          onPressed: () {
+                            GoRouter.of(context).pop();
+                            GoRouter.of(context).pop();
+                          },
+                          child: Center(
+                            child: Text(
+                              'Next Challenge',
+                              style: AppStyles.style14.copyWith(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .primaryContainer,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+              },
+            );
+          }
         } else {
+          counter = 0;
           showGameResults(
             context,
             controller,
