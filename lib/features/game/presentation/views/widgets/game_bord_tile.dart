@@ -100,12 +100,20 @@ class GameBoardTile extends StatelessWidget {
         player2,
         player2SelectedSkin,
       );
-    } else {
+    } else if (dificulty == "hard") {
       addBotMoveHard(
         context,
         player1,
         player2,
         player2SelectedSkin,
+      );
+    } else {
+      addBotMoveChallenge(
+        context,
+        player1,
+        player2,
+        player2SelectedSkin,
+        dificulty,
       );
     }
     checkWinner(context);

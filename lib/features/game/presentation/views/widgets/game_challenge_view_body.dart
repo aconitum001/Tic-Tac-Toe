@@ -70,6 +70,7 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
       child: BlocConsumer<GameBoardCubit, GameBoardState>(
         listener: (context, state) {
           if (state is GameBoardFinished) {
+            counter++;
             handleGameFinished(context, state);
           } else if (state is GameBoardDraw) {
             handleGameDraw(context);

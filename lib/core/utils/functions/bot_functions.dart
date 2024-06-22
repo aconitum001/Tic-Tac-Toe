@@ -7,6 +7,37 @@ import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/features/game/data/models/game_tile_mode.dart';
 import 'package:tic_tac_toe/features/game/presentation/view_models/game_board_cubit/game_board_cubit.dart';
 
+void addBotMoveChallenge(
+  BuildContext context,
+  UserModel player1,
+  UserModel player2,
+  String player2SelectedSkin,
+  String difficulty,
+) {
+  GameBoardCubit cubit = BlocProvider.of<GameBoardCubit>(context);
+  Random random = Random();
+
+  double probabilityOfRandomMove = double.parse(difficulty);
+
+  int bestMove;
+  if (random.nextDouble() < probabilityOfRandomMove) {
+    do {
+      bestMove = random.nextInt(9);
+    } while (cubit.board[bestMove].isChecked);
+  } else {
+    bestMove = getBestMove(cubit.board, cubit.chosenMoves, player1, player2);
+  }
+
+  GameTileModel tile = GameTileModel(
+    userName: player2.userName,
+    image: player2SelectedSkin,
+    isChecked: true,
+  );
+
+  cubit.chosenMoves.add(bestMove);
+  cubit.addPlayerMove(index: bestMove, tile: tile);
+}
+
 void addBotMoveEasy(
   BuildContext context,
   UserModel player1,
