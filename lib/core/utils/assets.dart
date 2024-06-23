@@ -56,4 +56,9 @@ abstract class AppAssets {
   static const String round10 = "assets/images/icons/round_10.svg";
   static const String round15 = "assets/images/icons/round_15.svg";
   static const String defaultRound = "assets/images/icons/default_round.svg";
+
+  static const String kDrawAnimation = "assets/animations/draww.json";
+  static const String kLostAnimation = "assets/animations/angry_v2.json";
+  static const String kGiftAnimation = "assets/animations/gift.json";
+  static const String kWinnerAnimation = "assets/animations/winner.json";
 }

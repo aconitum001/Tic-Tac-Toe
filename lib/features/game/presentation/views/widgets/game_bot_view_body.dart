@@ -2,11 +2,9 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tic_tac_toe/core/utils/app_router.dart';
-import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/functions/show_win_dialog.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
@@ -18,7 +16,6 @@ import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_board_
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_buttons_section.dart';
 import 'package:tic_tac_toe/features/home/presentation/view_model/user_cubit/user_cubit.dart';
 import 'package:tic_tac_toe/features/settings/presentation/view_model/game_history_cubit/game_history_cubit.dart';
-import 'package:tic_tac_toe/features/settings/presentation/views/skin_store_view.dart';
 
 class GameBotViewBody extends StatefulWidget {
   const GameBotViewBody({
