@@ -12,7 +12,7 @@ import 'package:tic_tac_toe/features/game/presentation/view_models/game_board_cu
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/custom_game_challenge_app_bar.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/display_players_info_section.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_board_section.dart';
-import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_buttons_section.dart';
+import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_challenge_buttons_section.dart';
 import 'package:tic_tac_toe/features/home/presentation/view_model/user_cubit/user_cubit.dart';
 
 class GameChallengeViewBody extends StatefulWidget {
@@ -33,7 +33,7 @@ class GameChallengeViewBody extends StatefulWidget {
 class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
   late ConfettiController controller;
   bool isInteractionDisabled = false;
-  late ScrollController _scrollController;
+
   bool hasSavedHistory = false;
   int counter = 1;
 
@@ -41,16 +41,12 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
   void initState() {
     super.initState();
     controller = ConfettiController(duration: const Duration(seconds: 2));
-    _scrollController = ScrollController();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _scrollToBottom();
-    });
   }
 
   @override
   void dispose() {
     controller.dispose();
-    _scrollController.dispose();
+
     super.dispose();
   }
 
@@ -81,7 +77,6 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
           return AbsorbPointer(
             absorbing: state is GameBoardFinished ? true : false,
             child: ListView(
-              controller: _scrollController,
               physics: const BouncingScrollPhysics(),
               children: [
                 CustomGameChallengeAppBar(
@@ -113,7 +108,7 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
                 SizedBox(
                   height: 40.h,
                 ),
-                const GameButtonsSection(),
+                const GameChallengeButtonsSection(),
               ],
             ),
           );
@@ -267,14 +262,6 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
           ],
         );
       },
-    );
-  }
-
-  void _scrollToBottom() {
-    _scrollController.animateTo(
-      _scrollController.position.maxScrollExtent,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeOut,
     );
   }
 }
