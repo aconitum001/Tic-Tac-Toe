@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tic_tac_toe/core/utils/functions/show_win_dialog.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
@@ -171,7 +172,6 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
           }
         } else {
           counter = 0;
-
           showGameResults(
             context,
             controller,
@@ -204,34 +204,38 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          contentPadding: EdgeInsets.zero,
           backgroundColor: Colors.white,
-          title: Center(
-            child: Text(
-              "Congratulation!",
-              style: AppStyles.style30.copyWith(
-                color: const Color(0xffFC7E63),
-              ),
-            ),
-          ),
           content: SizedBox(
-            height: 80.h,
-            child: Column(
+            height: 343.h,
+            child: Stack(
               children: [
-                Text(
-                  widget.challenge.reward.toString(),
-                  style: AppStyles.style30.copyWith(
-                    color: const Color(0xffFC7E63),
-                    height: 0.8.h,
-                  ),
+                Lottie.asset(
+                  "assets/animations/challenge.json",
+                  repeat: false,
                 ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Text(
-                  "Points",
-                  style: AppStyles.style30.copyWith(
-                    color: const Color(0xffFC7E63),
-                    height: 0.8.h,
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        widget.challenge.reward.toString(),
+                        style: AppStyles.style30.copyWith(
+                          color: Colors.orange,
+                          height: 1.h,
+                        ),
+                      ),
+                      Text(
+                        "points",
+                        style: AppStyles.style30.copyWith(
+                          color: Colors.orange,
+                          height: 1.h,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 70.h,
+                      ),
+                    ],
                   ),
                 )
               ],
@@ -243,24 +247,21 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
               children: [
                 TextButton(
                   style: TextButton.styleFrom(
-                    fixedSize: Size(120.w, 29.h),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
                         20.r,
                       ),
                     ),
-                    backgroundColor: const Color(0xffFC7E63),
+                    backgroundColor: Colors.orange,
                   ),
                   onPressed: () {
                     GoRouter.of(context).pop();
                     GoRouter.of(context).pop();
                   },
-                  child: Center(
-                    child: Text(
-                      'Next Challenge',
-                      style: AppStyles.style14.copyWith(
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                      ),
+                  child: Text(
+                    'Next Challenge',
+                    style: AppStyles.style14.copyWith(
+                      color: Theme.of(context).colorScheme.primaryContainer,
                     ),
                   ),
                 ),
