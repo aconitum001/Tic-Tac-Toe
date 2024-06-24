@@ -18,3 +18,5 @@ final class GetUserFailure extends UserState {
 }
 
 final class GetUserLoading extends UserState {}
+
+final class GetUserReward extends UserState {}

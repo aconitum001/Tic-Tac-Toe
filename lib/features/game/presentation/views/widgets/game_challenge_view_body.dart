@@ -142,7 +142,6 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
       true,
       false,
     );
-    BlocProvider.of<UserCubit>(context).addUserDraws(user: widget.player1);
   }
 
   void handleGameFinished(BuildContext context, GameBoardFinished state) {
@@ -165,8 +164,6 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
             );
             player1Score++;
             setState(() {});
-            BlocProvider.of<UserCubit>(context)
-                .addUserWins(user: widget.player1);
           } else {
             challengeWinMethode(context);
           }
@@ -186,8 +183,6 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
           player1Score = 0;
           player2Score = 0;
           setState(() {});
-          BlocProvider.of<UserCubit>(context)
-              .addUserLoses(user: widget.player1);
         }
       },
     );
@@ -201,6 +196,7 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
     widget.player1.challengesFinished.add(widget.challenge.id);
     widget.player1.unlockedChallenges.add(widget.challenge.id + 1);
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) {
         return AlertDialog(
@@ -257,6 +253,7 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
                   onPressed: () {
                     GoRouter.of(context).pop();
                     GoRouter.of(context).pop();
+                    BlocProvider.of<UserCubit>(context).showReward();
                   },
                   child: Text(
                     'Next Challenge',
