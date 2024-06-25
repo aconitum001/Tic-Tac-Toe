@@ -29,6 +29,8 @@ void showGameResults(
       return Stack(
         children: [
           AlertDialog(
+            contentPadding:
+                EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
             backgroundColor: Theme.of(context).colorScheme.primaryContainer,
             title: Center(
               child: Text(

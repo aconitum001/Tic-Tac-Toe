@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
@@ -11,7 +13,6 @@ import 'package:tic_tac_toe/features/settings/presentation/views/widgets/skin_st
 
 class SkinStoreViewBody extends StatefulWidget {
   const SkinStoreViewBody({super.key, required this.user});
-
   final UserModel user;
 
   @override
@@ -118,6 +119,74 @@ class _SkinStoreViewBodyState extends State<SkinStoreViewBody> {
       BlocProvider.of<UserCubit>(context)
           .updateUserPoints(points: -skinsList[index].price, user: widget.user);
       setState(() {});
+      showNewSkinDialog(index);
     }
+  }
+
+  void showNewSkinDialog(int index) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 20.h,
+          ),
+          title: Center(
+            child: Text(
+              "Congratulations!!",
+              style: AppStyles.style25.copyWith(
+                color: xColors[index],
+              ),
+            ),
+          ),
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                skinsList[index].xSkin,
+                width: 110.w,
+                height: 118.h,
+              ),
+              SvgPicture.asset(
+                skinsList[index].oSkin,
+                width: 110.w,
+                height: 118.h,
+              ),
+            ],
+          ),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.r),
+                    ),
+                    backgroundColor: xColors[index],
+                  ),
+                  onPressed: () {
+                    GoRouter.of(context).pop();
+                    widget.user.selectedSkin = [
+                      skinsList[index].xSkin,
+                      skinsList[index].oSkin
+                    ];
+                    widget.user.save();
+                    setState(() {});
+                  },
+                  child: Text(
+                    'Equip your new skin',
+                    style: AppStyles.style14.copyWith(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
   }
 }

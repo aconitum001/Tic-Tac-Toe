@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tic_tac_toe/core/utils/app_router.dart';
+import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/functions/show_win_dialog.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
@@ -211,7 +212,7 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
               "You Win!",
               const Color(0xffFF9900),
               const Color(0xff1A2B63),
-              "assets/animations/winner.json",
+              AppAssets.kWinnerAnimation,
               false,
               true,
             );
@@ -225,7 +226,7 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
             "You Lose!",
             const Color(0xffFF3F05),
             Colors.transparent,
-            "assets/animations/red_emoji.json",
+            AppAssets.kLostAnimation,
             false,
             false,
           );

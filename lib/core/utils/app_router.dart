@@ -298,7 +298,6 @@ abstract class AppRouter {
               transitionDuration: const Duration(milliseconds: 800),
               child: SkinStoreView(
                 user: params.player1,
-                skinIndex: params.skinIndex!,
               ),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {

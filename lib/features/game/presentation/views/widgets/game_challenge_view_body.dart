@@ -163,7 +163,7 @@ class _GameChallengeViewBodyState extends State<GameChallengeViewBody> {
             challengeWinMethode(context);
           }
         } else {
-          counter = 0;
+          counter = 1;
           showGameResults(
             context,
             controller,
