@@ -23,38 +23,40 @@ class ChallengesView extends StatelessWidget {
     return BlocListener<UserCubit, UserState>(
       listener: (context, state) {
         if (state is GetUserReward) {
+          late int skinIndex;
           if (player1.points >= 100 && !player1.unlockedSkins.contains(1)) {
             player1.unlockedSkins.add(1);
-            giftMethode(context);
+            skinIndex = 1;
           } else if (player1.points >= 200 &&
               !player1.unlockedSkins.contains(2)) {
             player1.unlockedSkins.add(2);
-            giftMethode(context);
+            skinIndex = 2;
           } else if (player1.points >= 300 &&
               !player1.unlockedSkins.contains(3)) {
             player1.unlockedSkins.add(3);
-            giftMethode(context);
+            skinIndex = 3;
           } else if (player1.points >= 400 &&
               !player1.unlockedSkins.contains(4)) {
             player1.unlockedSkins.add(4);
-            giftMethode(context);
+            skinIndex = 4;
           } else if (player1.points >= 500 &&
               !player1.unlockedSkins.contains(5)) {
             player1.unlockedSkins.add(5);
-            giftMethode(context);
+            skinIndex = 5;
           } else if (player1.points >= 600 &&
               !player1.unlockedSkins.contains(6)) {
             player1.unlockedSkins.add(6);
-            giftMethode(context);
+            skinIndex = 6;
           } else if (player1.points >= 700 &&
               !player1.unlockedSkins.contains(7)) {
             player1.unlockedSkins.add(7);
-            giftMethode(context);
+            skinIndex = 7;
           } else if (player1.points >= 800 &&
               !player1.unlockedSkins.contains(8)) {
             player1.unlockedSkins.add(8);
-            giftMethode(context);
+            skinIndex = 8;
           }
+          giftMethode(context, skinIndex);
         }
       },
       child: Container(
@@ -76,7 +78,7 @@ class ChallengesView extends StatelessWidget {
     );
   }
 
-  void giftMethode(BuildContext context) {
+  void giftMethode(BuildContext context, int skinIndex) {
     showDialog(
       context: context,
       builder: (context) {
@@ -113,6 +115,8 @@ class ChallengesView extends StatelessWidget {
                     GoRouter.of(context).pop();
                     GoRouter.of(context)
                         .push(AppRouter.kSkinStoreView, extra: player1);
+                    BlocProvider.of<UserCubit>(context)
+                        .showNewSkin(skinIndex: skinIndex);
                   },
                   child: Text(
                     'Claim your skin',

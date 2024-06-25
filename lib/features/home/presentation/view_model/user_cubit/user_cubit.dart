@@ -25,6 +25,12 @@ class UserCubit extends Cubit<UserState> {
     emit(GetUserReward());
   }
 
+  void showNewSkin({required int skinIndex}) {
+    emit(
+      GetUserNewSkin(skinIndex: skinIndex),
+    );
+  }
+
   void updateUserPoints({required int points, required UserModel user}) {
     homeRepo.updateUserPoints(user: user, points: points);
     emit(GetUserSuccess(user: user));

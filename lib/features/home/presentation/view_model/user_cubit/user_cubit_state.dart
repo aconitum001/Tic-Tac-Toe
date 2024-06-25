@@ -20,3 +20,9 @@ final class GetUserFailure extends UserState {
 final class GetUserLoading extends UserState {}
 
 final class GetUserReward extends UserState {}
+
+final class GetUserNewSkin extends UserState {
+  final int skinIndex;
+
+  GetUserNewSkin({required this.skinIndex});
+}
