@@ -8,6 +8,7 @@ import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/challenges_view_body.dart';
+import 'package:tic_tac_toe/features/home/data/models/navigations_param_model.dart';
 import 'package:tic_tac_toe/features/home/presentation/view_model/user_cubit/user_cubit.dart';
 
 class ChallengesView extends StatelessWidget {
@@ -95,7 +96,7 @@ class ChallengesView extends StatelessWidget {
           content: Container(
             child: Lottie.asset(
               "assets/animations/gift.json",
-              repeat: true,
+              repeat: false,
             ),
           ),
           actions: [
@@ -113,10 +114,13 @@ class ChallengesView extends StatelessWidget {
                   ),
                   onPressed: () {
                     GoRouter.of(context).pop();
-                    GoRouter.of(context)
-                        .push(AppRouter.kSkinStoreView, extra: player1);
-                    BlocProvider.of<UserCubit>(context)
-                        .showNewSkin(skinIndex: skinIndex);
+                    GoRouter.of(context).push(AppRouter.kSkinStoreView,
+                        extra: NavigationParams(
+                          player1: player1,
+                          player2: player1,
+                          difficulty: "",
+                          skinIndex: skinIndex,
+                        ));
                   },
                   child: Text(
                     'Claim your skin',

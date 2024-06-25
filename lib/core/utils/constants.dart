@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/core/utils/assets.dart';
 import 'package:tic_tac_toe/features/game/data/models/challenge_model.dart';
 import 'package:tic_tac_toe/features/settings/data/models/skin_model.dart';
@@ -33,6 +34,16 @@ const oLists = [
   AppAssets.oStyle6,
   AppAssets.oStyle7,
   AppAssets.oStyle8,
+];
+const xColors = [
+  Color(0xff97CE62),
+  Color(0xffFF7D29),
+  Color(0xff615EFC),
+  Color(0xffDBA979),
+  Color(0xff7469B6),
+  Color(0xff03AED2),
+  Color(0xffFF90BC),
+  Color(0xffFF0080),
 ];
 
 const List<SkinModel> skinsList = [
@@ -116,7 +127,7 @@ const List<ChallengeModel> challengesList = [
 const String kUserBox = "usersBox";
 const String kHistoryBox = "historyBox";
 
-const int winPointsEasy = 30;
+const int winPointsEasy = 50;
 const int winPointsMedium = 4;
 const int winPointsHard = 6;
 

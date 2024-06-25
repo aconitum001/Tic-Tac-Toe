@@ -291,23 +291,27 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: kSkinStoreView,
-        pageBuilder: (context, state) => CustomTransitionPage(
-          transitionDuration: const Duration(milliseconds: 800),
-          child: SkinStoreView(
-            user: state.extra as UserModel,
-          ),
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return ScaleTransition(
-              scale: CurvedAnimation(
-                parent: animation,
-                curve: Curves.easeInOut,
+          path: kSkinStoreView,
+          pageBuilder: (context, state) {
+            NavigationParams params = state.extra as NavigationParams;
+            return CustomTransitionPage(
+              transitionDuration: const Duration(milliseconds: 800),
+              child: SkinStoreView(
+                user: params.player1,
+                skinIndex: params.skinIndex!,
               ),
-              child: child,
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return ScaleTransition(
+                  scale: CurvedAnimation(
+                    parent: animation,
+                    curve: Curves.easeInOut,
+                  ),
+                  child: child,
+                );
+              },
             );
-          },
-        ),
-      ),
+          }),
       GoRoute(
         path: kHistoryView,
         pageBuilder: (context, state) => CustomTransitionPage(

@@ -7,6 +7,7 @@ class NavigationParams {
   final String difficulty;
   final List<String>? selectedSkins;
   final ChallengeModel? challenge;
+  final int? skinIndex;
 
   NavigationParams({
     required this.player1,
@@ -14,5 +15,6 @@ class NavigationParams {
     required this.difficulty,
     this.selectedSkins,
     this.challenge,
+    this.skinIndex,
   });
 }

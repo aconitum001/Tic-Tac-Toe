@@ -14,6 +14,7 @@ import 'package:tic_tac_toe/features/game/presentation/views/widgets/custom_game
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/display_players_info_section.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_board_section.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/game_buttons_section.dart';
+import 'package:tic_tac_toe/features/home/data/models/navigations_param_model.dart';
 import 'package:tic_tac_toe/features/home/presentation/view_model/user_cubit/user_cubit.dart';
 import 'package:tic_tac_toe/features/settings/presentation/view_model/game_history_cubit/game_history_cubit.dart';
 
@@ -58,6 +59,7 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
   int player1Score = 0, player2Score = 0;
   late String currentPlayerName;
   late int points;
+  late int skinIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -165,34 +167,42 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
           if (widget.player1.points >= 100 &&
               !widget.player1.unlockedSkins.contains(1)) {
             widget.player1.unlockedSkins.add(1);
+            skinIndex = 1;
             giftMethode(context);
           } else if (widget.player1.points >= 200 &&
               !widget.player1.unlockedSkins.contains(2)) {
             widget.player1.unlockedSkins.add(2);
+            skinIndex = 2;
             giftMethode(context);
           } else if (widget.player1.points >= 300 &&
               !widget.player1.unlockedSkins.contains(3)) {
             widget.player1.unlockedSkins.add(3);
+            skinIndex = 3;
             giftMethode(context);
           } else if (widget.player1.points >= 400 &&
               !widget.player1.unlockedSkins.contains(4)) {
             widget.player1.unlockedSkins.add(4);
+            skinIndex = 4;
             giftMethode(context);
           } else if (widget.player1.points >= 500 &&
               !widget.player1.unlockedSkins.contains(5)) {
             widget.player1.unlockedSkins.add(5);
+            skinIndex = 5;
             giftMethode(context);
           } else if (widget.player1.points >= 600 &&
               !widget.player1.unlockedSkins.contains(6)) {
             widget.player1.unlockedSkins.add(6);
+            skinIndex = 6;
             giftMethode(context);
           } else if (widget.player1.points >= 700 &&
               !widget.player1.unlockedSkins.contains(7)) {
             widget.player1.unlockedSkins.add(7);
+            skinIndex = 7;
             giftMethode(context);
           } else if (widget.player1.points >= 800 &&
               !widget.player1.unlockedSkins.contains(8)) {
             widget.player1.unlockedSkins.add(8);
+            skinIndex = 8;
             giftMethode(context);
           } else {
             showGameResults(
@@ -254,7 +264,7 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
           content: Container(
             child: Lottie.asset(
               "assets/animations/gift.json",
-              repeat: true,
+              repeat: false,
             ),
           ),
           actions: [
@@ -272,8 +282,15 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
                   ),
                   onPressed: () {
                     GoRouter.of(context).pop();
-                    GoRouter.of(context)
-                        .push(AppRouter.kSkinStoreView, extra: widget.player1);
+                    GoRouter.of(context).push(
+                      AppRouter.kSkinStoreView,
+                      extra: NavigationParams(
+                        player1: widget.player1,
+                        player2: widget.player1,
+                        difficulty: "",
+                        skinIndex: skinIndex,
+                      ),
+                    );
                   },
                   child: Text(
                     'Claim your skin',

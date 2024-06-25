@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tic_tac_toe/core/utils/app_router.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
+import 'package:tic_tac_toe/features/home/data/models/navigations_param_model.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/custom_settings_app_bar.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/custom_settings_text_button.dart';
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/edit_profile_section.dart';
@@ -33,7 +34,15 @@ class SettingsViewBody extends StatelessWidget {
           const ThemeSection(),
           CustomSettingsTextButton(
             onTap: () {
-              GoRouter.of(context).push(AppRouter.kSkinStoreView, extra: user);
+              GoRouter.of(context).push(
+                AppRouter.kSkinStoreView,
+                extra: NavigationParams(
+                  player1: user,
+                  player2: user,
+                  difficulty: "",
+                  skinIndex: -1,
+                ),
+              );
             },
             text: "Skin Store",
             icon: Icons.arrow_forward_ios_rounded,
