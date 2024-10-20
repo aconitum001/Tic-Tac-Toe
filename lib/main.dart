@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +24,12 @@ void main() async {
   await Hive.openBox<GameHistoryModel>(kHistoryBox);
   Bloc.observer = SimpleBlocObserver();
   setup();
-  runApp(const TicTacToe());
+  runApp(
+    DevicePreview(
+      enabled: false,
+      builder: (context) => const TicTacToe(),
+    ),
+  );
 }
 
 class TicTacToe extends StatelessWidget {
@@ -50,6 +56,8 @@ class TicTacToe extends StatelessWidget {
         ],
         child: MaterialApp.router(
           routerConfig: AppRouter.router,
+          locale: DevicePreview.locale(context),
+          builder: DevicePreview.appBuilder,
           debugShowCheckedModeBanner: false,
           theme: darkTheme,
         ),

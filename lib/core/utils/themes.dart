@@ -23,8 +23,8 @@ ThemeData darkTheme = ThemeData(
 
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
-  colorScheme: const ColorScheme.dark(
-    surface: Color(0xff889BCC),
+  colorScheme: const ColorScheme.light(
+    surface: AppColors.secondary2,
     primary: Color(0xff232C46),
     primaryContainer: AppColors.grey3,
     onPrimaryContainer: AppColors.grey2,

@@ -32,64 +32,67 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     return BlocBuilder<UserCubit, UserState>(
       builder: (context, state) {
         if (state is GetUserSuccess) {
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
-            child: Column(
-              children: [
-                CustomAppBar(
-                  user: state.user,
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                SvgPicture.asset(AppAssets.logo),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Text(
-                  "Tic-Tac-Toe",
-                  style: AppStyles.style40.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
+          return PopScope(
+            canPop: false,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.h),
+              child: Column(
+                children: [
+                  CustomAppBar(
+                    user: state.user,
                   ),
-                ),
-                SizedBox(
-                  height: 60.h,
-                ),
-                HomeButtonsSection(
-                  user: state.user,
-                ),
-                SizedBox(
-                  height: 69.h,
-                ),
-                Container(
-                  decoration: buildShadow(
-                    context,
-                    Theme.of(context)
-                        .colorScheme
-                        .primaryContainer
-                        .withOpacity(0.25),
-                    20.r,
+                  SizedBox(
+                    height: 40.h,
                   ),
-                  child: CustomTextButton(
-                    onPressed: () {
-                      GoRouter.of(context).push(
-                        AppRouter.kSettingsView,
-                        extra: state.user,
-                      );
-                    },
-                    text: "Settings",
-                    backgroundColor: [
-                      Theme.of(context).colorScheme.secondary,
-                      Theme.of(context).colorScheme.onSecondary,
-                    ],
-                    textColor: Theme.of(context).colorScheme.primaryContainer,
-                    style: AppStyles.style20.copyWith(
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.primaryContainer,
+                  SvgPicture.asset(AppAssets.logo),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Text(
+                    "Tic-Tac-Toe",
+                    style: AppStyles.style40.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
-                )
-              ],
+                  SizedBox(
+                    height: 60.h,
+                  ),
+                  HomeButtonsSection(
+                    user: state.user,
+                  ),
+                  SizedBox(
+                    height: 69.h,
+                  ),
+                  Container(
+                    decoration: buildShadow(
+                      context,
+                      Theme.of(context)
+                          .colorScheme
+                          .primaryContainer
+                          .withOpacity(0.25),
+                      20.r,
+                    ),
+                    child: CustomTextButton(
+                      onPressed: () {
+                        GoRouter.of(context).push(
+                          AppRouter.kSettingsView,
+                          extra: state.user,
+                        );
+                      },
+                      text: "Settings",
+                      backgroundColor: [
+                        Theme.of(context).colorScheme.secondary,
+                        Theme.of(context).colorScheme.onSecondary,
+                      ],
+                      textColor: Theme.of(context).colorScheme.primaryContainer,
+                      style: AppStyles.style20.copyWith(
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           );
         } else if (state is GetUserFailure) {

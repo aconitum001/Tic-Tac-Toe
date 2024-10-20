@@ -10,7 +10,9 @@ class GetStartedView extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(AppAssets.primaryDarkBackground),
+          image: AssetImage(
+            AppAssets.primaryDarkBackground,
+          ),
           fit: BoxFit.fill,
         ),
       ),

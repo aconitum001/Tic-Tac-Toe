@@ -104,7 +104,7 @@ class _CreatePlayerViewBodyState extends State<CreatePlayerViewBody> {
                       extra: NavigationParams(
                           player1: widget.user,
                           player2: friend,
-                          difficulty: ""),
+                          difficulty: "",),
                     );
                   }
                 },

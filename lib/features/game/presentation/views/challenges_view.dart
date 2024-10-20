@@ -28,36 +28,44 @@ class ChallengesView extends StatelessWidget {
           if (player1.points >= 100 && !player1.unlockedSkins.contains(1)) {
             player1.unlockedSkins.add(1);
             skinIndex = 1;
+            giftMethode(context, skinIndex);
           } else if (player1.points >= 200 &&
               !player1.unlockedSkins.contains(2)) {
             player1.unlockedSkins.add(2);
             skinIndex = 2;
+            giftMethode(context, skinIndex);
           } else if (player1.points >= 300 &&
               !player1.unlockedSkins.contains(3)) {
             player1.unlockedSkins.add(3);
             skinIndex = 3;
+            giftMethode(context, skinIndex);
           } else if (player1.points >= 400 &&
               !player1.unlockedSkins.contains(4)) {
             player1.unlockedSkins.add(4);
             skinIndex = 4;
+            giftMethode(context, skinIndex);
           } else if (player1.points >= 500 &&
               !player1.unlockedSkins.contains(5)) {
             player1.unlockedSkins.add(5);
             skinIndex = 5;
+            giftMethode(context, skinIndex);
           } else if (player1.points >= 600 &&
               !player1.unlockedSkins.contains(6)) {
             player1.unlockedSkins.add(6);
             skinIndex = 6;
+            giftMethode(context, skinIndex);
           } else if (player1.points >= 700 &&
               !player1.unlockedSkins.contains(7)) {
             player1.unlockedSkins.add(7);
             skinIndex = 7;
+            giftMethode(context, skinIndex);
           } else if (player1.points >= 800 &&
               !player1.unlockedSkins.contains(8)) {
             player1.unlockedSkins.add(8);
             skinIndex = 8;
+            giftMethode(context, skinIndex);
           }
-          giftMethode(context, skinIndex);
+          BlocProvider.of<UserCubit>(context).getUser();
         }
       },
       child: Container(
