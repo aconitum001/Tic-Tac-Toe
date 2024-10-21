@@ -23,13 +23,13 @@ class GameBoardSection extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Container(
         padding: EdgeInsets.all(17.w),
-        height: 410.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.r),
           color: Theme.of(context).colorScheme.onPrimary,
         ),
         child: GridView.builder(
           physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
             childAspectRatio: 93.48.w / 95.87.h,

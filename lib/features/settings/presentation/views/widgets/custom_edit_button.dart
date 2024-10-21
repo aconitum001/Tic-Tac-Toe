@@ -26,6 +26,7 @@ class CustomEditButton extends StatelessWidget {
         child: TextButton(
           onPressed: onPressed,
           style: TextButton.styleFrom(
+            padding: EdgeInsets.symmetric(vertical: 5.h),
             backgroundColor: Theme.of(context).colorScheme.primaryContainer,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100.r),
@@ -35,22 +36,25 @@ class CustomEditButton extends StatelessWidget {
               38.h,
             ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                AppAssets.edit,
-              ),
-              SizedBox(
-                width: 3.w,
-              ),
-              Text(
-                "Edit Profile",
-                style: AppStyles.style19.copyWith(
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  AppAssets.edit,
                 ),
-              )
-            ],
+                SizedBox(
+                  width: 3.w,
+                ),
+                Text(
+                  "Edit Profile",
+                  style: AppStyles.style19.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

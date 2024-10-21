@@ -16,8 +16,10 @@ class HomeButtonsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         CustomPrimaryTextButton(
+          padding: 135.w,
           onPressed: () {
             UserModel bot = UserModel(
               userName: "Bot",
@@ -50,6 +52,7 @@ class HomeButtonsSection extends StatelessWidget {
           height: 15.h,
         ),
         CustomPrimaryTextButton(
+          padding: 40.w,
           onPressed: () {
             GoRouter.of(context).push(AppRouter.kCreatePlayerView, extra: user);
           },
@@ -65,6 +68,7 @@ class HomeButtonsSection extends StatelessWidget {
           height: 15.h,
         ),
         CustomPrimaryTextButton(
+          padding: 8.w,
           onPressed: () {
             UserModel bot = UserModel(
               userName: "Bot",

@@ -10,7 +10,7 @@ import 'package:tic_tac_toe/features/settings/presentation/views/widgets/game_hi
 import 'package:tic_tac_toe/features/settings/presentation/views/widgets/skin_store_app_bar.dart';
 
 class HistoryViewBody extends StatefulWidget {
-  const HistoryViewBody({Key? key, required this.user}) : super(key: key);
+  const HistoryViewBody({super.key, required this.user});
 
   final UserModel user;
 

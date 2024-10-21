@@ -15,7 +15,7 @@ class PointsDisplayWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 33.h,
-      padding: EdgeInsets.symmetric(horizontal: 30.w),
+      padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 1.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.r),
         border: Border.all(
@@ -23,10 +23,13 @@ class PointsDisplayWidget extends StatelessWidget {
         ),
       ),
       child: Center(
-        child: Text(
-          user.points.toString(),
-          style: AppStyles.style19.copyWith(
-            fontWeight: FontWeight.normal,
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            user.points.toString(),
+            style: AppStyles.style19.copyWith(
+              fontWeight: FontWeight.normal,
+            ),
           ),
         ),
       ),

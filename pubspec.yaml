@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   adaptive_theme: ^3.6.0
+  audioplayers: ^6.1.0
   carousel_slider: ^5.0.0
   confetti: ^0.7.0
   cupertino_icons: ^1.0.6
@@ -74,6 +75,7 @@ flutter:
     - assets/fonts/
     - assets/sound/
     - assets/animations/
+    - assets/sound/background_music.mp3
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

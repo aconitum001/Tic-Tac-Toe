@@ -71,21 +71,33 @@ class _GameHistoryListViewItemState extends State<GameHistoryListViewItem>
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              GameHistoryUserInfoWidget(
-                avatar: widget.historyModel.player1Avatar,
-                score: widget.historyModel.player1Score,
-                playerName: widget.historyModel.player1UserName,
+              Expanded(
+                child: GameHistoryUserInfoWidget(
+                  avatar: widget.historyModel.player1Avatar,
+                  score: widget.historyModel.player1Score,
+                  playerName: widget.historyModel.player1UserName,
+                ),
               ),
-              GameHistoryStatsWidget(
-                index: widget.length - widget.index,
-                date: widget.historyModel.date,
-                player1Skin: widget.historyModel.player1Skin,
-                player2Skin: widget.historyModel.player2Skin,
+              SizedBox(
+                width: 5.w,
               ),
-              GameHistoryUserInfoWidget(
-                avatar: widget.historyModel.player2Avatar,
-                score: widget.historyModel.player2Score,
-                playerName: widget.historyModel.player2UserName,
+              Expanded(
+                child: GameHistoryStatsWidget(
+                  index: widget.length - widget.index,
+                  date: widget.historyModel.date,
+                  player1Skin: widget.historyModel.player1Skin,
+                  player2Skin: widget.historyModel.player2Skin,
+                ),
+              ),
+              SizedBox(
+                width: 5.w,
+              ),
+              Expanded(
+                child: GameHistoryUserInfoWidget(
+                  avatar: widget.historyModel.player2Avatar,
+                  score: widget.historyModel.player2Score,
+                  playerName: widget.historyModel.player2UserName,
+                ),
               ),
             ],
           ),

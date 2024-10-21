@@ -22,12 +22,14 @@ class CustomGridViewButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 2.w),
         height: 30.h,
         color: Theme.of(context).colorScheme.primaryContainer,
-        child: Text(
-          text,
-          style: AppStyles.style12.copyWith(
-            color: Theme.of(context).colorScheme.onPrimaryContainer,
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            text,
+            style: AppStyles.style12.copyWith(
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
           ),
-          overflow: TextOverflow.ellipsis,
         ),
       ),
     );

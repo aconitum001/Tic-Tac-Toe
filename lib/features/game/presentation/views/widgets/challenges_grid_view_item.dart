@@ -41,19 +41,25 @@ class ChallengesGridViewItem extends StatelessWidget {
               SizedBox(
                 height: 10.h,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Challenge ${index + 1} ",
-                    style: AppStyles.style12,
-                  ),
-                  if (isFinished)
-                    Icon(
-                      Icons.check_circle,
-                      size: 13.w,
-                    )
-                ],
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        "Challenge ${index + 1} ",
+                        style: AppStyles.style12,
+                      ),
+                    ),
+                    if (isFinished)
+                      Icon(
+                        Icons.check_circle,
+                        size: 13.w,
+                      )
+                  ],
+                ),
               ),
               Divider(
                 endIndent: 18.45.w,

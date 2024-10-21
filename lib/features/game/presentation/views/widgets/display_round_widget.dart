@@ -16,6 +16,7 @@ class DisplayRoundsWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 25.w,
+        vertical: 2.h,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.r),
@@ -24,10 +25,13 @@ class DisplayRoundsWidget extends StatelessWidget {
         ),
       ),
       child: Center(
-        child: Text(
-          counter <= rounds ? "$counter/$rounds" : "$rounds/$rounds",
-          style: AppStyles.style19.copyWith(
-            fontWeight: FontWeight.bold,
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            counter <= rounds ? "$counter/$rounds" : "$rounds/$rounds",
+            style: AppStyles.style19.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ),

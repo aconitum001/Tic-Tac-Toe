@@ -29,9 +29,15 @@ class CustomTextButton extends StatelessWidget {
           gradient: AppColors.linearColors(backgroundColor),
         ),
         child: Center(
-          child: Text(
-            text,
-            style: style,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 10),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                text,
+                style: style,
+              ),
+            ),
           ),
         ),
       ),

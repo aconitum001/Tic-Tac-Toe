@@ -42,11 +42,14 @@ class NavigateToGameViewButton extends StatelessWidget {
         },
         bgColor: Theme.of(context).colorScheme.primaryContainer,
         borderColor: Colors.transparent,
-        child: Text(
-          "Next",
-          style: AppStyles.style20.copyWith(
-            fontWeight: FontWeight.w600,
-            color: Theme.of(context).colorScheme.onPrimaryContainer,
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            "Next",
+            style: AppStyles.style20.copyWith(
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
           ),
         ),
       ),

@@ -18,18 +18,21 @@ class GameHistoryUserInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Image.asset(
           avatar,
           width: 64.w,
           height: 64.h,
         ),
-        Text(
-          "$playerName: $score",
-          style: AppStyles.style15.copyWith(
-            fontWeight: FontWeight.w400,
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            "$playerName: $score",
+            style: AppStyles.style15.copyWith(
+              fontWeight: FontWeight.w400,
+            ),
           ),
-          overflow: TextOverflow.ellipsis,
         )
       ],
     );

@@ -36,6 +36,8 @@ class _GameDifficultyButtonsSectionState
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           CustomSecondaryButton(
+            horizantal: 130.w,
+            vertical: 2.h,
             onPressed: () {
               setState(() {
                 selectedDifficulty = 0;
@@ -46,10 +48,13 @@ class _GameDifficultyButtonsSectionState
             borderColor:
                 selectedDifficulty == 0 ? Colors.white : Colors.transparent,
             child: Center(
-              child: Text(
-                "Hard",
-                style: AppStyles.style23.copyWith(
-                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  "Hard",
+                  style: AppStyles.style23.copyWith(
+                    color: Theme.of(context).colorScheme.onSecondaryContainer,
+                  ),
                 ),
               ),
             ),
@@ -58,6 +63,8 @@ class _GameDifficultyButtonsSectionState
             height: 15.h,
           ),
           CustomSecondaryButton(
+            horizantal: 110.w,
+            vertical: 2.h,
             onPressed: () {
               setState(() {
                 selectedDifficulty = 1;
@@ -68,10 +75,13 @@ class _GameDifficultyButtonsSectionState
             borderColor:
                 selectedDifficulty == 1 ? Colors.white : Colors.transparent,
             child: Center(
-              child: Text(
-                "Medium",
-                style: AppStyles.style23.copyWith(
-                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  "Medium",
+                  style: AppStyles.style23.copyWith(
+                    color: Theme.of(context).colorScheme.onSecondaryContainer,
+                  ),
                 ),
               ),
             ),
@@ -80,6 +90,8 @@ class _GameDifficultyButtonsSectionState
             height: 15.h,
           ),
           CustomSecondaryButton(
+            horizantal: 130.w,
+            vertical: 2.h,
             onPressed: () {
               setState(() {
                 selectedDifficulty = 2;
@@ -90,10 +102,13 @@ class _GameDifficultyButtonsSectionState
             borderColor:
                 selectedDifficulty == 2 ? Colors.white : Colors.transparent,
             child: Center(
-              child: Text(
-                "Easy",
-                style: AppStyles.style23.copyWith(
-                  color: Theme.of(context).colorScheme.onSecondaryContainer,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  "Easy",
+                  style: AppStyles.style23.copyWith(
+                    color: Theme.of(context).colorScheme.onSecondaryContainer,
+                  ),
                 ),
               ),
             ),

@@ -22,11 +22,15 @@ class GameHistoryStatsWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          "Match $index",
-          style: AppStyles.style15,
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            "Match $index",
+            style: AppStyles.style15,
+          ),
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SvgPicture.asset(
               player1Skin,
@@ -35,17 +39,11 @@ class GameHistoryStatsWidget extends StatelessWidget {
               height: 30.h,
               clipBehavior: Clip.none,
             ),
-            SizedBox(
-              width: 10.w,
-            ),
             Text(
               ":",
               style: AppStyles.style30.copyWith(
                 fontWeight: FontWeight.w700,
               ),
-            ),
-            SizedBox(
-              width: 10.w,
             ),
             SvgPicture.asset(
               player2Skin,
@@ -55,9 +53,12 @@ class GameHistoryStatsWidget extends StatelessWidget {
             ),
           ],
         ),
-        Text(
-          date,
-          style: AppStyles.style11,
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            date,
+            style: AppStyles.style11,
+          ),
         )
       ],
     );

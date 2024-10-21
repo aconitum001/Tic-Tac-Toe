@@ -8,10 +8,13 @@ class DefaultText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      "Next",
-      style: AppStyles.style20.copyWith(
-        color: Theme.of(context).colorScheme.onPrimaryContainer,
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: Text(
+        "Next",
+        style: AppStyles.style20.copyWith(
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+        ),
       ),
     );
   }

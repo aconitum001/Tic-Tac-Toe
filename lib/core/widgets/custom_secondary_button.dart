@@ -9,11 +9,14 @@ class CustomSecondaryButton extends StatelessWidget {
     required this.child,
     required this.bgColor,
     required this.borderColor,
+    this.horizantal = 0,
+    this.vertical = 0,
   });
 
   final void Function()? onPressed;
   final Widget child;
   final Color bgColor, borderColor;
+  final double horizantal, vertical;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,11 @@ class CustomSecondaryButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: child,
+        child: Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: horizantal, vertical: vertical),
+          child: child,
+        ),
       ),
     );
   }

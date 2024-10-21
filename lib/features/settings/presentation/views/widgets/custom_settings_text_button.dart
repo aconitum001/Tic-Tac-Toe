@@ -15,32 +15,33 @@ class CustomSettingsTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: SizedBox(
-        width: 125.w,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Opacity(
-              opacity: .5,
-              child: Text(
-                text,
-                style: AppStyles.style15.copyWith(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                ),
+    return TextButton(
+      onPressed: onTap,
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(0),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Opacity(
+            opacity: .5,
+            child: Text(
+              text,
+              style: AppStyles.style15.copyWith(
+                color: Theme.of(context).colorScheme.primaryContainer,
               ),
             ),
-            Icon(
-              icon,
-              size: 18.w,
-              color: Theme.of(context)
-                  .colorScheme
-                  .primaryContainer
-                  .withOpacity(0.5),
-            )
-          ],
-        ),
+          ),
+          Icon(
+            icon,
+            size: 18.w,
+            color:
+                Theme.of(context).colorScheme.primaryContainer.withOpacity(0.5),
+          )
+        ],
       ),
     );
   }

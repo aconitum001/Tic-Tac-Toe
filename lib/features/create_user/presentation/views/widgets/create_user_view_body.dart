@@ -104,6 +104,7 @@ class _CreateUserViewBodyState extends State<CreateUserViewBody> {
                     8.r,
                   ),
                   child: CustomSecondaryButton(
+                    horizantal: 100,
                     bgColor: Theme.of(context).colorScheme.primaryContainer,
                     borderColor: Colors.transparent,
                     onPressed: () {
