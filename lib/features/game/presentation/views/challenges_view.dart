@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tic_tac_toe/core/utils/app_router.dart';
 import 'package:tic_tac_toe/core/utils/assets.dart';
+import 'package:tic_tac_toe/core/utils/constants.dart';
 import 'package:tic_tac_toe/core/utils/models/user_model.dart';
 import 'package:tic_tac_toe/core/utils/styles.dart';
 import 'package:tic_tac_toe/features/game/presentation/views/widgets/challenges_view_body.dart';
@@ -25,44 +26,40 @@ class ChallengesView extends StatelessWidget {
       listener: (context, state) {
         if (state is GetUserReward) {
           late int skinIndex;
-          if (player1.points >= 100 && !player1.unlockedSkins.contains(1)) {
+          if (player1.points >= skinsList[1].price &&
+              !player1.unlockedSkins.contains(1)) {
             player1.unlockedSkins.add(1);
             skinIndex = 1;
             giftMethode(context, skinIndex);
-          } else if (player1.points >= 200 &&
+          } else if (player1.points >= skinsList[2].price &&
               !player1.unlockedSkins.contains(2)) {
             player1.unlockedSkins.add(2);
             skinIndex = 2;
             giftMethode(context, skinIndex);
-          } else if (player1.points >= 300 &&
+          } else if (player1.points >= skinsList[3].price &&
               !player1.unlockedSkins.contains(3)) {
             player1.unlockedSkins.add(3);
             skinIndex = 3;
             giftMethode(context, skinIndex);
-          } else if (player1.points >= 400 &&
+          } else if (player1.points >= skinsList[4].price &&
               !player1.unlockedSkins.contains(4)) {
             player1.unlockedSkins.add(4);
             skinIndex = 4;
             giftMethode(context, skinIndex);
-          } else if (player1.points >= 500 &&
+          } else if (player1.points >= skinsList[5].price &&
               !player1.unlockedSkins.contains(5)) {
             player1.unlockedSkins.add(5);
             skinIndex = 5;
             giftMethode(context, skinIndex);
-          } else if (player1.points >= 600 &&
+          } else if (player1.points >= skinsList[6].price &&
               !player1.unlockedSkins.contains(6)) {
             player1.unlockedSkins.add(6);
             skinIndex = 6;
             giftMethode(context, skinIndex);
-          } else if (player1.points >= 700 &&
+          } else if (player1.points >= skinsList[7].price &&
               !player1.unlockedSkins.contains(7)) {
             player1.unlockedSkins.add(7);
             skinIndex = 7;
-            giftMethode(context, skinIndex);
-          } else if (player1.points >= 800 &&
-              !player1.unlockedSkins.contains(8)) {
-            player1.unlockedSkins.add(8);
-            skinIndex = 8;
             giftMethode(context, skinIndex);
           }
           BlocProvider.of<UserCubit>(context).getUser();

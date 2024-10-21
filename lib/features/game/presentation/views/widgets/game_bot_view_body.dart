@@ -165,47 +165,42 @@ class _GameBotViewBodyState extends State<GameBotViewBody> {
           BlocProvider.of<UserCubit>(context)
               .updateUserPoints(points: points, user: widget.player1);
           BlocProvider.of<UserCubit>(context).addUserWins(user: widget.player1);
-          if (widget.player1.points >= 100 &&
+         if (widget.player1.points >= skinsList[1].price &&
               !widget.player1.unlockedSkins.contains(1)) {
             widget.player1.unlockedSkins.add(1);
             skinIndex = 1;
             giftMethode(context);
-          } else if (widget.player1.points >= 200 &&
+          } else if (widget.player1.points >= skinsList[2].price &&
               !widget.player1.unlockedSkins.contains(2)) {
             widget.player1.unlockedSkins.add(2);
             skinIndex = 2;
             giftMethode(context);
-          } else if (widget.player1.points >= 300 &&
+          } else if (widget.player1.points >= skinsList[3].price &&
               !widget.player1.unlockedSkins.contains(3)) {
             widget.player1.unlockedSkins.add(3);
             skinIndex = 3;
             giftMethode(context);
-          } else if (widget.player1.points >= 400 &&
+          } else if (widget.player1.points >= skinsList[4].price &&
               !widget.player1.unlockedSkins.contains(4)) {
             widget.player1.unlockedSkins.add(4);
             skinIndex = 4;
             giftMethode(context);
-          } else if (widget.player1.points >= 500 &&
+          } else if (widget.player1.points >= skinsList[5].price &&
               !widget.player1.unlockedSkins.contains(5)) {
             widget.player1.unlockedSkins.add(5);
             skinIndex = 5;
             giftMethode(context);
-          } else if (widget.player1.points >= 600 &&
+          } else if (widget.player1.points >= skinsList[6].price &&
               !widget.player1.unlockedSkins.contains(6)) {
             widget.player1.unlockedSkins.add(6);
             skinIndex = 6;
             giftMethode(context);
-          } else if (widget.player1.points >= 700 &&
+          } else if (widget.player1.points >= skinsList[7].price &&
               !widget.player1.unlockedSkins.contains(7)) {
             widget.player1.unlockedSkins.add(7);
             skinIndex = 7;
             giftMethode(context);
-          } else if (widget.player1.points >= 800 &&
-              !widget.player1.unlockedSkins.contains(8)) {
-            widget.player1.unlockedSkins.add(8);
-            skinIndex = 8;
-            giftMethode(context);
-          } else {
+          }  else {
             showGameResults(
               context,
               controller,

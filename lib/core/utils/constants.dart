@@ -50,11 +50,11 @@ const List<SkinModel> skinsList = [
   SkinModel(xSkin: AppAssets.xStyle1, oSkin: AppAssets.oStyle1, price: 0),
   SkinModel(xSkin: AppAssets.xStyle2, oSkin: AppAssets.oStyle2, price: 100),
   SkinModel(xSkin: AppAssets.xStyle3, oSkin: AppAssets.oStyle3, price: 200),
-  SkinModel(xSkin: AppAssets.xStyle4, oSkin: AppAssets.oStyle4, price: 300),
-  SkinModel(xSkin: AppAssets.xStyle5, oSkin: AppAssets.oStyle5, price: 400),
-  SkinModel(xSkin: AppAssets.xStyle6, oSkin: AppAssets.oStyle6, price: 500),
-  SkinModel(xSkin: AppAssets.xStyle7, oSkin: AppAssets.oStyle7, price: 600),
-  SkinModel(xSkin: AppAssets.xStyle8, oSkin: AppAssets.oStyle8, price: 700),
+  SkinModel(xSkin: AppAssets.xStyle4, oSkin: AppAssets.oStyle4, price: 350),
+  SkinModel(xSkin: AppAssets.xStyle5, oSkin: AppAssets.oStyle5, price: 450),
+  SkinModel(xSkin: AppAssets.xStyle6, oSkin: AppAssets.oStyle6, price: 600),
+  SkinModel(xSkin: AppAssets.xStyle7, oSkin: AppAssets.oStyle7, price: 800),
+  SkinModel(xSkin: AppAssets.xStyle8, oSkin: AppAssets.oStyle8, price: 1000),
 ];
 
 const List<ChallengeModel> challengesList = [
@@ -88,7 +88,7 @@ const List<ChallengeModel> challengesList = [
     image: AppAssets.round15,
     difficulty: "0.3",
     rounds: 20,
-    reward: 300,
+    reward: 400,
   ),
   ChallengeModel(
     id: 4,
@@ -96,7 +96,7 @@ const List<ChallengeModel> challengesList = [
     image: AppAssets.round15,
     difficulty: "0.2",
     rounds: 25,
-    reward: 400,
+    reward: 600,
   ),
   ChallengeModel(
     id: 5,
@@ -104,7 +104,7 @@ const List<ChallengeModel> challengesList = [
     image: AppAssets.round15,
     difficulty: "0.2",
     rounds: 30,
-    reward: 500,
+    reward: 800,
   ),
   ChallengeModel(
     id: 6,
@@ -112,7 +112,7 @@ const List<ChallengeModel> challengesList = [
     image: AppAssets.round15,
     difficulty: "0.15",
     rounds: 35,
-    reward: 600,
+    reward: 1000,
   ),
   ChallengeModel(
     id: 7,
@@ -120,7 +120,7 @@ const List<ChallengeModel> challengesList = [
     image: AppAssets.round15,
     difficulty: "0.1",
     rounds: 40,
-    reward: 700,
+    reward: 1500,
   ),
 ];
 
@@ -128,8 +128,8 @@ const String kUserBox = "usersBox";
 const String kHistoryBox = "historyBox";
 
 const int winPointsEasy = 2;
-const int winPointsMedium = 4;
-const int winPointsHard = 6;
+const int winPointsMedium = 5;
+const int winPointsHard = 10;
 
 const int losePointsEasy = -1;
 const int losePointsMedium = -2;
