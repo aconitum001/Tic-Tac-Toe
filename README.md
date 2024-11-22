@@ -1,16 +1,53 @@
-# tic_tac_toe
+# ![Tic Tac Toe Banner](banner-image-url)
 
-A new Flutter project.
+# **Tic Tac Toe Game**  
+*A modern twist on the classic game, built with Flutter.*
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## **Features**  
+- 🎮 Play solo against bots with various difficulty levels.  
+- 👥 Challenge your friends and compete for the win.  
+- 💎 Earn points and unlock exciting new skins.  
+- 🏆 Tackle unique challenges for an extra layer of fun.  
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## **Demo**  
+🎥 [Watch the Showcase Video](#)  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## **Try the Game**  
+- [Test the App](#)  
+- [Download the App](#)  
+
+---
+
+## **Design**  
+🎨 Check out the [game design](#) to explore the visuals and UI inspiration.  
+
+---
+
+## **Acknowledgments**  
+A special thanks to **Hidaya Tabene** for creating the amazing design and supporting this project.  
+
+---
+
+## **Feedback and Contributions**  
+Your feedback is invaluable! Feel free to:  
+- Raise issues  
+- Suggest features  
+- Contribute to the codebase  
+
+---
+
+## **License**  
+This project is licensed under the MIT License. See the LICENSE file for details.  
+
+---
+
+## **Contact**  
+- **Author:** [Your Name]  
+- **LinkedIn:** [Your LinkedIn Profile](#)  
+- **GitHub:** [Your GitHub Profile](#)  
