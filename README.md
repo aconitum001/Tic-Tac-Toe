@@ -1,4 +1,4 @@
-# ![Tic Tac Toe Banner](banner-image-url)
+# ![Tic Tac Toe Banner](https://github.com/user-attachments/assets/ec186e3e-3e82-41fb-ba47-401b790f6b73)
 
 # **Tic Tac Toe Game**  
 *A modern twist on the classic game, built with Flutter.*
@@ -14,18 +14,18 @@
 ---
 
 ## **Demo**  
-🎥 [Watch the Showcase Video](#)  
+🎥 [Watch the Showcase Video](https://www.youtube.com/shorts/d5HXhgMxbuE)  
 
 ---
 
 ## **Try the Game**  
-- [Test the App](#)  
-- [Download the App](#)  
+- [Test the App](https://appetize.io/app/b_yr6s6wjbz5f2ubhz3qkh3rr72y)  
+- [Download the App](https://drive.google.com/file/d/1DQKmPBtXp__hqZTjfz3q3zeMXkPIB7_V/view?usp=sharing)  
 
 ---
 
 ## **Design**  
-🎨 Check out the [game design](#) to explore the visuals and UI inspiration.  
+🎨 Check out the [game design](https://www.figma.com/design/bUAEiBJAbt4wsFhV2dXAOy/Tic-Tac-Toe?node-id=504-75&t=0mAwmvkDj4Z87xJv-1) to explore the visuals and UI inspiration.  
 
 ---
 
@@ -48,6 +48,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 ---
 
 ## **Contact**  
-- **Author:** [Your Name]  
-- **LinkedIn:** [Your LinkedIn Profile](#)  
-- **GitHub:** [Your GitHub Profile](#)  
+- **Author:** Skander jenhani 
