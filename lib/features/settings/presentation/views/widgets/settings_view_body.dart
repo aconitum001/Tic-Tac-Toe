@@ -60,6 +60,13 @@ class SettingsViewBody extends StatelessWidget {
             },
             text: "Game History",
             icon: Icons.arrow_forward_ios_rounded,
+          ),
+          CustomSettingsTextButton(
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.kPrivacyPolicyView);
+            },
+            text: "Privacy Policy",
+            icon: Icons.arrow_forward_ios_rounded,
           )
         ],
       ),

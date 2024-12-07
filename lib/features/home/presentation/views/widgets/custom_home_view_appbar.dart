@@ -18,23 +18,38 @@ class CustomAppBar extends StatefulWidget {
   _CustomAppBarState createState() => _CustomAppBarState();
 }
 
-class _CustomAppBarState extends State<CustomAppBar> {
+class _CustomAppBarState extends State<CustomAppBar>
+    with WidgetsBindingObserver {
   late AudioPlayer _audioPlayer;
-  bool _isPlaying = true; // Track whether music is playing
+  bool _isPlaying = true;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this); // Add observer for app lifecycle
     _audioPlayer = AudioPlayer();
-    _playMusic(); // Start music when the app bar is initialized
+    _playMusic();
+  }
+
+  // Handle app lifecycle changes
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.detached) {
+      // Stop music when app is in the background or closed
+      _pauseMusic();
+    } else if (state == AppLifecycleState.resumed) {
+      // Optionally, resume music when app is back in the foreground
+      if (_isPlaying) _playMusic();
+    }
   }
 
   // Function to play music
   void _playMusic() async {
-    await _audioPlayer.setReleaseMode(ReleaseMode.loop); // Loop music
+    await _audioPlayer.setReleaseMode(ReleaseMode.loop);
     await _audioPlayer.play(
-      AssetSource('sound/background_music.mp3'), // Use your audio path
-      volume: 0.6, // Set volume
+      AssetSource('sound/background_music.mp3'),
+      volume: 0.6,
     );
   }
 
@@ -51,14 +66,14 @@ class _CustomAppBarState extends State<CustomAppBar> {
       } else {
         _playMusic();
       }
-      _isPlaying = !_isPlaying; // Toggle music state
+      _isPlaying = !_isPlaying;
     });
   }
 
   @override
   void dispose() {
-    _audioPlayer
-        .dispose(); // Dispose of the audio player when the widget is removed
+    WidgetsBinding.instance.removeObserver(this); // Remove observer
+    _audioPlayer.dispose();
     super.dispose();
   }
 
@@ -78,11 +93,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 ),
               ),
               child: IconButton(
-                onPressed: _toggleMusic, // Toggle music on button press
+                onPressed: _toggleMusic,
                 icon: Icon(
                   _isPlaying
                       ? Icons.volume_up_outlined
-                      : Icons.volume_off_outlined, // Change icon based on state
+                      : Icons.volume_off_outlined,
                 ),
               ),
             ),

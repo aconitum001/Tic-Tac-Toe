@@ -42,8 +42,8 @@ class HomeButtonsSection extends StatelessWidget {
           },
           icon: Icons.person,
           text: "Play Solo",
-          width: 18.w,
-          style: AppStyles.style20.copyWith(
+          width: 10.w,
+          style: AppStyles.style19.copyWith(
             fontWeight: FontWeight.w600,
             color: Theme.of(context).colorScheme.onPrimaryContainer,
           ),
@@ -58,8 +58,8 @@ class HomeButtonsSection extends StatelessWidget {
           },
           icon: Icons.group,
           text: "Play With A Friend",
-          width: 18.w,
-          style: AppStyles.style20.copyWith(
+          width: 10.w,
+          style: AppStyles.style19.copyWith(
             fontWeight: FontWeight.w600,
             color: Theme.of(context).colorScheme.onPrimaryContainer,
           ),
@@ -94,8 +94,8 @@ class HomeButtonsSection extends StatelessWidget {
           },
           icon: Icons.emoji_events,
           text: "Play in Challenge mode",
-          width: 18.w,
-          style: AppStyles.style20.copyWith(
+          width: 10.w,
+          style: AppStyles.style19.copyWith(
             fontWeight: FontWeight.w600,
             color: Theme.of(context).colorScheme.onPrimaryContainer,
           ),

@@ -47,7 +47,7 @@ class CustomPrimaryTextButton extends StatelessWidget {
             Icon(
               icon,
               color: Theme.of(context).colorScheme.onPrimaryContainer,
-              size: 35.w,
+              size: 30.w,
             ),
             SizedBox(
               width: width,
